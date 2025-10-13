@@ -160,6 +160,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#the-home-directory" id="toc-the-home-directory" class="nav-link" data-scroll-target="#the-home-directory">The home directory</a></li>
   <li><a href="#changing-directories" id="toc-changing-directories" class="nav-link" data-scroll-target="#changing-directories">Changing directories</a></li>
   <li><a href="#other-useful-commands" id="toc-other-useful-commands" class="nav-link" data-scroll-target="#other-useful-commands">Other useful commands</a></li>
+  <li><a href="#exercise-try-to-find-the-modifiers-for-each-of-the-commands-above-to-do-the-following" id="toc-exercise-try-to-find-the-modifiers-for-each-of-the-commands-above-to-do-the-following" class="nav-link" data-scroll-target="#exercise-try-to-find-the-modifiers-for-each-of-the-commands-above-to-do-the-following">EXERCISE: Try to find the modifiers for each of the commands above to do the following :</a></li>
+  </ul></li>
+  <li><a href="#files-and-file-extensions" id="toc-files-and-file-extensions" class="nav-link" data-scroll-target="#files-and-file-extensions">Files and File Extensions</a>
+  <ul class="collapse">
+  <li><a href="#why-are-file-extensions-important" id="toc-why-are-file-extensions-important" class="nav-link" data-scroll-target="#why-are-file-extensions-important">Why Are File Extensions Important?</a></li>
+  <li><a href="#plain-text-files" id="toc-plain-text-files" class="nav-link" data-scroll-target="#plain-text-files">Plain Text Files</a></li>
+  </ul></li>
+  <li><a href="#working-with-files-in-the-terminal" id="toc-working-with-files-in-the-terminal" class="nav-link" data-scroll-target="#working-with-files-in-the-terminal">Working with files in the terminal</a>
+  <ul class="collapse">
+  <li><a href="#standard-output-redirection" id="toc-standard-output-redirection" class="nav-link" data-scroll-target="#standard-output-redirection">Standard output redirection</a></li>
+  <li><a href="#extracting-specific-information" id="toc-extracting-specific-information" class="nav-link" data-scroll-target="#extracting-specific-information">Extracting specific information</a></li>
+  <li><a href="#working-with-bioinformatics-data" id="toc-working-with-bioinformatics-data" class="nav-link" data-scroll-target="#working-with-bioinformatics-data">Working with bioinformatics data</a></li>
+  <li><a href="#exercise-perform-the-following-actions-on-the-above-fasta-file" id="toc-exercise-perform-the-following-actions-on-the-above-fasta-file" class="nav-link" data-scroll-target="#exercise-perform-the-following-actions-on-the-above-fasta-file">EXERCISE: Perform the following actions on the above fasta file</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -299,21 +312,83 @@ Why You Should Practice Using Absolute Paths
 </div>
 </div>
 </section>
+<section id="the-autocomplete-feature" class="level4">
+<h4 class="anchored" data-anchor-id="the-autocomplete-feature">The autocomplete feature</h4>
+<p>When you are typing out filenames or directory names in the shell, it will attempt to automatically complete what you are typing with the file/directory names <strong>WITHIN THE DIRECTORY YOU ARE CURRENTLY IN</strong>. For example, say you want to change to the directory <code>/mnt/c/Users/username/</code> .</p>
+<p>When you begin typing <code>/mnt/c/Users/us</code> and then press the <code>tab</code> (⭾) button on your keyboard, it will automatically complete to <code>/mnt/c/Users/username/</code> .</p>
+<p>If you have multiple folders that begin with <code>user</code>, it will complete to the furthest possible character. For example if you have the following files in your <code>Users</code> directory</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$:</span> ls Users</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="ex">user1</span> user2 username</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The autocomplete feature will complete <code>/mnt/c/Users/us</code> to <code>/mnt/c/Users/user</code>, after which you can type <code>n</code> to make it <code>/mnt/c/Users/usern</code> and then press <code>tab</code> again, which will then complete it to <code>/mnt/c/Users/username</code></p>
+<p>The autocomplete feature works the same way for files, for example <code>/mnt/c/Users/username/project/exa</code> will complete to <code>/mnt/c/Users/username/project/example.txt</code> .</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+The shell is CASE-SENSITIVE
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><code>example.txt</code> and <code>Example.txt</code> will be treated as different files. If you type <code>exa</code> and press <code>tab</code>, it will never complete to <code>Example.txt</code>.</p>
+</div>
+</div>
+</section>
 </section>
 <section id="other-useful-commands" class="level3">
 <h3 class="anchored" data-anchor-id="other-useful-commands">Other useful commands</h3>
-<p><code>mkdir</code> : Makes a new directory called <code>my_new_folder</code> in the current directory (<code>project</code>)</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> my_new_folder</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p><code>cp</code> : Creates a copy of a file. The below example copies <code>example.txt</code> from <code>project</code> to <code>my_new_folder</code>.</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> example.txt ./my_new_folder/  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p><code>mv</code> : Moves a file from one location to another. The below example moves <code>example.txt</code> from <code>project</code> to <code>username</code> (In this case, one directory above <code>project</code> using <code>../</code> ).</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mv</span> example.txt ../  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p><code>ls</code> : Lists all files in the specified directory. In the below example we refer to <code>my_new_folder</code> using the absolute path and we list all the files within it, which in this case is only <code>example.txt</code></p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> /mnt/c/Users/username/project/my_new_folder/</span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="ex">example.txt</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p><code>rm</code> : Removes (delete) a specified file. In the below example we delete <code>example.txt</code> in <code>my_new_folder</code></p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span> /mnt/c/Users/username/project/my_new_folder/example.txt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="mkdir-makes-a-new-directory-called-dir1-in-the-current-directory-project" class="level4">
+<h4 class="anchored" data-anchor-id="mkdir-makes-a-new-directory-called-dir1-in-the-current-directory-project"><code>mkdir</code> : Makes a new directory called <code>dir1</code> in the current directory (<code>project</code>)</h4>
+<div class="sourceCode" id="cb14"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> dir1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>I recommend making a separate <code>project</code> directory (or any name of your choosing) for this workshop to perform all upcoming exercises.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+DO NOT USE SPACES IN FILE/FOLDER NAMES
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>In general it is good practice to not use spaces or special characters ( such as <code>?!&lt;&gt;,[]{}()</code> ) in your file or folder names as usually, spaces and special characters have a <strong>SPECIAL MEANING</strong> in the command line and stand for specific operations. This can lead to the system getting confused when you for example refer to a folder with a special character, as it will assume you are performing an operation that the character stands for. For example, the space character is usually the separator for different options/modifiers for command line tools. Use <code>_</code> instead of spaces.</p>
+</div>
+</div>
+</section>
+<section id="ls-lists-all-contents-in-the-specified-directory." class="level4">
+<h4 class="anchored" data-anchor-id="ls-lists-all-contents-in-the-specified-directory."><code>ls</code> : Lists all contents in the specified directory.</h4>
+<p>In the below example we list all the contents in the directory <code>project</code></p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> /mnt/c/Users/username/project/</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="ex">dir1</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="ex">example.txt</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="cp-creates-a-copy-of-a-file." class="level4">
+<h4 class="anchored" data-anchor-id="cp-creates-a-copy-of-a-file."><code>cp</code> : Creates a copy of a file.</h4>
+<p>The below example copies <code>example.txt</code> to <code>dir1</code> .</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> example.txt ./dir1/  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="mv-moves-a-file-from-one-location-to-another." class="level4">
+<h4 class="anchored" data-anchor-id="mv-moves-a-file-from-one-location-to-another."><code>mv</code> : Moves a file from one location to another.</h4>
+<p>The below example moves <code>example.txt</code> from <code>dir1</code> to <code>dir2</code>.</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> dir2</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mv</span> ./dir1/example.txt ./dir2/  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="cat-display-all-the-contents-within-a-file." class="level4">
+<h4 class="anchored" data-anchor-id="cat-display-all-the-contents-within-a-file."><code>cat</code> : Display all the contents within a file.</h4>
+<p>To display all the contents that is within <code>example.txt</code>:</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> cat example.txt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>In our case since we did not write anything into <code>example.txt</code> it will be empty. Feel free to open <code>example.txt</code> in your text editor, write some text into it and then try out the <code>cat</code> command.</p>
+</section>
+<section id="head-and-tail-display-the-first-n-or-last-n-lines-in-a-file" class="level4">
+<h4 class="anchored" data-anchor-id="head-and-tail-display-the-first-n-or-last-n-lines-in-a-file"><code>head</code> and <code>tail</code> : Display the first n or last n lines in a file</h4>
+<p>By default <code>head</code> or <code>tail</code> will display the first 10 or last 10 lines of a file.</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span> example.txt </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="rm-removes-delete-a-specified-file.-in-the-below-example-we-delete-example.txt-in-dir2" class="level4">
+<h4 class="anchored" data-anchor-id="rm-removes-delete-a-specified-file.-in-the-below-example-we-delete-example.txt-in-dir2"><code>rm</code> : Removes (delete) a specified file. In the below example we delete <code>example.txt</code> in <code>dir2</code></h4>
+<div class="sourceCode" id="cb20"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span> /mnt/c/Users/username/project/dir2/example.txt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -327,10 +402,457 @@ REMOVING IS PERMANENT
 <p>Be very careful when using the <code>rm</code> command as there will be no confirmation dialogue box asking you if you are sure you want to delete the file as you might be used to. The file will simply <strong>PERMANENTLY</strong> be deleted!</p>
 </div>
 </div>
-<p><code>man</code>: Shows the manual (help) page for any command. You can also follow any command with either <code>-h</code> or <code>--help</code> to display the help page. Look up the help page of the above commands to see all the different ways they can be used!</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> <span class="at">--help</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="man-shows-the-manual-help-page-for-any-command." class="level4">
+<h4 class="anchored" data-anchor-id="man-shows-the-manual-help-page-for-any-command."><code>man</code>: Shows the manual (help) page for any command.</h4>
+<p>You can also follow any command with either <code>-h</code> or <code>--help</code> to display the help page. Look up the help page of the above commands to see all the different ways they can be used!</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">man</span> ls</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> <span class="at">--help</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Feel free to experiment with the above commands, navigating between different folders, creating and moving files, using absolute and relative paths and so on.</p>
-<p>You can also add modifiers to each command to slightly change its behaviour. For example <code>ls</code> simply lists the names of all the files in the specified directory but <code>ls -l</code> lists them with a lot more additional information! Make sure to look into the <code>--help</code> pages for the commands to know more.</p>
+<p>You can also add modifiers to each command to slightly change its behaviour. For example <code>ls</code> simply lists the names of all the files in the specified directory but <code>ls -l</code> lists them with a lot more additional information! You can also use multiple modifiers at a time like <code>ls -l -a</code> (What does <code>-a</code> do?) . Make sure to look into the <code>--help</code> pages for the commands to know more.</p>
+</section>
+</section>
+<section id="exercise-try-to-find-the-modifiers-for-each-of-the-commands-above-to-do-the-following" class="level3">
+<h3 class="anchored" data-anchor-id="exercise-try-to-find-the-modifiers-for-each-of-the-commands-above-to-do-the-following">EXERCISE: Try to find the modifiers for each of the commands above to do the following :</h3>
+<ol type="1">
+<li>List files along with the file sizes</li>
+</ol>
+<details>
+<summary>
+Click to reveal answer
+</summary>
+<div class="sourceCode" id="cb22"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> <span class="at">-sh</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<ol start="2" type="1">
+<li>List files sorted by the time they were created</li>
+</ol>
+<details>
+<summary>
+Click to reveal answer
+</summary>
+<div class="sourceCode" id="cb23"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> <span class="at">-lt</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<ol start="3" type="1">
+<li>Print the first 30 lines from a file</li>
+</ol>
+<details>
+<summary>
+Click to reveal answer
+</summary>
+<div class="sourceCode" id="cb24"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span> <span class="at">-n</span> 30 filename.txt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<ol start="4" type="1">
+<li>Print all lines starting from the 3rd line</li>
+</ol>
+<details>
+<summary>
+Click to reveal answer
+</summary>
+<div class="sourceCode" id="cb25"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tail</span> <span class="at">-n</span> +3 filename.txt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<ol start="5" type="1">
+<li>Copy or move a directory along with all the contents</li>
+</ol>
+<details>
+<summary>
+Click to reveal answer
+</summary>
+<div class="sourceCode" id="cb26"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> <span class="at">-r</span> /path/to/dir /path/to/new_dir</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<ol start="6" type="1">
+<li>Delete a directory</li>
+</ol>
+<details>
+<summary>
+Click to reveal answer
+</summary>
+<div class="sourceCode" id="cb27"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span> <span class="at">-r</span> /path/to/dir</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<hr>
+</section>
+</section>
+<section id="files-and-file-extensions" class="level2">
+<h2 class="anchored" data-anchor-id="files-and-file-extensions">Files and File Extensions</h2>
+<p>Every file on your computer has a <strong>file extension</strong>, which is part of its name and comes after the last period (dot) in the filename. For example, in <code>example.txt</code>, <code>.txt</code> is the file extension.</p>
+<p>File extensions are used by the operating system to determine what kind of file it is, what program should open it, and how it should be processed. Some common file extensions include:</p>
+<ul>
+<li><code>.txt</code> - Text file</li>
+<li><code>.csv</code> - A table/dataframe with comma separated values</li>
+<li><code>.docx</code> - Microsoft Word document</li>
+<li><code>.pdf</code> - PDF document</li>
+<li><code>.jpg</code> - JPEG image file</li>
+<li><code>.sh</code> - Shell script</li>
+</ul>
+<section id="why-are-file-extensions-important" class="level3">
+<h3 class="anchored" data-anchor-id="why-are-file-extensions-important">Why Are File Extensions Important?</h3>
+<p>File extensions are important because they help the system identify how to handle a file. For example: - A <code>.txt</code> file is usually opened with a simple text editor (e.g., Notepad, VSCode, etc.). A <code>.docx</code> file is typically opened in Microsoft Word or similar word processing software.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The extension does not determine the content of a file, just how it is generally interpreted by the system. You can change a file extension, but it doesn’t change the underlying content, though it might prevent the file from being opened correctly. For example you can change the extension of a <code>.jpg</code> image to <code>.txt</code> , but that doesn’t mean you can open it in Notepad as it will still be an image.</p>
+</div>
+</div>
+</section>
+<section id="plain-text-files" class="level3">
+<h3 class="anchored" data-anchor-id="plain-text-files">Plain Text Files</h3>
+<section id="what-is-plain-text" class="level4">
+<h4 class="anchored" data-anchor-id="what-is-plain-text">What is Plain Text?</h4>
+<p><strong>Plain text</strong> files contain ONLY text. There is no additional formatting (such as bold/italics/colours), images, or embedded metadata. These files can be created and edited with simple text editors such as NotePad (Windows), TextEdit (MacOS), gedit (Ubuntu)</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>A word/google docs document with only text still is not a plain text file. They still have a lot of embedded formatting and metadata.</p>
+</div>
+</div>
+<p><strong>Plain text</strong> is UNIVERSAL. It is not a proprietary format that can only be read by specific programmes (for example, <code>.docx</code>). Any text editor across any system can read and manipulate plain text files.</p>
+<p>In bioinformatics, <strong>plain text</strong> files are preferred for storing data because they can be easily read, processed, and manipulated by a variety of different software. Scripts for some programming languages such as Python, Bash, and R are also in plain text format.</p>
+<p>However, not all bioinformatics data comes in plain text. Many data formats are designed for efficient storage, performance, or specific analysis tasks, and they may be <strong>binary formats</strong> (e.g., BAM). In bioinformatics workflows, <strong>plain text</strong> formats are still commonly used for various data exchange and reporting.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>For some programming languages, the scripts need to be <strong>compiled</strong> before they can be executed (for eg: C, Rust). While the script itself will be in plain-text, it cannot be executed unless it is compiled into a binary. In the case of Python, R and Bash, compilation is not needed.</p>
+</div>
+</div>
+<p>Here are some of the most common plain text files used in bioinformatics:</p>
+</section>
+<section id="csv-or-.tsv" class="level4">
+<h4 class="anchored" data-anchor-id="csv-or-.tsv">1. .csv or .tsv</h4>
+<p>This will probably be the most common file format you will be directly interacting with on a regular basis. <code>csv</code> (Comma Separated Values) or <code>tsv</code> (Tab separated values) are used to store tabular data with commas (in csv) or tabs (in tsv) as the separator in-between values in the table. In other words, it is a way to represent a table in plain-text, with rows separated by new lines and columns separated by commas or tabs. This separator is referred to as the <strong>delimiter</strong>, with <code>tsv</code> files also being referred to as <strong>tab delimited</strong> files and <code>csv</code> as <strong>comma delimited</strong>. Many of the common bioinformatic file formats we will be discussing below are also <strong>tab delimited</strong> files.</p>
+<p><strong>Example .tsv file</strong>:</p>
+<div class="sourceCode" id="cb28"><pre class="sourceCode txt code-with-copy"><code class="sourceCode default"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>sample_name   Gene_symbol   Sequence_name</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>SAMN09634554    sseK2   type III secretion system effector arginine glycosyltransferase SseK2</span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>SAMN42760649    mdsB    multidrug efflux RND transporter permease subunit MdsB</span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>SAMN07714001    golT    gold/copper-translocating P-type ATPase GolT</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Same example as a .csv</strong></p>
+<div class="sourceCode" id="cb29"><pre class="sourceCode txt code-with-copy"><code class="sourceCode default"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>sample_name,Gene_symbol,Sequence_name</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>SAMN09634554,sseK2,type III secretion system effector arginine glycosyltransferase SseK2</span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>SAMN42760649,mdsB,multidrug efflux RND transporter permease subunit MdsB</span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>SAMN07714001,golT,gold/copper-translocating P-type ATPase GolT</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>A <code>.csv</code> or <code>.tsv</code> may not be the most convenient way for us to visualize a table compared to software like excel that neatly separate each value into individual cells, however when you are working with large datasets having thousands to millions of rows, these format enable extremely fast and efficient processing of the data. Moreover, several bioinformatics tools will use <code>.csv</code> and/or <code>.tsv</code> files as their inputs or outputs. So it is very important you are familiar with handling these files.</p>
+</div>
+</div>
+</section>
+<section id="fasta" class="level4">
+<h4 class="anchored" data-anchor-id="fasta">2. FASTA</h4>
+<ul>
+<li>FASTA is one of the most widely used formats for representing <strong>biological sequences</strong>, such as DNA, RNA, or protein sequences. A FASTA file can consist of multiple sequences. Each entry in a FASTA file has two components :
+<ul>
+<li><strong>Description line</strong>: Starts with <code>&gt;</code>, followed by an identifier and optional description.</li>
+<li><strong>Sequence</strong>: The actual sequence of nucleotides (DNA) or amino acids (protein). The sequence can be in a single line or broken up into multiple lines.</li>
+</ul></li>
+<li>Extensions: <code>.fasta</code>,<code>.fna</code>,<code>.fa</code>,<code>.faa</code></li>
+</ul>
+<p><strong>Example FASTA format</strong>:</p>
+<div class="sourceCode" id="cb30"><pre class="sourceCode txt code-with-copy"><code class="sourceCode default"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>&gt;HNLNHC_00005 Oxaloacetate decarboxylase</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>GTGCGCGAGGACCTTGGCTTTATCCCGCTGGTGACCCCCACTTCACAGATT</span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>GTCGGCACCCAGGCGGTGCTCAACGTCCTGACCGGCGAACGCTACAAAACC</span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>&gt;HNLNHC_00010 Oxaloacetate decarboxylase beta chain 2</span>
+<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a>ATGGAAAGTCTGAACGCCCTGCTTCAGGGCATGGGGCTGATGCACCTTGGC</span>
+<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a>GCAGGCCAGGCCATCATGCTGCTGGTGAGCCTGCTGCTGCTGTGGCTGGCG</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="fastq" class="level4">
+<h4 class="anchored" data-anchor-id="fastq">3. FASTQ</h4>
+<ul>
+<li>The <strong>FASTQ</strong> format is an extension of the FASTA format, used for storing raw sequence data <strong>with quality scores</strong>. Each entry contains four lines:
+<ul>
+<li><strong>Header</strong>: Starts with <code>@</code> followed by the sequence identifier.</li>
+<li><strong>Sequence</strong>: The actual sequence of nucleotides.</li>
+<li><strong>Plus line</strong>: Starts with a <code>+</code> sign (may also followed by the same sequence identifier)</li>
+<li><strong>Quality scores</strong>: Per-base quality score corresponding to the sequence in line 2. Each symbol here corresponds to a numeric score for the base call in the corresponding position. Learn more about quality scores <a href="https://help.basespace.illumina.com/files-used-by-basespace/quality-scores">here</a>.</li>
+</ul></li>
+<li>Extensions: <code>.fastq</code>,<code>.fq</code> . Typically paired-end fastq reads for a single sample will have the suffix <code>_R1.fastq</code> and <code>_R2.fastq</code>.</li>
+</ul>
+<p><strong>Example FASTQ format</strong>:</p>
+<div class="sourceCode" id="cb31"><pre class="sourceCode txt code-with-copy"><code class="sourceCode default"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>@SRR16006951.1 1 length=149</span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>CTGTTCGATATTGCCGCCTTGCGCCCCGCGCCGCTCACCCCGCTGGTGGCATTAATTACCGGCCACTGCGTCAGATCCAAAAGACCGCCGTCAATCAGCGGTTTTAGCGACAACTGCGCTGCGGTTGGATAGCAACCAGGAACCGCAAT</span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>+SRR16006951.1 1 length=149</span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>AAAAAEEEEEEAEAEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE/EEEEEEEEEAEEEEEEEEEEAAEAEEEEEEEEEEEEEEEEEEAAEEEEEEEEEEEEEEEEEEEEEEEA&lt;/EEEEE/&lt;EAAAE/&lt;</span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a>@SRR16006951.2 2 length=148</span>
+<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a>GTCGCCGTGTTTCTCTCCTTTGATGGCGAACTCGACACCCAGCCGCTGATAGAACAGCTATGGCAAGCGGGCAAGCGCGTCTACCTTCCGGTTCTTCATCCCTTCAGCCCTGGCAACCTCCTGTTCCTGCACTATCATACGCAGAGTG</span>
+<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a>+SRR16006951.2 2 length=148</span>
+<span id="cb31-8"><a href="#cb31-8" aria-hidden="true" tabindex="-1"></a>AAAAAEEEEAEE/EEE/EAEEAEEAEEEEEEA&lt;AEEEEEE//EEAE&lt;EEEA/EE&lt;EAEEEA&lt;AEEE/E&lt;EEEEEAEAE&lt;EA/E&lt;A6E/E/E/E/&lt;E/E&lt;/&lt;A/E&lt;&lt;/EEE/&lt;EE/EAE//A/&lt;&lt;E/E/6&lt;EA/A&lt;/A//&lt;/AE/E/E/</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="gff" class="level4">
+<h4 class="anchored" data-anchor-id="gff">5. GFF</h4>
+<ul>
+<li><strong>GFF</strong> or General Feature Format is a <strong>tab delimited</strong> file with information about genes and other features from a FASTA file.</li>
+<li>Once a FASTA file is <strong>annotated</strong> i.e by running some kind of gene finding/functional annotation software, specific regions in the fasta file will be identified as genes (or other genetic features such as non-coding RNA, tRNA and so on)</li>
+<li>A <strong>GFF</strong> file may vary depending on exactly how it was generated but in general it has the following columns:
+<ul>
+<li>Metadata lines starting with <code>##</code></li>
+<li>Sequence ID/contig ID that was annotated</li>
+<li>The specific feature (CDS/ncRNA etc)</li>
+<li>The start and end positions of the feature on the contig</li>
+<li>More details regarding the annotation</li>
+</ul></li>
+<li>Extensions: <code>.gff</code>, <code>.gff3</code></li>
+</ul>
+<p><strong>Example GenBank format</strong> : [</p>
+<div class="sourceCode" id="cb32"><pre class="sourceCode txt code-with-copy"><code class="sourceCode default"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>##gff-version 3</span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>##feature-ontology https://github.com/The-Sequence-Ontology/SO-Ontologies/blob/v3.1/so.obo</span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>contig_1    CDS     90      1232    ID=HCEKFJ_00005;Name=Biotin/lipoyl-binding protein;product=Biotin/lipoyl-binding protein;</span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>contig_46   ncRNA   1728    1828    ID=HCEKFJ_23455;Name=RNAI;gene=RNAI;product=RNAI;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="genbank" class="level4">
+<h4 class="anchored" data-anchor-id="genbank">4. GenBank</h4>
+<ul>
+<li><strong>GenBank</strong> is also a gene feature/annotation format containing information about genes and other features, but is larger and contains more information than the <code>gff</code> file. For eg:
+<ul>
+<li>Information regarding the person/institution that generated the file with contact information</li>
+<li>If the record is connected to a specific publication</li>
+<li>Amino acid sequences for each annotated gene.</li>
+</ul></li>
+<li>Extensions: <code>.gbk</code>, <code>.gbff</code></li>
+</ul>
+<p><strong>Example GenBank format</strong> : <a href="https://www.ncbi.nlm.nih.gov/genbank/samplerecord/">NCBI Sample Genbank Record</a></p>
+</section>
+<section id="sambam" class="level4">
+<h4 class="anchored" data-anchor-id="sambam">6. SAM/BAM</h4>
+<ul>
+<li><strong>SAM</strong> (Sequence Alignment/Map) is a <strong>tab delimited</strong> with information about the alignment of sequences to a reference genome.</li>
+<li>Depending on how the SAM file was generated, the formatting can vary slightly but the first few columns are mandatory. In general all SAM files have
+<ul>
+<li>The identifier of read that was mapped</li>
+<li>The SAM flag describing certain properties of the mapped read</li>
+<li>The reference contig ID, mapping quality</li>
+<li>The mapping position</li>
+<li>A compressed representation of the alignment called CIGAR (for eg: if any insertions/deletions are present and at what position)</li>
+</ul></li>
+<li>See <a href="https://samformat.pages.dev/sam-format-flag">here</a> for a more detailed explanation of SAM files.</li>
+<li><strong>BAM</strong> is the <strong>binary</strong> equivalent of SAM. BAM files are not in plain-text, they are compressed (and usually also indexed) versions of SAM files. This would make BAM files more efficient in terms of storage and allows fast querying for alignments across specific positions without having to search through the whole file.<br>
+</li>
+<li>Extensions: <code>.sam</code>, <code>.bam</code> . A BAM index will have the extention <code>.bai</code></li>
+</ul>
+<p><strong>Example SAM format</strong>:</p>
+<div class="sourceCode" id="cb33"><pre class="sourceCode txt code-with-copy"><code class="sourceCode default"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>@HD VN:1.6 SO:coordinate</span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>@SQ SN:ref LN:45</span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>r001 99 ref 7 30 8M2I4M1D3M = 37 39 TTAGATAAAGGATACTG *</span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>r002 0 ref 9 30 3S6M1P1I4M * 0 0 AAAAGATAAGGATA *</span>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a>r003 0 ref 9 30 5S6M * 0 0 GCCTAAGCTAA * SA:Z:ref,29,-,6H5M,17,0;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="vcf" class="level4">
+<h4 class="anchored" data-anchor-id="vcf">7. VCF</h4>
+<ul>
+<li><strong>VCF</strong> or Variant Call Format is a <strong>tab delimited</strong> file derived from the SAM file and comprises specifically genetic variation data after alignment.</li>
+<li>A VCF file contains file metadata (lines starting with <code>##</code>) followed by genetic variants (SNPs/indels) at each position when compared to the reference.</li>
+<li>In the example below, you can see that the lines starting with <code>##</code> have information about the file and the <code>INFO</code> and <code>FORMAT</code> columns</li>
+<li>Similar to the SAM file, the VCF file can have slight differences depending on how it was generated but the first few columns are mandatory.</li>
+<li>For eg: A vcf file generated from an alignment against an annotated reference will also provide the functional nature of the variant, for eg: if a SNP was found in a coding region, the VCF file will have additional information (eg: Synonymous/Non-synonymous SNP,if indel causes frameshift)</li>
+<li>The <strong>binary</strong> equivalent of a VCF file is <strong>BCF</strong></li>
+<li>Extensions: <code>.vcf</code> , <code>.bcf</code></li>
+</ul>
+<p><strong>Example VCF Format</strong>:</p>
+<div class="sourceCode" id="cb34"><pre class="sourceCode txt code-with-copy"><code class="sourceCode default"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>##fileformat=VCFv4.2</span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>##reference=GRCh37</span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>##INFO=&lt;ID=AB,Number=A,Type=Float,Description="Allele balance at heterozygous sites: a number between 0 and 1 representing the ratio of reads showing the reference allele to all reads, considering only reads from individuals called as heterozygous"&gt;</span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>##INFO=&lt;ID=AO,Number=A,Type=Integer,Description="Count of full observations of this alternate haplotype."&gt;</span>
+<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a>##INFO=&lt;ID=DP,Number=1,Type=Integer,Description="Total read depth at the locus"&gt;</span>
+<span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a>##INFO=&lt;ID=QA,Number=A,Type=Integer,Description="Alternate allele quality sum in phred"&gt;</span>
+<span id="cb34-7"><a href="#cb34-7" aria-hidden="true" tabindex="-1"></a>##INFO=&lt;ID=QR,Number=1,Type=Integer,Description="Reference allele quality sum in phred"&gt;</span>
+<span id="cb34-8"><a href="#cb34-8" aria-hidden="true" tabindex="-1"></a>##INFO=&lt;ID=RO,Number=1,Type=Integer,Description="Count of full observations of the reference haplotype."&gt;</span>
+<span id="cb34-9"><a href="#cb34-9" aria-hidden="true" tabindex="-1"></a>##FORMAT=&lt;ID=GT,Number=1,Type=String,Description="Genotype"&gt;</span>
+<span id="cb34-10"><a href="#cb34-10" aria-hidden="true" tabindex="-1"></a>##FORMAT=&lt;ID=DP,Number=1,Type=Integer,Description="Read Depth"&gt;</span>
+<span id="cb34-11"><a href="#cb34-11" aria-hidden="true" tabindex="-1"></a>##FORMAT=&lt;ID=RO,Number=1,Type=Integer,Description="Reference allele observation count"&gt;</span>
+<span id="cb34-12"><a href="#cb34-12" aria-hidden="true" tabindex="-1"></a>##FORMAT=&lt;ID=QR,Number=1,Type=Integer,Description="Sum of quality of the reference observations"&gt;</span>
+<span id="cb34-13"><a href="#cb34-13" aria-hidden="true" tabindex="-1"></a>##FORMAT=&lt;ID=AO,Number=A,Type=Integer,Description="Alternate allele observation count"&gt;</span>
+<span id="cb34-14"><a href="#cb34-14" aria-hidden="true" tabindex="-1"></a>##FORMAT=&lt;ID=QA,Number=A,Type=Integer,Description="Sum of quality of the alternate observations"&gt;</span>
+<span id="cb34-15"><a href="#cb34-15" aria-hidden="true" tabindex="-1"></a>##FORMAT=&lt;ID=GL,Number=G,Type=Float,Description="Genotype Likelihood, log10-scaled likelihoods of the data given the called genotype for each possible genotype generated from the reference and alternate alleles given the sample ploidy"&gt;</span>
+<span id="cb34-16"><a href="#cb34-16" aria-hidden="true" tabindex="-1"></a>#CHROM  POS ID  REF ALT QUAL    FILTER  INFO    FORMAT</span>
+<span id="cb34-17"><a href="#cb34-17" aria-hidden="true" tabindex="-1"></a>NZ_CP019184.1   39681   .   T   A   682.658 .   AB=0;AO=20;DP=20;QA=780;QR=0;RO=0;TYPE=snp  GT:DP:RO:QR:AO:QA:GL    </span>
+<span id="cb34-18"><a href="#cb34-18" aria-hidden="true" tabindex="-1"></a>NZ_CP019184.1   40836   .   A   G   682.658 .   AB=0;AO=20;DP=20;QA=780;QR=0;RO=0;TYPE=snp  GT:DP:RO:QR:AO:QA:GL    </span>
+<span id="cb34-19"><a href="#cb34-19" aria-hidden="true" tabindex="-1"></a>NZ_CP019184.1   48112   .   A   G   682.658 .   AB=0;AO=20;DP=20;QA=780;QR=0;RO=0;TYPE=snp  GT:DP:RO:QR:AO:QA:GL    </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<hr>
+</section>
+</section>
+</section>
+<section id="working-with-files-in-the-terminal" class="level2">
+<h2 class="anchored" data-anchor-id="working-with-files-in-the-terminal">Working with files in the terminal</h2>
+<p>Now that we went through some common file formats we will be working with, let’s now learn how to manipulate and extract these files from the terminal.</p>
+<section id="standard-output-redirection" class="level3">
+<h3 class="anchored" data-anchor-id="standard-output-redirection">Standard output redirection</h3>
+<p>When you enter any command in the terminal and see the output on your screen - this output is called the <strong>standard output</strong> or <code>stdout</code> . For eg: the <code>ls</code> command lists the files and folders in the current directory. Everything that is listed is the <code>stdout</code></p>
+<div class="sourceCode" id="cb35"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> </span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a><span class="ex">dir1</span></span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a><span class="ex">dir2</span></span>
+<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a><span class="ex">example.txt</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The <code>stdout</code> of any command can be redirected into a file using <code>&gt;</code>.</p>
+<div class="sourceCode" id="cb36"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> <span class="op">&gt;</span> list_of_files.txt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Note that there is no <code>stdout</code> printed this time. This is because we <strong>redirected</strong> the <code>stdout</code> into <code>list_of_files.txt</code>. Now you can see the contents of <code>list_of_files.txt</code> using the <code>cat</code> command that we learned before.</p>
+<div class="sourceCode" id="cb37"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> list_of_files.txt</span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a><span class="ex">dir1</span></span>
+<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a><span class="ex">dir2</span></span>
+<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a><span class="ex">example.txt</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+THE <code>&gt;</code> REDIRECTION IS DANGEROUS
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Be very careful when writing a to file with <code>&gt;</code> as if you happen to specify an existing file, it will <strong>OVERWRITE</strong> all the contents of the existing file with whatever you are redirecting into it. This process is <strong>IRREVERSIBLE</strong> and you will lose all the original contents of the file. If you want to <strong>append</strong> (or add to) an existing file, you can use <code>&gt;&gt;</code> and it will add new lines instead of overwriting the existing lines.</p>
+</div>
+</div>
+<p>It is also possible to redirect the <code>stdout</code> of one command into the input of another command using the “pipe” characer - <code>|</code>. This process is called piping. For example, lets redirect the output of <code>ls</code> to a new command <code>wc</code> . <code>wc</code> prints the number of lines, words, and characters present in the given input. In this case, the input would be whatever the <code>ls</code> command outputs. Here, <code>wc</code> is telling us that there are 3 lines, 3 words and 22 characters.</p>
+<div class="sourceCode" id="cb38"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> <span class="kw">|</span> <span class="fu">wc</span></span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a><span class="ex">3</span>  3  22</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Performing the above command is basically the same as performing:</p>
+<div class="sourceCode" id="cb39"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> <span class="op">&gt;</span> list_of_files.txt</span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a><span class="fu">wc</span> list_of_files.txt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>But by using piping, we were able to do it much faster and without writing a new file.</p>
+</section>
+<section id="extracting-specific-information" class="level3">
+<h3 class="anchored" data-anchor-id="extracting-specific-information">Extracting specific information</h3>
+<p>The <code>grep</code> command will search for a string (a specific piece of alphanumeric text) <strong>within a plain-text</strong> file. It is similar to the <code>ctrl + F</code> or find feature that you many have commonly used to search for text within documents. For example, if we want to search for the string <code>dir</code> in <code>list_of_files.txt</code>, we can do</p>
+<div class="sourceCode" id="cb40"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="fu">grep</span> <span class="st">"dir"</span> list_of_files.txt</span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a><span class="ex">dir1</span></span>
+<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a><span class="ex">dir2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><code>grep</code> by default will output ALL lines containing the matching string. The string matching is <strong>CASE-SENSITIVE</strong>, therefore grepping for the string <code>Dir</code> in this case will give an empty result. However if you want grep to perform a <strong>CASE-INSENSITIVE</strong> search, you can do:</p>
+<div class="sourceCode" id="cb41"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="fu">grep</span> <span class="at">-i</span> <span class="st">"Dir"</span> list_of_files.txt</span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a><span class="ex">dir1</span></span>
+<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a><span class="ex">dir2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>In the above example, <code>grep</code> ignores the case of the string to be searched. There are many such useful modifiers, check <code>man grep</code> or <code>grep --help</code> to see the different behaviours. Another useful modifier is <code>-v</code> for <strong>INVERTED</strong> matching. This will output only lines that DO NOT HAVE the search string.</p>
+<div class="sourceCode" id="cb42"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="fu">grep</span> <span class="at">-v</span> <span class="st">"dir"</span> list_of_files.txt</span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a><span class="ex">example.txt</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>If <code>grep</code> is similar to the find operation, then <code>sed</code> is the equivalent of find + replace. <code>sed</code> can substitute a specific character, string or pattern with another. By default, <code>sed</code> will replace the first occurrence of the search string in each line. The syntax for <code>sed</code> substitutions is as follows:</p>
+<div class="sourceCode" id="cb43"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sed</span> <span class="st">'s/search_string/replace_string/'</span> filename</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Lets say we want to replace <code>dir</code> in <code>list_of_files.txt</code> with <code>Directory</code></p>
+<div class="sourceCode" id="cb44"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sed</span> <span class="st">'s/dir/Directory/` list_of_files.txt</span></span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a><span class="st">Directory1</span></span>
+<span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a><span class="st">Directory2</span></span>
+<span id="cb44-5"><a href="#cb44-5" aria-hidden="true" tabindex="-1"></a><span class="st">example.txt</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Note that <code>sed</code> is simply performing the specified action in the <code>stdout</code>. It is not actually changing the text within <code>list_of_files.txt</code>. If you would like to <strong>REWRITE</strong> <code>list_of_files.txt</code> with the specified action, you can perform an <strong>in-place</strong> substitution with the <code>-i</code> modifier in <code>sed</code>. <strong>THIS IS IRREVERSIBLE</strong>.</p>
+<div class="sourceCode" id="cb45"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sed</span> <span class="at">-i</span> <span class="st">'s/dir/Directory/` list_of_files.txt</span></span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a><span class="st">cat list_of_files.txt</span></span>
+<span id="cb45-4"><a href="#cb45-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-5"><a href="#cb45-5" aria-hidden="true" tabindex="-1"></a><span class="st">Directory1</span></span>
+<span id="cb45-6"><a href="#cb45-6" aria-hidden="true" tabindex="-1"></a><span class="st">Directory2</span></span>
+<span id="cb45-7"><a href="#cb45-7" aria-hidden="true" tabindex="-1"></a><span class="st">example.txt</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+THE SAME MODIFIER CAN MEAN DIFFERENT THINGS
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Both <code>grep</code> and <code>sed</code> have the <code>-i</code> modifier, however in <code>grep</code> it means to perform case-insensitive matches, while in <code>sed</code> it means to perform the substitution in-place. It is very important to note that the same modifier can mean different things for different tools. It is always a good idea to check the help page for each tool. <strong>How will you perform a case-insensitive substitution in <code>sed</code> ?</strong></p>
+</div>
+</div>
+<p>Another useful command is <code>tr</code> or <strong>translate</strong> . While it is similar to <code>sed</code> in that it performs find+replace tasks, <code>tr</code> is faster and easier to use for character-by-character operations, while <code>sed</code> is better for longer strings. For example, if you want to replace a single character with another, <code>tr</code> can do it very easily. For example, lets pipe the <code>sed</code> output to <code>tr</code> to convert <code>Directory</code> into <code>directory</code></p>
+<div class="sourceCode" id="cb46"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sed</span> <span class="st">'s/dir/Directory/` list_of_files.txt |  tr '</span>D<span class="st">' '</span>d<span class="st">'</span></span>
+<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a><span class="st">directory1</span></span>
+<span id="cb46-4"><a href="#cb46-4" aria-hidden="true" tabindex="-1"></a><span class="st">directory2</span></span>
+<span id="cb46-5"><a href="#cb46-5" aria-hidden="true" tabindex="-1"></a><span class="st">example.txt</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>In the above command, <code>tr</code> looks for all instances of <code>D</code> and converts it into <code>d</code>. While this can be done with <code>sed</code>, <code>sed</code> by default only performs operations for the FIRST INSTANCE PER LINE. In other words, <code>sed</code> splits your input line by line, and performs the operation independently for each line.</p>
+<p><code>tr</code> performs the operation on a character by character basis, and therefore can work across different lines, as the newline (or <code>\n</code> - which is the character that actually represents a new line) itself is treated as just another character. This allows you to do operations such as the one below very easily.</p>
+<div class="sourceCode" id="cb47"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sed</span> <span class="st">'s/dir/Directory/` list_of_files.txt |  tr '</span><span class="dt">\n</span><span class="st">' '</span><span class="dt">\s</span><span class="st">'</span></span>
+<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a><span class="st">Directory1 Directory2 example.txt</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Here, we replaced all newline characters (<code>\n</code>) with spaces (<code>\s</code>)</p>
+</section>
+<section id="working-with-bioinformatics-data" class="level3">
+<h3 class="anchored" data-anchor-id="working-with-bioinformatics-data">Working with bioinformatics data</h3>
+<p>Lets download some real bioinformatics data and see how we can use what we have learned so far.</p>
+<p>Activate your conda environment so that the necessary bioinformatics packages are loaded. See <a href="NWUPathogenGenomicsWorkshop/docs/module0.html">Module0: Setup</a> for more information.</p>
+<div class="sourceCode" id="cb48"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> activate NWU_2025_workshop</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Download a genome fasta file using NCBI’s <code>datasets</code> tool. The <code>datasets</code> tool should already be installed in the conda environment. You can see how to use the <code>datasets</code> tool by typing <code>datasets --help</code> . To download a genome for a specific accession number, the command is :</p>
+<div class="sourceCode" id="cb49"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="ex">datasets</span> download genome accession GCA_049744075.1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>This will download a zipped archive from NCBI. Lets extract the archive using <code>unzip</code>, take the file we need and then remove the rest.</p>
+<div class="sourceCode" id="cb50"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="fu">unzip</span> ncbi_dataset.zip</span>
+<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> test_datasets</span>
+<span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a><span class="fu">mv</span> ncbi_dataset/data/GCA_049744075.1/GCA_049744075.1_ASM4974407v1_genomic.fna test_datasets/</span>
+<span id="cb50-4"><a href="#cb50-4" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span> <span class="at">-r</span> ncbi_dataset.zip ncbi_dataset <span class="co"># you can keep specifying files/folders after the rm command to remove them all</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="exercise-perform-the-following-actions-on-the-above-fasta-file" class="level3">
+<h3 class="anchored" data-anchor-id="exercise-perform-the-following-actions-on-the-above-fasta-file">EXERCISE: Perform the following actions on the above fasta file</h3>
+<ol type="1">
+<li>Count the number of contigs in the fasta file</li>
+</ol>
+<details>
+<summary>
+Click to reveal answer
+</summary>
+<p>The <code>grep</code> command can be used to count the number of contigs (or sequences) in a FASTA file. Each sequence in a FASTA file starts with a header line (<code>&gt;</code>), so we can grep the <code>&gt;</code> character to get only the header lines, and add the <code>-c</code> flag to grep so that it reports the number of matches.</p>
+<div class="sourceCode" id="cb51"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="fu">grep</span> <span class="at">-c</span> <span class="st">"&gt;"</span> GCA_049744075.1_ASM4974407v1_genomic.fna</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Alternatively, we can also use <code>wc -l</code> to report the number of lines matched, as <code>grep</code> by default outputs all matching lines</p>
+<div class="sourceCode" id="cb52"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="fu">grep</span> <span class="st">"&gt;"</span> GCA_049744075.1_ASM4974407v1_genomic.fna <span class="kw">|</span> <span class="fu">wc</span> <span class="at">-l</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<ol start="2" type="1">
+<li>Extract only sequence names from the FASTA File and write it to a new file.</li>
+</ol>
+<details>
+<summary>
+click to reveal answer
+</summary>
+<p>We can extract only sequence names by grepping the “&gt;” character as done previously, but now we pipe it to <code>sed</code> to remove only the <code>&gt;</code> , keeping only the actual names themselves, and then redirect that output to a new text file.</p>
+<div class="sourceCode" id="cb53"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="fu">grep</span> <span class="st">"&gt;"</span> GCA_049744075.1_ASM4974407v1_genomic.fna <span class="kw">|</span> <span class="fu">sed</span> <span class="st">'s/&gt;//'</span> <span class="op">&gt;</span> GCA_049744075.1_header_names.txt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<ol start="3" type="1">
+<li>Count the total number of bases in the FASTA file.</li>
+</ol>
+<details>
+<summary>
+click to reveal answer
+</summary>
+<p>We use inverted matching with <code>grep -v</code> to get all lines EXCEPT lines starting with “&gt;”, then we remove all newlines using <code>tr -d</code>, and then use <code>wc</code> to count the number of characters. We have to remove all newlines (<code>\n</code>) as each <code>\n</code> is considered a separate character, but here we only want to count the number of nucleotides.</p>
+<div class="sourceCode" id="cb54"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="fu">grep</span> <span class="at">-v</span> <span class="st">"&gt;"</span> GCA_049744075.1_ASM4974407v1_genomic.fna <span class="kw">|</span> <span class="fu">tr</span> <span class="at">-d</span> <span class="st">'\n'</span> <span class="kw">|</span> <span class="fu">wc</span> <span class="at">-c</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<ol start="4" type="1">
+<li><em>In silico</em> restriction digestion - how many fragments will you get if you digest your genome with EcoRI?</li>
+</ol>
+<details>
+<summary>
+click to reveal answer
+</summary>
+<p>The recognition site for EcoRI is <code>GAATTC</code> . We will only get the DNA sequence from our FASTA file using <code>grep</code> and <code>tr</code> as above, but now pipe it to <code>sed</code> and replace each occurrence of <code>GAATTC</code> with a newline (in effect, “cutting” our DNA), then we count the total number of lines</p>
+<div class="sourceCode" id="cb55"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="fu">grep</span> <span class="at">-v</span> <span class="st">"&gt;"</span> GCA_049744075.1_ASM4974407v1_genomic.fna <span class="kw">|</span> <span class="fu">tr</span> <span class="at">-d</span> <span class="st">'\n'</span> <span class="kw">|</span> <span class="fu">sed</span> <span class="st">'s/GAATTC/\n/g'</span> <span class="kw">|</span> <span class="fu">wc</span> <span class="at">-l</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 
 
 </section>
