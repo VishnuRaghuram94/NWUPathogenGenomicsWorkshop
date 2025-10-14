@@ -6,8 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Vishnu Raghuram">
 
-<title>Working with Files, Text, and Output – NWU_2025_Workshop</title>
+<title>Module 2 – NWU_2025_Workshop</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -19,40 +20,6 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
-}
-/* CSS for syntax highlighting */
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -154,29 +121,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#files-and-file-extensions" id="toc-files-and-file-extensions" class="nav-link active" data-scroll-target="#files-and-file-extensions">Files and File Extensions</a>
-  <ul class="collapse">
-  <li><a href="#why-are-file-extensions-important" id="toc-why-are-file-extensions-important" class="nav-link" data-scroll-target="#why-are-file-extensions-important">Why Are File Extensions Important?</a></li>
-  </ul></li>
-  <li><a href="#plain-text-files-and-file-formats-in-bioinformatics" id="toc-plain-text-files-and-file-formats-in-bioinformatics" class="nav-link" data-scroll-target="#plain-text-files-and-file-formats-in-bioinformatics">Plain Text Files and File Formats in Bioinformatics</a>
-  <ul class="collapse">
-  <li><a href="#what-is-plain-text" id="toc-what-is-plain-text" class="nav-link" data-scroll-target="#what-is-plain-text">What is Plain Text?</a></li>
-  <li><a href="#common-file-formats-in-bioinformatics" id="toc-common-file-formats-in-bioinformatics" class="nav-link" data-scroll-target="#common-file-formats-in-bioinformatics">Common File Formats in Bioinformatics</a></li>
-  <li><a href="#fasta-plain-text" id="toc-fasta-plain-text" class="nav-link" data-scroll-target="#fasta-plain-text">1. <strong>FASTA (Plain Text)</strong></a></li>
-  <li><a href="#fastq-plain-text" id="toc-fastq-plain-text" class="nav-link" data-scroll-target="#fastq-plain-text">2. <strong>FASTQ (Plain Text)</strong></a></li>
-  <li><a href="#sambam-plain-text-vs.-binary" id="toc-sambam-plain-text-vs.-binary" class="nav-link" data-scroll-target="#sambam-plain-text-vs.-binary">3. <strong>SAM/BAM (Plain Text vs.&nbsp;Binary)</strong></a></li>
-  <li><a href="#vcf-variant-call-format" id="toc-vcf-variant-call-format" class="nav-link" data-scroll-target="#vcf-variant-call-format">4. <strong>VCF (Variant Call Format)</strong></a></li>
-  </ul></li>
-  <li><a href="#working-with-bioinformatics-file-formats-in-the-terminal" id="toc-working-with-bioinformatics-file-formats-in-the-terminal" class="nav-link" data-scroll-target="#working-with-bioinformatics-file-formats-in-the-terminal">Working with Bioinformatics File Formats in the Terminal</a>
-  <ul class="collapse">
-  <li><a href="#standard-output-redirection-with-bioinformatics-files" id="toc-standard-output-redirection-with-bioinformatics-files" class="nav-link" data-scroll-target="#standard-output-redirection-with-bioinformatics-files">Standard Output Redirection with Bioinformatics Files</a></li>
-  </ul></li>
-  <li><a href="#using-grep-sed-and-piping-in-bioinformatics-workflows" id="toc-using-grep-sed-and-piping-in-bioinformatics-workflows" class="nav-link" data-scroll-target="#using-grep-sed-and-piping-in-bioinformatics-workflows">Using <code>grep</code>, <code>sed</code>, and Piping in Bioinformatics Workflows</a>
-  <ul class="collapse">
-  <li><a href="#extracting-variants-from-a-vcf-file" id="toc-extracting-variants-from-a-vcf-file" class="nav-link" data-scroll-target="#extracting-variants-from-a-vcf-file">1. Extracting Variants from a VCF File</a></li>
-  <li><a href="#counting-specific-alleles-in-a-vcf-file" id="toc-counting-specific-alleles-in-a-vcf-file" class="nav-link" data-scroll-target="#counting-specific-alleles-in-a-vcf-file">2. Counting Specific Alleles in a VCF File</a></li>
-  <li><a href="#cleaning-a-vcf-file" id="toc-cleaning-a-vcf-file" class="nav-link" data-scroll-target="#cleaning-a-vcf-file">3. Cleaning a VCF File</a></li>
-  </ul></li>
+  <li><a href="#what-is-genome-assembly-and-why-do-it" id="toc-what-is-genome-assembly-and-why-do-it" class="nav-link active" data-scroll-target="#what-is-genome-assembly-and-why-do-it">What is genome assembly and why do it?</a></li>
   </ul>
 </nav>
     </div>
@@ -185,13 +130,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Working with Files, Text, and Output</h1>
+<h1 class="title">Module 2</h1>
+<p class="subtitle lead">Introduction to Genomics</p>
 </div>
 
 
 
 <div class="quarto-title-meta">
 
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Vishnu Raghuram </p>
+          </div>
+  </div>
     
   
     
@@ -202,193 +154,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="files-and-file-extensions" class="level2">
-<h2 class="anchored" data-anchor-id="files-and-file-extensions">Files and File Extensions</h2>
-<p>Every file on your computer has a <strong>file extension</strong>, which is part of its name and comes after the last period (dot) in the filename. For example, in <code>document.txt</code>, <code>.txt</code> is the file extension.</p>
-<p>File extensions are used by the operating system to determine what kind of file it is, what program should open it, and how it should be processed. Some common file extensions include:</p>
+<section id="what-is-genome-assembly-and-why-do-it" class="level2">
+<h2 class="anchored" data-anchor-id="what-is-genome-assembly-and-why-do-it">What is genome assembly and why do it?</h2>
 <ul>
-<li><code>.txt</code> – Plain text file</li>
-<li><code>.docx</code> – Microsoft Word document</li>
-<li><code>.pdf</code> – PDF document</li>
-<li><code>.jpg</code> – JPEG image file</li>
-<li><code>.sh</code> – Shell script</li>
+<li>The output from a sequencing machine contains large numbers of fragments (reads) of your original genome in no particular order.</li>
+<li>These reads are quite short (~150bp) – too short to obtain a lot of meaningful information as most genes are much longer than 150bp.</li>
+<li>The same region of the genome will be repeated multiple times (depth)</li>
+<li>Your whole original genome might not be represented (coverage)</li>
+<li>Assembling your reads involves stitching together these fragments (in the right order) to create the closest possible representation of the original genome.</li>
 </ul>
-<section id="why-are-file-extensions-important" class="level3">
-<h3 class="anchored" data-anchor-id="why-are-file-extensions-important">Why Are File Extensions Important?</h3>
-<p>File extensions are important because they help the system identify how to handle a file. For example: - A <code>.txt</code> file is usually opened with a simple text editor (e.g., Notepad, VSCode, etc.). - A <code>.docx</code> file is typically opened in Microsoft Word or similar word processing software.</p>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Note
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>The extension does not determine the content of a file, just how it is generally interpreted by the system. You can change a file extension, but it doesn’t change the underlying content type though it might prevent the file from being opened correctly. For example you can change the extension of a <code>.jpg</code> image to <code>.txt</code> , but that doesn’t mean you can open it in Notepad as it will still be an image.</p>
-</div>
-</div>
-</section>
-</section>
-<section id="plain-text-files-and-file-formats-in-bioinformatics" class="level2">
-<h2 class="anchored" data-anchor-id="plain-text-files-and-file-formats-in-bioinformatics">Plain Text Files and File Formats in Bioinformatics</h2>
-<section id="what-is-plain-text" class="level3">
-<h3 class="anchored" data-anchor-id="what-is-plain-text">What is Plain Text?</h3>
-<p><strong>Plain text</strong> files contain only characters. There are no special formatting, images, or embedded metadata.</p>
-<p><strong>Plain text</strong> is UNIVERSAL. It is not a proprietary format that can only be read by specific programme (for example, <code>.docx</code>). Any text editor across any system can read and manipulate plain text files.</p>
-<p>In bioinformatics, <strong>plain text</strong> files are preferred for storing data because they can be easily read, processed, and manipulated by a variety of different software.</p>
-<p>However, not all bioinformatics data comes in plain text. Many data formats are designed for efficient storage, performance, or specific analysis tasks, and they may be <strong>binary formats</strong> (e.g., BAM). In bioinformatics workflows, <strong>plain text</strong> formats are still commonly used for various data exchange and reporting.</p>
-</section>
-<section id="common-file-formats-in-bioinformatics" class="level3">
-<h3 class="anchored" data-anchor-id="common-file-formats-in-bioinformatics">Common File Formats in Bioinformatics</h3>
-<p>Here are some of the most common file formats used in bioinformatics:</p>
-<hr>
-</section>
-<section id="fasta-plain-text" class="level3">
-<h3 class="anchored" data-anchor-id="fasta-plain-text">1. <strong>FASTA (Plain Text)</strong></h3>
-<p>FASTA is one of the most widely used formats for representing <strong>biological sequences</strong>, such as DNA, RNA, or protein sequences. A FASTA file consists of multiple sequences, each starting with a description line (prefixed by a <code>&gt;</code>), followed by the sequence itself.</p>
-<p><strong>Example FASTA Format</strong>:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode txt code-with-copy"><code class="sourceCode default"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>&gt;seq1</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>ATGCGTACGTAGCTAGCTGATCGTAGCTGACTGATCGTAGC</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>&gt;seq2</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>GTAGCTAGGCTAGCTAGCTAGTAGGCTAGGAGTAGAGCTAG</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<ul>
-<li><strong>Description line</strong>: Starts with <code>&gt;</code>, followed by an identifier and optional description.</li>
-<li><strong>Sequence</strong>: The actual sequence of nucleotides (DNA) or amino acids (protein).</li>
-</ul>
-<p><strong>Use Case</strong>: FASTA files are often used to store reference genomes, transcript sequences, or protein sequences.</p>
-<hr>
-</section>
-<section id="fastq-plain-text" class="level3">
-<h3 class="anchored" data-anchor-id="fastq-plain-text">2. <strong>FASTQ (Plain Text)</strong></h3>
-<p>The <strong>FASTQ</strong> format is an extension of the FASTA format, used for storing raw sequence data <strong>with quality scores</strong>. Each entry contains four lines:</p>
-<ol type="1">
-<li><strong>Header</strong>: Starts with <code>@</code> followed by the sequence identifier.</li>
-<li><strong>Sequence</strong>: The actual sequence of nucleotides (e.g., DNA sequence).</li>
-<li><strong>Plus line</strong>: A <code>+</code> sign.</li>
-<li><strong>Quality scores</strong>: Encoded as ASCII characters representing the quality of each base.</li>
-</ol>
-<p><strong>Example FASTQ Format</strong>:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode txt code-with-copy"><code class="sourceCode default"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>@seq1</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>ATGCGTACGTAGCTAGCTGATCGTAGCTGACTGATCGTAGC</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>+</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>@seq2</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>GTAGCTAGGCTAGCTAGCTAGTAGGCTAGGAGTAGAGCTAG</span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>+</span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<ul>
-<li>The quality score lines represent the reliability of each base, encoded in a way that ranges from high to low confidence.</li>
-</ul>
-<p><strong>Use Case</strong>: FASTQ files are the output of high-throughput sequencing technologies like Illumina and Nanopore. They are often used in raw sequence analysis, quality control, and alignment steps.</p>
-<hr>
-</section>
-<section id="sambam-plain-text-vs.-binary" class="level3">
-<h3 class="anchored" data-anchor-id="sambam-plain-text-vs.-binary">3. <strong>SAM/BAM (Plain Text vs.&nbsp;Binary)</strong></h3>
-<ul>
-<li><strong>SAM</strong> (Sequence Alignment/Map) is a <strong>plain text</strong> format for storing information about sequence alignment. It contains information about the alignment of sequences to a reference genome, including positions, CIGAR strings, mapping quality, and more.</li>
-<li><strong>BAM</strong> is the <strong>binary</strong> equivalent of SAM, designed for efficient storage and quick access.</li>
-</ul>
-<p><strong>Example SAM Format</strong>:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode txt code-with-copy"><code class="sourceCode default"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>@SQ   SN:seq1 LN:1000</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>r001  99  seq1  1  60  8S12M1S  * 0  0  GATCGGAAGAGC  *</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>r002  0   seq1  2  60  10M  * 0  0  CCTGGAAGAGC  *</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p><strong>Use Case</strong>: SAM/BAM files store <strong>mapped sequence data</strong> (e.g., after aligning FASTQ reads to a reference genome). They are used in downstream bioinformatics analysis like variant calling or visualization in genome browsers.</p>
-<hr>
-</section>
-<section id="vcf-variant-call-format" class="level3">
-<h3 class="anchored" data-anchor-id="vcf-variant-call-format">4. <strong>VCF (Variant Call Format)</strong></h3>
-<p>VCF is a <strong>plain text</strong> format used to store <strong>genetic variation data</strong> (e.g., SNPs, indels). It contains metadata and a table of variant calls for each sample at each position in the genome.</p>
-<p><strong>Example VCF Format</strong>:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode txt code-with-copy"><code class="sourceCode default"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>##fileformat=VCFv4.2</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>##reference=GRCh37</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>#CHROM POS ID REF ALT QUAL FILTER INFO</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>chr1  101  rs12345 A  G  50  PASS  DP=100;AF=0.45</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>chr1  202  rs67890 T  C  60  PASS  DP=80;AF=0.60</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<ul>
-<li><strong>Header lines</strong>: Provide metadata, such as the reference genome.</li>
-<li><strong>Data lines</strong>: Contain information about each variant, including chromosome, position, reference allele, alternate allele, and quality metrics.</li>
-</ul>
-<p><strong>Use Case</strong>: VCF files are commonly used to store <strong>variant calls</strong> from sequencing data after alignment and variant calling.</p>
-<hr>
-</section>
-</section>
-<section id="working-with-bioinformatics-file-formats-in-the-terminal" class="level2">
-<h2 class="anchored" data-anchor-id="working-with-bioinformatics-file-formats-in-the-terminal">Working with Bioinformatics File Formats in the Terminal</h2>
-<p>Now that we understand some common bioinformatics file formats, let’s explore how to manipulate and extract useful information from these files using basic shell commands, like <code>grep</code>, <code>sed</code>, and redirection.</p>
-<section id="standard-output-redirection-with-bioinformatics-files" class="level3">
-<h3 class="anchored" data-anchor-id="standard-output-redirection-with-bioinformatics-files">Standard Output Redirection with Bioinformatics Files</h3>
-<section id="counting-contigs-in-a-fasta-file" class="level4">
-<h4 class="anchored" data-anchor-id="counting-contigs-in-a-fasta-file">1. Counting Contigs in a FASTA File</h4>
-<p>The <code>grep</code> command can be used to count the number of contigs (or sequences) in a FASTA file. Each sequence in a FASTA file starts with a description line (<code>&gt;</code>), so we can count the number of <code>&gt;</code> symbols to determine how many sequences (contigs) there are.</p>
-<ul>
-<li><strong>Count the number of sequences in a FASTA file</strong>:</li>
-</ul>
-<div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">grep</span> <span class="at">-c</span> <span class="st">"&gt;"</span> sequences.fasta</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>This command counts how many lines start with <code>&gt;</code>, which indicates the number of sequences in the file.</p>
-</section>
-<section id="extracting-sequence-names-from-a-fasta-file" class="level4">
-<h4 class="anchored" data-anchor-id="extracting-sequence-names-from-a-fasta-file">2. Extracting Sequence Names from a FASTA File</h4>
-<p>If you want to list just the sequence names (the lines starting with <code>&gt;</code>), you can use <code>grep</code> to extract them.</p>
-<ul>
-<li><strong>Extract sequence names (headers)</strong> from a FASTA file:</li>
-</ul>
-<div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">grep</span> <span class="st">"&gt;"</span> sequences.fasta <span class="op">&gt;</span> sequence_names.txt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>This command will save all sequence names (headers) to <code>sequence_names.txt</code>.</p>
-</section>
-<section id="working-with-quality-scores-in-fastq" class="level4">
-<h4 class="anchored" data-anchor-id="working-with-quality-scores-in-fastq">3. Working with Quality Scores in FASTQ</h4>
-<p>If you want to extract specific quality scores or sequences from a FASTQ file, you can use <code>grep</code> and <code>sed</code> for pattern matching and modification.</p>
-<ul>
-<li><strong>Extract sequences that contain a specific nucleotide</strong> (e.g., “A”) in a FASTQ file:</li>
-</ul>
-<div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">grep</span> <span class="at">-B</span> 1 <span class="st">"A"</span> sample.fastq <span class="kw">|</span> <span class="fu">grep</span> <span class="at">-v</span> <span class="st">"^+"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>This command looks for sequences containing “A” and shows the associated headers and quality scores.</p>
-</section>
-<section id="modifying-quality-scores-with-sed" class="level4">
-<h4 class="anchored" data-anchor-id="modifying-quality-scores-with-sed">4. Modifying Quality Scores with <code>sed</code></h4>
-<p>Suppose you want to <strong>replace low-quality base calls</strong> (represented by a specific ASCII character) in a FASTQ file.</p>
-<ul>
-<li><strong>Replace low-quality base calls in a FASTQ file</strong> (assuming <code>I</code> is a low-quality base):</li>
-</ul>
-<div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sed</span> <span class="st">'s/I/N/g'</span> input.fastq <span class="op">&gt;</span> modified.fastq</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>This command replaces all occurrences of <code>I</code> with <code>N</code> in <code>input.fastq</code> and saves the result to <code>modified.fastq</code>.</p>
-<hr>
-</section>
-</section>
-</section>
-<section id="using-grep-sed-and-piping-in-bioinformatics-workflows" class="level2">
-<h2 class="anchored" data-anchor-id="using-grep-sed-and-piping-in-bioinformatics-workflows">Using <code>grep</code>, <code>sed</code>, and Piping in Bioinformatics Workflows</h2>
-<section id="extracting-variants-from-a-vcf-file" class="level3">
-<h3 class="anchored" data-anchor-id="extracting-variants-from-a-vcf-file">1. Extracting Variants from a VCF File</h3>
-<p>If you want to <strong>filter</strong> and <strong>extract</strong> specific variants from a VCF file, you can use <code>grep</code> or <code>awk</code>. For example, to extract variants from a specific chromosome:</p>
-<ul>
-<li><strong>Extract variants from chromosome 1</strong>:</li>
-</ul>
-<div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">grep</span> <span class="st">"^chr1"</span> variants.vcf <span class="op">&gt;</span> chr1_variants.vcf</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>You can also combine commands using <strong>piping</strong> (<code>|</code>).</p>
-</section>
-<section id="counting-specific-alleles-in-a-vcf-file" class="level3">
-<h3 class="anchored" data-anchor-id="counting-specific-alleles-in-a-vcf-file">2. Counting Specific Alleles in a VCF File</h3>
-<p>Let’s say you want to <strong>count</strong> the number of variants with a specific <strong>allele</strong> (e.g., alternate allele <code>G</code>).</p>
-<ul>
-<li><strong>Count the number of variants with the <code>G</code> allele</strong> in a VCF file:</li>
-</ul>
-<div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">grep</span> <span class="at">-c</span> <span class="st">"G"</span> variants.vcf</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="cleaning-a-vcf-file" class="level3">
-<h3 class="anchored" data-anchor-id="cleaning-a-vcf-file">3. Cleaning a VCF File</h3>
-<p>You might want to <strong>remove comments</strong> or unnecessary lines from a VCF file. You can use <code>grep</code> with the <code>-v</code> option to exclude comment lines.</p>
-<ul>
-<li><strong>Remove comment lines from a VCF file</strong>:</li>
-</ul>
-<div class="sourceCode" id="cb11"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">grep</span> <span class="at">-v</span> <span class="st">"^#"</span> variants.vcf <span class="op">&gt;</span> clean_variants.vcf</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>This removes all lines that start with <code>#</code>, which are typically comments in VCF files.</p>
-<hr>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->
