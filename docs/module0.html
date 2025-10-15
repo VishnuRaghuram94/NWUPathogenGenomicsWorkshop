@@ -129,7 +129,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="./about.html"> 
-<span class="menu-text">About</span></a>
+<span class="menu-text">Bacterial Pathogen Genomics Workshop</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link active" href="./module0.html" aria-current="page"> 
@@ -167,6 +167,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </ul></li>
   <li><a href="#installing-conda" id="toc-installing-conda" class="nav-link" data-scroll-target="#installing-conda">Installing Conda</a></li>
   <li><a href="#setting-up-the-conda-environment" id="toc-setting-up-the-conda-environment" class="nav-link" data-scroll-target="#setting-up-the-conda-environment">Setting up the conda environment</a></li>
+  <li><a href="#downloading-example-datasets" id="toc-downloading-example-datasets" class="nav-link" data-scroll-target="#downloading-example-datasets">Downloading example datasets</a></li>
   </ul>
 </nav>
     </div>
@@ -474,6 +475,20 @@ Tip
 <span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> env create <span class="at">-f</span> NWU_2025_workshop.yml</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>The environment can be activated with the following command:</p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> activate NWU_2025_workshop</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Once you have activated the environment, you will see the name of the environment in your bash prompt. It might look something like this</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Before activating</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="kw">(</span><span class="ex">base</span><span class="kw">)</span> <span class="ex">username:~$</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="co">#After activating</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="kw">(</span><span class="ex">NWU_2025_workshop</span><span class="kw">)</span> <span class="ex">username:~$</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="downloading-example-datasets" class="level2">
+<h2 class="anchored" data-anchor-id="downloading-example-datasets">Downloading example datasets</h2>
+<p>While the environment is active, download the setup script from the github page and run it. This will setup some folders and download some sample datasets which we will be using for the rest of this workshop. It will take some time, start the script and then feel free to grab a coffee! Once you see the prompt again, it means the script is done. The script will also output a “Setup successful” message.</p>
+<p><strong>This setup will take 4GB of space so make sure you have sufficient space available</strong></p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="at">-O</span> https://vishnuraghuram94.github.io/NWUPathogenGenomicsWorkshop/setup.sh</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="fu">bash</span> setup.sh</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -485,7 +500,7 @@ Note
 </div>
 <div class="callout-body-container callout-body">
 <p>You must activate an environment before you are able to use the tools within that environment. By default, you will be on the <code>base</code> environment. While it is fine to install packages while in the base environment, it can soon get crowded with multiple conflicting packages and lead to issues later down the line. Therefore it is good practice to keep the base environment as clean as possible while creating separate environments for different tools/projects. You can deactivate the current environment and go back to <code>base</code> using the command:</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> deactivate</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> deactivate</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 

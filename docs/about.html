@@ -6,8 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Vishnu Raghuram">
 
-<title>About – NWU_2025_Workshop</title>
+<title>Bacterial Pathogen Genomics Workshop – NWU_2025_Workshop</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -94,7 +95,7 @@ ul.task-list li input[type="checkbox"] {
   </li>  
   <li class="nav-item">
     <a class="nav-link active" href="./about.html" aria-current="page"> 
-<span class="menu-text">About</span></a>
+<span class="menu-text">Bacterial Pathogen Genomics Workshop</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="./module0.html"> 
@@ -119,21 +120,40 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#day-pathogen-genomics-workshop-schedule" id="toc-day-pathogen-genomics-workshop-schedule" class="nav-link active" data-scroll-target="#day-pathogen-genomics-workshop-schedule">5-Day Pathogen Genomics Workshop Schedule</a>
+  <ul class="collapse">
+  <li><a href="#day-1-bash-basics-genomics-workflow" id="toc-day-1-bash-basics-genomics-workflow" class="nav-link" data-scroll-target="#day-1-bash-basics-genomics-workflow">Day 1: Bash Basics &amp; Genomics Workflow</a></li>
+  <li><a href="#day-2-public-databases-and-overall-genomic-distance-estimation" id="toc-day-2-public-databases-and-overall-genomic-distance-estimation" class="nav-link" data-scroll-target="#day-2-public-databases-and-overall-genomic-distance-estimation">Day 2: Public Databases and overall genomic distance estimation</a></li>
+  <li><a href="#day-3-analysis-of-popoulations-using-pangenomics-and-phylogenies" id="toc-day-3-analysis-of-popoulations-using-pangenomics-and-phylogenies" class="nav-link" data-scroll-target="#day-3-analysis-of-popoulations-using-pangenomics-and-phylogenies">Day 3: Analysis of popoulations using pangenomics and phylogenies</a></li>
+  <li><a href="#day-4-advanced-visualization-data-analysis" id="toc-day-4-advanced-visualization-data-analysis" class="nav-link" data-scroll-target="#day-4-advanced-visualization-data-analysis">Day 4: Advanced Visualization &amp; Data Analysis</a></li>
+  <li><a href="#day-5-troubleshooting-open-session" id="toc-day-5-troubleshooting-open-session" class="nav-link" data-scroll-target="#day-5-troubleshooting-open-session">Day 5: Troubleshooting &amp; Open Session</a></li>
+  </ul></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">About</h1>
+<h1 class="title">Bacterial Pathogen Genomics Workshop</h1>
 </div>
 
 
 
 <div class="quarto-title-meta">
 
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Vishnu Raghuram </p>
+          </div>
+  </div>
     
   
     
@@ -144,9 +164,113 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>This page is under construction</p>
+<section id="day-pathogen-genomics-workshop-schedule" class="level2">
+<h2 class="anchored" data-anchor-id="day-pathogen-genomics-workshop-schedule">5-Day Pathogen Genomics Workshop Schedule</h2>
+<p><strong>The goal of this workshop is to provide participants with a solid foundation in pathogen genomics, covering key bioinformatics tools and concepts, ensuring a mix of theoretical learning and hands-on exercises.</strong></p>
+<hr>
+<section id="day-1-bash-basics-genomics-workflow" class="level3">
+<h3 class="anchored" data-anchor-id="day-1-bash-basics-genomics-workflow">Day 1: Bash Basics &amp; Genomics Workflow</h3>
+<p><strong>Goal:</strong> Get everyone on the same page regarding command-line basics, the bacterial genomics workflow, and basic tools used in pathogen genomics.</p>
+<section id="introduction-to-the-command-line" class="level4">
+<h4 class="anchored" data-anchor-id="introduction-to-the-command-line">1. Introduction to the Command Line</h4>
+<ul>
+<li>What is the command line? Why is it essential in genomics?</li>
+<li>File structure, directories, and navigating the command line.</li>
+<li>Key commands (e.g., <code>ls</code>, <code>cd</code>, <code>cp</code>,<code>mkdir</code>, etc.)</li>
+<li>Simple text processing (using <code>grep</code>, <code>sed</code>, <code>tr</code>)</li>
+<li>Hands-on exercises combining different commands, piping and output redirection.</li>
+</ul>
+</section>
+<section id="overview-of-the-bacterial-genomics-workflow" class="level4">
+<h4 class="anchored" data-anchor-id="overview-of-the-bacterial-genomics-workflow">2. Overview of the Bacterial Genomics Workflow</h4>
+<ul>
+<li>Overview of the genomic analysis pipeline for bacteria: QC, genome assembly, annotation, variant calling</li>
+<li>Why do we perform each step? What are the key questions each step answers in pathogen genomics?</li>
+<li>Participants will run <code>fastp</code>, <code>Shovill</code>, <code>bakta</code> and <code>snippy</code> (or <code>snippy-multi</code>) on sample data.</li>
+<li>Writing a simple loop to automate processing multiple samples</li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="day-2-public-databases-and-overall-genomic-distance-estimation" class="level3">
+<h3 class="anchored" data-anchor-id="day-2-public-databases-and-overall-genomic-distance-estimation">Day 2: Public Databases and overall genomic distance estimation</h3>
+<p><strong>Goal:</strong> Introduce public pathogen surveillance databases and tools for genome comparison.</p>
+<section id="public-pathogen-genomics-databases" class="level4">
+<h4 class="anchored" data-anchor-id="public-pathogen-genomics-databases">3. Public Pathogen Genomics Databases</h4>
+<ul>
+<li>Exploring of NCBI, SRA, BioSamples, BioProjects.</li>
+<li>The importance of using public databases in surveillance and research</li>
+<li>Retrieving genomic data from public databases (<code>ncbi-genome-download</code>,<code>ncbi-datasets</code>,<code>sratools</code>).</li>
+<li>Exploring Enterobase.</li>
+</ul>
+</section>
+<section id="genomic-distance-estimation" class="level4">
+<h4 class="anchored" data-anchor-id="genomic-distance-estimation">4. Genomic distance estimation</h4>
+<ul>
+<li>MLST and how it’s used in pathogen typing</li>
+<li>Introduction to genome distance estimation methods (MASH, ANI, SNP distances)</li>
+<li>Participants will use MLST to assign sequence types to bacterial genomes.</li>
+<li>Participants will run <code>mash</code>,<code>skani</code>, and <code>snp-dists</code> calculate genome distances from sample data.</li>
+</ul>
+</section>
+<section id="basic-data-visualization-with-rstudio" class="level4">
+<h4 class="anchored" data-anchor-id="basic-data-visualization-with-rstudio">5. Basic Data Visualization with RStudio</h4>
+<ul>
+<li>Setting up RStudio, installing essential packages, reading data tables</li>
+<li>Data visualization in RStudio: ggplot2, ggtree, and other essential packages.</li>
+<li>Participants will create basic visualizations using <code>ggplot2</code> (e.g., bar plots, scatter plots).</li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="day-3-analysis-of-popoulations-using-pangenomics-and-phylogenies" class="level3">
+<h3 class="anchored" data-anchor-id="day-3-analysis-of-popoulations-using-pangenomics-and-phylogenies">Day 3: Analysis of popoulations using pangenomics and phylogenies</h3>
+<p><strong>Goal:</strong> Introduce pangenomes and phylogenies</p>
+<section id="phylogenetic-trees-and-gene-presenceabsence-data" class="level4">
+<h4 class="anchored" data-anchor-id="phylogenetic-trees-and-gene-presenceabsence-data">6. Phylogenetic Trees and gene presence/absence data</h4>
+<ul>
+<li>What is a phylogenetic tree? How is it used to study pathogen evolution?</li>
+<li>Discussion on tree-building methods (e.g.&nbsp;Neighbor-Joining, Maximum Likelihood)</li>
+<li>Participants will generate a Neighbour-Joining tree using <code>mashtree</code> and a ML tree using <code>IQ-TREE</code>.</li>
+<li>What is pangenomics? Why is it important for studying pathogen diversity?</li>
+<li>Overview of pangenomic analysis workflows and tools (e.g., <code>Panaroo</code> for bacterial pangenomes).</li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="day-4-advanced-visualization-data-analysis" class="level3">
+<h3 class="anchored" data-anchor-id="day-4-advanced-visualization-data-analysis">Day 4: Advanced Visualization &amp; Data Analysis</h3>
+<p><strong>Goal:</strong> Dive deeper into RStudio for advanced data visualization techniques and analysis.</p>
+<section id="advanced-visualization-with-r" class="level4">
+<h4 class="anchored" data-anchor-id="advanced-visualization-with-r">7. Advanced Visualization with R</h4>
+<ul>
+<li>Advanced visualizations: Heatmaps, PCA/UMAP, faceting.</li>
+<li>Advanced <code>ggtree</code> usage with <code>gheatmap</code></li>
+<li>Exploring visualization of SNP distances, pangenomes, and phylogenetic trees.</li>
+</ul>
+</section>
+<section id="large-scale-data-analysis-using-hpcs-nextflow-slurm" class="level4">
+<h4 class="anchored" data-anchor-id="large-scale-data-analysis-using-hpcs-nextflow-slurm">8. Large-scale data analysis using HPCs, Nextflow, SLURM</h4>
+<ul>
+<li>Brief overview of writing pipelines, NextFlow, SLURM</li>
+<li>Discussing scaling up and automation (using <code>Bactopia</code>)</li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="day-5-troubleshooting-open-session" class="level3">
+<h3 class="anchored" data-anchor-id="day-5-troubleshooting-open-session">Day 5: Troubleshooting &amp; Open Session</h3>
+<p><strong>Goal:</strong> Allow time for troubleshooting, revisiting any unclear topics, and addressing specific questions.</p>
+<ul>
+<li>Extra time in case of any overflow from previous days</li>
+<li>Brief recap of everything covered over the week.</li>
+<li>Participants can ask specific questions or seek help with problems encountered during the week.</li>
+<li>Help with more advanced problems that might relate to participants’ own research.</li>
+</ul>
 
 
+</section>
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

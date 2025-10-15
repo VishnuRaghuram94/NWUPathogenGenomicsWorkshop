@@ -129,7 +129,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="./about.html"> 
-<span class="menu-text">About</span></a>
+<span class="menu-text">Bacterial Pathogen Genomics Workshop</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="./module0.html"> 
@@ -159,7 +159,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#exploring-the-file-system" id="toc-exploring-the-file-system" class="nav-link active" data-scroll-target="#exploring-the-file-system">Exploring the file system</a>
+  <li><a href="#what-is-the-command-line-why-is-it-essential" id="toc-what-is-the-command-line-why-is-it-essential" class="nav-link active" data-scroll-target="#what-is-the-command-line-why-is-it-essential">What is the command line? Why is it essential?</a></li>
+  <li><a href="#exploring-the-file-system" id="toc-exploring-the-file-system" class="nav-link" data-scroll-target="#exploring-the-file-system">Exploring the file system</a>
   <ul class="collapse">
   <li><a href="#the-working-directory" id="toc-the-working-directory" class="nav-link" data-scroll-target="#the-working-directory">The working directory</a></li>
   <li><a href="#the-home-directory" id="toc-the-home-directory" class="nav-link" data-scroll-target="#the-home-directory">The home directory</a></li>
@@ -211,7 +212,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>This module will cover the basics of navigating the bash terminal</p>
+<p>This module will cover the basics of navigating the bash terminal, go through some key bash commands, and common file formats.</p>
+<section id="what-is-the-command-line-why-is-it-essential" class="level2">
+<h2 class="anchored" data-anchor-id="what-is-the-command-line-why-is-it-essential">What is the command line? Why is it essential?</h2>
+</section>
 <section id="exploring-the-file-system" class="level2">
 <h2 class="anchored" data-anchor-id="exploring-the-file-system">Exploring the file system</h2>
 <p>To ‘move’ around your computer, typically you would use the built-in file explorer, where you would point and click to navigate through different files and folders.</p>
@@ -812,6 +816,19 @@ THE SAME MODIFIER CAN MEAN DIFFERENT THINGS
 <section id="working-with-bioinformatics-data" class="level3">
 <h3 class="anchored" data-anchor-id="working-with-bioinformatics-data">Working with bioinformatics data</h3>
 <p>Lets download some real bioinformatics data and see how we can use what we have learned so far.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>If you have performed the <code>setup.sh</code> step in <a href="https://vishnuraghuram94.github.io/NWUPathogenGenomicsWorkshop/module0.html#downloading-example-datasets">Module0</a> , you can skip to the exercise. The file should be present in <code>NWU_2025_workshop_data/test_datasets/GCA_049744075.1</code> </strong></p>
+</div>
+</div>
 <p>Activate your conda environment so that the necessary bioinformatics packages are loaded. See <a href="NWUPathogenGenomicsWorkshop/docs/module0.html">Module0: Setup</a> for more information.</p>
 <div class="sourceCode" id="cb48"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> activate NWU_2025_workshop</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Download a genome fasta file using NCBI’s <code>datasets</code> tool. The <code>datasets</code> tool should already be installed in the conda environment. You can see how to use the <code>datasets</code> tool by typing <code>datasets --help</code> . To download a genome for a specific accession number, the command is :</p>

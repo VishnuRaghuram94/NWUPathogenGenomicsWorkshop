@@ -129,7 +129,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="./about.html"> 
-<span class="menu-text">About</span></a>
+<span class="menu-text">Bacterial Pathogen Genomics Workshop</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="./module0.html"> 
@@ -159,14 +159,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#what-is-genome-assembly-and-why-do-it" id="toc-what-is-genome-assembly-and-why-do-it" class="nav-link active" data-scroll-target="#what-is-genome-assembly-and-why-do-it">What is genome assembly and why do it?</a>
+  <li><a href="#typical-genomics-workflow" id="toc-typical-genomics-workflow" class="nav-link active" data-scroll-target="#typical-genomics-workflow">Typical genomics workflow:</a>
   <ul class="collapse">
   <li><a href="#how-does-sequencing-work" id="toc-how-does-sequencing-work" class="nav-link" data-scroll-target="#how-does-sequencing-work">How does sequencing work?</a></li>
   <li><a href="#what-sequencing-platform-should-i-use" id="toc-what-sequencing-platform-should-i-use" class="nav-link" data-scroll-target="#what-sequencing-platform-should-i-use">What sequencing platform should I use?</a></li>
-  </ul></li>
-  <li><a href="#sequencing-terminology" id="toc-sequencing-terminology" class="nav-link" data-scroll-target="#sequencing-terminology">Sequencing terminology</a>
+  <li><a href="#genomics-workflow" id="toc-genomics-workflow" class="nav-link" data-scroll-target="#genomics-workflow">Genomics workflow</a>
   <ul class="collapse">
-  <li><a href="#raw-reads" id="toc-raw-reads" class="nav-link" data-scroll-target="#raw-reads">Raw reads</a></li>
+  <li><a href="#some-basic-terminology" id="toc-some-basic-terminology" class="nav-link" data-scroll-target="#some-basic-terminology">Some basic terminology</a></li>
+  <li><a href="#raw-reads-and-quality-control" id="toc-raw-reads-and-quality-control" class="nav-link" data-scroll-target="#raw-reads-and-quality-control">Raw reads and quality control</a></li>
+  </ul></li>
+  <li><a href="#genome-assembly" id="toc-genome-assembly" class="nav-link" data-scroll-target="#genome-assembly">Genome assembly</a>
+  <ul class="collapse">
+  <li><a href="#what-is-genome-assembly-and-why-do-it" id="toc-what-is-genome-assembly-and-why-do-it" class="nav-link" data-scroll-target="#what-is-genome-assembly-and-why-do-it">What is genome assembly and why do it?</a></li>
+  <li><a href="#reference-based-vs-de-novo-assembly" id="toc-reference-based-vs-de-novo-assembly" class="nav-link" data-scroll-target="#reference-based-vs-de-novo-assembly">Reference-based vs <em>de novo</em> assembly</a></li>
+  </ul></li>
+  <li><a href="#genome-annotation" id="toc-genome-annotation" class="nav-link" data-scroll-target="#genome-annotation">Genome annotation</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -200,21 +207,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="what-is-genome-assembly-and-why-do-it" class="level2">
-<h2 class="anchored" data-anchor-id="what-is-genome-assembly-and-why-do-it">What is genome assembly and why do it?</h2>
-<ul>
-<li>The output from a sequencing machine contains large numbers of fragments (reads) of your original genome in no particular order.</li>
-<li>These reads are quite short (~150bp with short read sequencing) - too short to obtain a lot of meaningful information as most genes are much longer than 150bp.</li>
-<li>The same region of the genome will be repeated multiple times (depth)</li>
-<li>Your whole original genome might not be represented (coverage)</li>
-<li>Assembling your reads involves stitching together these fragments (in the right order) to create the closest possible representation of the original genome.</li>
-</ul>
+<section id="typical-genomics-workflow" class="level1">
+<h1>Typical genomics workflow:</h1>
+<p>A very generalized genomics workflow would comprise the following -</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="assets/images/module2/sequencing_assembly.png" class="img-fluid figure-img"></p>
-<figcaption>By Erekevan - Own work, CC BY-SA 4.0, https://commons.wikimedia.org/w/index.php?curid=116777958</figcaption>
+<p><img src="assets/images/module2/genomics_workflow.png" class="img-fluid figure-img"></p>
+<figcaption>Typical genomics workflow</figcaption>
 </figure>
 </div>
+<p>We will go through the reasoning for each of these steps and try out some common bioinformatics tools for each.</p>
 <section id="how-does-sequencing-work" class="level3">
 <h3 class="anchored" data-anchor-id="how-does-sequencing-work">How does sequencing work?</h3>
 <p>Depending on the exact platform used, sequencing takes advantage of specific physical and/or chemical properties of different nucleotides. These physical/chemical properties are converted to signals that can be decoded by different algorithms to determine the DNA (or RNA) sequence. The exact workings of each sequencing platform is beyond the scope of this workshop. There are <a href="https://www.youtube.com/results?search_query=illumina+sequencing">several</a> <a href="https://www.youtube.com/results?search_query=pacific+biosciences+sequencing+method">great</a> <a href="https://www.youtube.com/results?search_query=oxford+nanopore+sequencing">videos</a> that explain the different sequencing technologies better than I ever can, I highly recommend checking them out if you are interested.</p>
@@ -233,11 +235,51 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
 <p><strong>This workshop is geared towards Illumina Paired-end sequencing data as those are the most common</strong></p>
 </section>
+<section id="genomics-workflow" class="level2">
+<h2 class="anchored" data-anchor-id="genomics-workflow">Genomics workflow</h2>
+<section id="some-basic-terminology" class="level3">
+<h3 class="anchored" data-anchor-id="some-basic-terminology">Some basic terminology</h3>
+<section id="reads" class="level4">
+<h4 class="anchored" data-anchor-id="reads">Reads:</h4>
+<ul>
+<li>Short strings of sequences that represent a highly fragmented version of the original genome.</li>
+<li>Raw unprocessed output from the sequencer.</li>
+</ul>
 </section>
-<section id="sequencing-terminology" class="level2">
-<h2 class="anchored" data-anchor-id="sequencing-terminology">Sequencing terminology</h2>
-<section id="raw-reads" class="level3">
-<h3 class="anchored" data-anchor-id="raw-reads">Raw reads</h3>
+<section id="contigs" class="level4">
+<h4 class="anchored" data-anchor-id="contigs">Contigs:</h4>
+<ul>
+<li>Overlapping reads are stitched together to make “contiguous” strings of DNA.</li>
+<li>The more overlapping reads that are stitched, the longer the contig(s) will be and the fewer contigs you will have.</li>
+<li>In an ideal scenario, a single chromosome will be a single contig.</li>
+<li>A collection of contigs for a given genome will be your assembly</li>
+</ul>
+</section>
+<section id="coverage" class="level4">
+<h4 class="anchored" data-anchor-id="coverage">Coverage:</h4>
+<ul>
+<li>The percentage of your original genome that is covered by the reads</li>
+<li>100% coverage means for every nucleotide in the original genome, there is at least one read that represents it.</li>
+<li>For smaller genomes (eg: microbial) the coverage will almost always be 100% so it is assumed by default.</li>
+</ul>
+</section>
+<section id="depth" class="level4">
+<h4 class="anchored" data-anchor-id="depth">Depth:</h4>
+<ul>
+<li>The average number of reads a given nucleotide in the is represented in.</li>
+<li>30x depth means on average a any given nucleotide is present in 30 reads.</li>
+<li>Sometimes you might see something like “30x coverage” in many microbial papers. This means 100% of the genome is represented at a depth of 30x (“coverage” is assumed to be 100%).</li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="assets/images/module2/sequencing_terminology.png" class="img-fluid figure-img"></p>
+<figcaption>Sequencing Terminology</figcaption>
+</figure>
+</div>
+</section>
+</section>
+<section id="raw-reads-and-quality-control" class="level3">
+<h3 class="anchored" data-anchor-id="raw-reads-and-quality-control">Raw reads and quality control</h3>
 <ul>
 <li>Raw reads are what you get directly out of the sequencer.</li>
 <li>Raw reads are in FASTQ format ( <a href="https://vishnuraghuram94.github.io/NWUPathogenGenomicsWorkshop/module1.html#fastq">See file formats in Module 0</a> ).</li>
@@ -251,10 +293,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>The purpose of quality scores are straightforward - you want to know if the basecalling (i.e assigning the correct nucleotide base at the correct position for each read fragment) is good.</li>
 <li>Using the quality scores, you can filter for only high-quality reads, and/or “trim” off lower quality sections in each read before you move to the next steps.</li>
 </ul>
+<section id="read-quality-control---what-should-i-look-for" class="level4">
+<h4 class="anchored" data-anchor-id="read-quality-control---what-should-i-look-for">Read quality control - what should I look for?</h4>
+<ul>
+<li>Per-base sequence quality (You dont want too many low quality base calls)</li>
+<li>Adapter removal (Adapters are artificial short sequences ligated to your samples’s actual DNA to help with the sequencing process. These adapters must be removed as they are not biologically significant)</li>
+<li>Average per-read quality (On average you want to keep only high quality reads)</li>
+<li>N content (During basecalling, <code>N</code> is assigned (instead of <code>A</code>,<code>T</code>,<code>G</code>,<code>C</code>) if the basecaller is uncertain. You want to know how many uncertain calls were made)</li>
+<li>Read length distribution (Reads that are too short are uninformative. Each read is expected to be ~150bp for Illumina)</li>
+</ul>
+<section id="exercise-sequence-quality-control-using-fastp" class="level5">
+<h5 class="anchored" data-anchor-id="exercise-sequence-quality-control-using-fastp">EXERCISE: Sequence quality control using fastp</h5>
 <p><strong>Lets download some raw reads and see what they look like</strong></p>
 <ul>
-<li>The <a href="https://www.ncbi.nlm.nih.gov/sra">Sequence Read Archive</a> (SRA) or <a href="https://www.ebi.ac.uk/ena/browser/home">European Nucleotide Archive</a> (ENA) are repositories from where we can download raw sequence reads.</li>
-<li>Lets download raw reads for the sample <code>SRR32528508</code>
+<li><p>The <a href="https://www.ncbi.nlm.nih.gov/sra">Sequence Read Archive</a> (SRA) or <a href="https://www.ebi.ac.uk/ena/browser/home">European Nucleotide Archive</a> (ENA) are repositories from where we can download raw sequence reads.</p></li>
+<li><p>Lets download raw reads for the sample <code>SRR32528508</code></p>
 <ul>
 <li>Activate your conda environment if you haven’t already</li>
 </ul>
@@ -264,18 +317,117 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
 <div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">fasterq-dump</span> SRR32528508</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
 </ul>
-<section id="read-quality-check---what-should-i-look-for" class="level4">
-<h4 class="anchored" data-anchor-id="read-quality-check---what-should-i-look-for">Read quality check - what should I look for?</h4>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>If you have performed the <code>setup.sh</code> step in <a href="https://vishnuraghuram94.github.io/NWUPathogenGenomicsWorkshop/module0.html#downloading-example-datasets">Module0</a> , the files should be present in <code>NWU_2025_workshop_data/test_datasets/fastq_download/</code></strong></p>
+</div>
+</div>
 <ul>
-<li>Per-base sequence quality (You dont want too many low quality base calls)</li>
-<li>Adapter removal (Adapters are artificial short sequences ligated to your samples’s actual DNA to help with the sequencing process. These adapters must be removed as they are not biologically significant)</li>
-<li>Average per-read quality (On average you want to keep only high quality reads)</li>
-<li>N content (During basecalling, <code>N</code> is assigned (instead of <code>A</code>,<code>T</code>,<code>G</code>,<code>C</code>) if the basecaller is uncertain. You want to know how many uncertain calls were made)</li>
-<li>Read length distribution (Reads that are too short are uninformative. Each read is expected to be ~150bp for Illumina)</li>
+<li><p>Use the <code>head</code> command you learned before to examine the first few lines of the fastq file</p></li>
+<li><p>Lets now remove potential low quality reads and perform adapter trimming using <code>fastp</code></p>
+<ul>
+<li>First, lets check how to use <code>fastp</code> using the <code>--help</code> command.</li>
+<li>Just like the built in command line tools, pretty much every bioinformatic software you install will also have a <code>help</code> page with instructions on how to use the tool</li>
+<li>While the concept will largely be the same, the exact syntax for using each software will differ slightly.</li>
+<li>That is why it is very important to <strong>read these instructions every time you attempt to use a tool</strong></li>
+</ul>
+<div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">fastp</span> <span class="at">--help</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p>Based on the <code>--help</code> page, we can see that the essential requirements for running <code>fastp</code> are:</p>
+<ul>
+<li><code>i</code> or <code>--in1</code> : Paired-end read 1 (<code>R1</code>) file as input</li>
+<li><code>I</code> or <code>--in2</code> : Paired-end read 2 (<code>R2</code>) file as input</li>
+<li><code>o</code> or <code>--out1</code> : Name of quality-filtered paired-end read 1 (<code>R1</code>) output file</li>
+<li><code>O</code> or <code>--out2</code> : Name of quality-filtered paired-end read 2 (<code>R2</code>) output file</li>
+</ul></li>
+<li><p><code>fastp</code> will also generate a QC report, by default the files will be called <code>fastp.html</code> and <code>fastp.json</code>, but we can rename those files using the <code>--html</code> and <code>--json</code> parameters.</p></li>
+<li><p>There are many other options, feel free to go through them, but for our purposes there is no need to change anything else.</p></li>
+<li><p>Now we can run <code>fastp</code> on our sample</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">fastp</span> <span class="dt">\</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>--in1 NWU_2025_workshop_data/test_datasets/fastq_download/SRR32528508_1.fastq <span class="dt">\</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>--in2 NWU_2025_workshop_data/test_datasets/fastq_download/SRR32528508_2.fastq <span class="dt">\</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>--out1 NWU_2025_workshop_data/test_datasets/fastq_download/SRR32528508_1_trimmed.fastq <span class="dt">\</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>--out2 NWU_2025_workshop_data/test_datasets/fastq_download/SRR32528508_2_trimmed.fastq <span class="dt">\</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>--html NWU_2025_workshop_data/test_datasets/fastq_download/SRR32528508_trimmed.html <span class="dt">\</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>--json NWU_2025_workshop_data/test_datasets/fastq_download/SRR32528508_trimmed.json</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p>In the above command, we gave the PATH to our our input reads to <code>fastp</code> through the <code>in1</code> and <code>in2</code> parameters, specified the names of the output files and the PATH in which they should be saved through the <code>out1</code> and <code>out2</code> parameters, along with the QC reports using <code>--html</code> and <code>--json</code></p></li>
+<li><p>Open the <code>.html</code> output in your browser and take a look at the results.</p></li>
 </ul>
 </section>
-<section id="how-do-i-check-sequence-quality" class="level4">
-<h4 class="anchored" data-anchor-id="how-do-i-check-sequence-quality">How do I check sequence quality?</h4>
+</section>
+</section>
+</section>
+<section id="genome-assembly" class="level2">
+<h2 class="anchored" data-anchor-id="genome-assembly">Genome assembly</h2>
+<section id="what-is-genome-assembly-and-why-do-it" class="level3">
+<h3 class="anchored" data-anchor-id="what-is-genome-assembly-and-why-do-it">What is genome assembly and why do it?</h3>
+<ul>
+<li>The output from a sequencing machine contains large numbers of fragments (reads) of your original genome in no particular order.</li>
+<li>These reads are quite short (~150bp with short read sequencing) - too short to obtain a lot of meaningful information as most genes are much longer than 150bp.</li>
+<li>The same region of the genome will be repeated multiple times (depth)</li>
+<li>Your whole original genome might not be represented (coverage)</li>
+<li>Assembling your reads involves stitching together these fragments (in the right order) to create the closest possible representation of the original genome.</li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="assets/images/module2/sequencing_assembly.png" class="img-fluid figure-img"></p>
+<figcaption>By Erekevan - Own work, CC BY-SA 4.0, https://commons.wikimedia.org/w/index.php?curid=116777958</figcaption>
+</figure>
+</div>
+</section>
+<section id="reference-based-vs-de-novo-assembly" class="level3">
+<h3 class="anchored" data-anchor-id="reference-based-vs-de-novo-assembly">Reference-based vs <em>de novo</em> assembly</h3>
+<section id="reference-based-assembly" class="level4">
+<h4 class="anchored" data-anchor-id="reference-based-assembly">Reference-based assembly</h4>
+<ul>
+<li>Advantages:
+<ul>
+<li>More complete final assembly</li>
+<li>Fewer contigs and longer contigs, meaning less fragmentation</li>
+</ul></li>
+<li>Disadvantages:
+<ul>
+<li>The assembled genome will be biased towards the reference.</li>
+<li>Large insertions and rearrangements in your assembly will be lost as the reference might not have them (or have them at different locations).</li>
+</ul></li>
+<li>Use reference-based assembly if:
+<ul>
+<li>You think your genome is very closely related to an available reference</li>
+<li>You made/evolved a mutant of your reference and want to confirm it</li>
+<li>You know the genetic background of your genome and want to align it to an available reference of the same genetic background</li>
+<li>Tools: bwa, bowtie2</li>
+</ul></li>
+</ul>
+</section>
+<section id="de-novo-assembly" class="level4">
+<h4 class="anchored" data-anchor-id="de-novo-assembly"><em>De novo</em> assembly</h4>
+<ul>
+<li>Advantages:
+<ul>
+<li>Unbiased assembly</li>
+<li>Will preserve “new” sequences in your genome that a typical reference might not have</li>
+</ul></li>
+<li>Disadvantages:
+<ul>
+<li>May be lower quality assemblies</li>
+<li>Will have many contigs and shorter contigs</li>
+<li>It is very hard to resolve repetitive regions on your genome</li>
+</ul></li>
+<li>Use de novo assembly if:
+<ul>
+<li>You do not know the genetic background of your genome</li>
+<li>You think your genome varies substantially from available reference genomes</li>
+<li>Tools: SPAdes, SKESA</li>
+</ul></li>
+</ul>
+<p><strong>In most pathogen-genomics cases, <em>de novo</em> assemblies are the way to go</strong></p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -289,9 +441,80 @@ Should you assemble your genome?
 <p>In most cases, yes. But remember that the assembly is a “consensus” of all the reads. So not all the information available in the reads will be represented in the final assembly. For example if you have low-abundance subpopulations in your samples, your assembly will only represent the sequence from the majority population.</p>
 </div>
 </div>
-
-
+<section id="exercise-sequence-assembly-using-shovill" class="level5">
+<h5 class="anchored" data-anchor-id="exercise-sequence-assembly-using-shovill">EXERCISE: Sequence assembly using shovill</h5>
+<ul>
+<li><p>Similar to <code>fastp</code>, lets look at the usage instructions for <code>shovill</code></p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">shovill</span> <span class="at">--help</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p>Based on the <code>--help</code> page, we can see that the essential requirements for running <code>shovill</code> are:</p>
+<ul>
+<li><code>--R1</code> : Paired-end read 1 (<code>R1</code>) file as input</li>
+<li><code>--R2</code> : Paired-end read 2 (<code>R2</code>) file as input</li>
+<li><code>--outdir</code> : Path to the output directory that will be created to store outputs</li>
+</ul></li>
+<li><p><code>shovill</code> is actually a software that comprises multiple other software. This type of tool is commonly referred to as a <strong>WRAPPER</strong>.</p></li>
+<li><p>In this case, <code>shovill</code> is not the name of the actual assembly software, but it lets us choose between multiple assembly software.</p></li>
+<li><p>Let us choose <code>skesa</code> as the assembler. The default is another tool called <code>spades</code> but <code>skesa</code> is faster</p>
+<ul>
+<li><code>--assembler</code>: Option to choose assembler, set to <code>skesa</code></li>
+</ul></li>
+<li><p>Genome assembly tools may also use a lot of CPU and RAM, if you are running this on your personal computer, you many not have a lot of resources to spare, so it is a good idea to limit this using the <code>--cpus</code> and <code>--ram</code> parameters</p></li>
+<li><p>Putting it all together:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">shovill</span> <span class="dt">\</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>--R1 NWU_2025_workshop_data/test_datasets/fastq_download/SRR32528508_1_trimmed.fastq <span class="dt">\</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>--R2 NWU_2025_workshop_data/test_datasets/fastq_download/SRR32528508_2_trimmed.fastq <span class="dt">\</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>--outdir NWU_2025_workshop_data/test_datasets/fastq_download/SRR32528508_skesa <span class="dt">\</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>--assembler skesa</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="ex">--cpus</span> 4 <span class="co"># Will use at max 4 CPU cores, Set according to your computer</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="ex">--ram</span> 4 <span class="co"># Will use at max 4GB RAM, set according to your computer</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+</ul>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>This will take time, but you can use the complete assembly already available in <code>NWU_2025_workshop_data/test_datasets/GCA_049744075.1/GCA_049744075.1_ASM4974407v1_genomic.fna</code> for the next steps</p>
+</div>
+</div>
+<ul>
+<li>In the above command, we gave the PATH to our <strong>QUALITY FILTERED reads </strong> as input to <code>shovill</code> through the <code>R1</code> and <code>R2</code> parameters, specified the name of the output PATH using <code>outdir</code>, and set the assembler to skesa using <code>--assembler skesa</code></li>
+<li>Look at the different output files using <code>ls</code> and <code>head</code>.</li>
+<li>We can also see how our assembly looks using QUAST - which is a software that outputs metrics on assembly quality</li>
+<li>Take a look at the help page for QUAST and run it for your assembly!</li>
+</ul>
 </section>
+</section>
+</section>
+</section>
+<section id="genome-annotation" class="level2">
+<h2 class="anchored" data-anchor-id="genome-annotation">Genome annotation</h2>
+<ul>
+<li>Annotation is the process of identifying protein coding genes and other significant regions such as CRISPR sites or ncRNA</li>
+<li>Genome annotation can be divided into two steps:
+<ul>
+<li>Structural annotation : Predicting Open Reading Frames (ORFs), coding regions, regulatory motifs, introns/exons etc.</li>
+<li>Functional annotation : Attaching a potential biological function to protein-coding genes.</li>
+</ul></li>
+<li>However, from a workflow perspective, this is a single step process, especially for prokaryotes such as bacteria as the biological “rules” for what makes a gene is largely solved.</li>
+<li>Most annotation tools rely on a database of known gene sequences. The more similar a gene is in your sample to an existing, well characterized gene sequence, the more likely it is that the gene in your sample also shares the same functional properties.</li>
+<li>However, many annotation tools also rely on matching motifs or “patterns” of specific sequences rather than entire genes. These are helpful for annotating more diverged sequences that may not have an exact match in the reference databases.</li>
+<li>There are several databases ranging from very broad to very specific collections of sequences that can aid in annotation.
+<ul>
+<li>NCBI BLAST, DIAMOND: Searches input protein or NA sequence against available sequences of known function (maybe)</li>
+<li>VFDB, CARD : Identification of known virulence factors and antibiotic resistance genes</li>
+<li>SignalP, LipoP, tmHMM : Identification of signal peptides, lipoproteins and transmembrane proteins from conserved motifs</li>
+<li>KEGG, DAVID, PANTHER: Databases of gene/protein families and subfamilies used for tying biological pathways to genes</li>
+<li>NCBI CDART, SWISS-MODEL, PHYRE2, I-TASSER: Predicting functional domains and protein families from amino-acid sequence and secondary structure elements.</li>
+</ul></li>
+<li>Common bacterial genome annotation software (such as <code>prokka</code> or <code>bakta</code>) combine multiple databases to provide the most complete annotations possible.</li>
+</ul>
+
+
 </section>
 </section>
 

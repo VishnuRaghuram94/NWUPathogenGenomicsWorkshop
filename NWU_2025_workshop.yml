@@ -17,6 +17,7 @@ dependencies:
   - ncbi-amrfinderplus=3.12.8
   - ncbi-datasets-cli=18.9.0
   - ncbi-genome-download=0.3.3
+  - prokka=1.14.6
   - python=3.8.19
   - quast=5.3.0
   - skani=0.3.0
