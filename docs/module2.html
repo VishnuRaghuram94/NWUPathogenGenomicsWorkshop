@@ -21,6 +21,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -99,11 +133,15 @@ ul.task-list li input[type="checkbox"] {
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="./module0.html"> 
-<span class="menu-text">Module 0: Setup</span></a>
+<span class="menu-text">Module 0</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="./module1.html"> 
-<span class="menu-text">Module 1: Bash terminal basics</span></a>
+<span class="menu-text">Module 1</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link active" href="./module2.html" aria-current="page"> 
+<span class="menu-text">Module 2</span></a>
   </li>  
 </ul>
           </div> <!-- /navcollapse -->
@@ -121,7 +159,15 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#what-is-genome-assembly-and-why-do-it" id="toc-what-is-genome-assembly-and-why-do-it" class="nav-link active" data-scroll-target="#what-is-genome-assembly-and-why-do-it">What is genome assembly and why do it?</a></li>
+  <li><a href="#what-is-genome-assembly-and-why-do-it" id="toc-what-is-genome-assembly-and-why-do-it" class="nav-link active" data-scroll-target="#what-is-genome-assembly-and-why-do-it">What is genome assembly and why do it?</a>
+  <ul class="collapse">
+  <li><a href="#how-does-sequencing-work" id="toc-how-does-sequencing-work" class="nav-link" data-scroll-target="#how-does-sequencing-work">How does sequencing work?</a></li>
+  <li><a href="#what-sequencing-platform-should-i-use" id="toc-what-sequencing-platform-should-i-use" class="nav-link" data-scroll-target="#what-sequencing-platform-should-i-use">What sequencing platform should I use?</a></li>
+  </ul></li>
+  <li><a href="#sequencing-terminology" id="toc-sequencing-terminology" class="nav-link" data-scroll-target="#sequencing-terminology">Sequencing terminology</a>
+  <ul class="collapse">
+  <li><a href="#raw-reads" id="toc-raw-reads" class="nav-link" data-scroll-target="#raw-reads">Raw reads</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -158,13 +204,95 @@ ul.task-list li input[type="checkbox"] {
 <h2 class="anchored" data-anchor-id="what-is-genome-assembly-and-why-do-it">What is genome assembly and why do it?</h2>
 <ul>
 <li>The output from a sequencing machine contains large numbers of fragments (reads) of your original genome in no particular order.</li>
-<li>These reads are quite short (~150bp) – too short to obtain a lot of meaningful information as most genes are much longer than 150bp.</li>
+<li>These reads are quite short (~150bp with short read sequencing) - too short to obtain a lot of meaningful information as most genes are much longer than 150bp.</li>
 <li>The same region of the genome will be repeated multiple times (depth)</li>
 <li>Your whole original genome might not be represented (coverage)</li>
 <li>Assembling your reads involves stitching together these fragments (in the right order) to create the closest possible representation of the original genome.</li>
 </ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="assets/images/module2/sequencing_assembly.png" class="img-fluid figure-img"></p>
+<figcaption>By Erekevan - Own work, CC BY-SA 4.0, https://commons.wikimedia.org/w/index.php?curid=116777958</figcaption>
+</figure>
+</div>
+<section id="how-does-sequencing-work" class="level3">
+<h3 class="anchored" data-anchor-id="how-does-sequencing-work">How does sequencing work?</h3>
+<p>Depending on the exact platform used, sequencing takes advantage of specific physical and/or chemical properties of different nucleotides. These physical/chemical properties are converted to signals that can be decoded by different algorithms to determine the DNA (or RNA) sequence. The exact workings of each sequencing platform is beyond the scope of this workshop. There are <a href="https://www.youtube.com/results?search_query=illumina+sequencing">several</a> <a href="https://www.youtube.com/results?search_query=pacific+biosciences+sequencing+method">great</a> <a href="https://www.youtube.com/results?search_query=oxford+nanopore+sequencing">videos</a> that explain the different sequencing technologies better than I ever can, I highly recommend checking them out if you are interested.</p>
+</section>
+<section id="what-sequencing-platform-should-i-use" class="level3">
+<h3 class="anchored" data-anchor-id="what-sequencing-platform-should-i-use">What sequencing platform should I use?</h3>
+<ul>
+<li>For most microbial sequencing purposes, Illumina short-read sequencing is the most common, especially for large number of samples</li>
+<li>However, due to the decreasing costs, long-read sequencing, especially from ONT (Oxford Nanopore Technologies) is becoming more common.</li>
+<li>In general, my recommendation is:
+<ul>
+<li>If you have a lot of samples (tens to hundreds) go for Illumina (<strong>cheapest per sample</strong>)</li>
+<li>If you have a handful of high-value samples (eg: very rare organism, time-sensitive early outbreak scenarios), go for ONT but watch out for potential sequencing errors. (<strong>more expensive</strong>)</li>
+<li>If you have one or two samples that are of critical importance (for example your entire research project is based on this one strain) - perform hybrid sequencing (<strong>most expensive</strong>). Hybrid seqencing involves performing both Illumina short-read and ONT/PacBio long-read and combining reads from both to get the highest quality assembly possible. However, the quality of long-read sequencing is increasing so rapidly that long-read sequencing alone may be enough to get a high-quality complete assembly.</li>
+</ul></li>
+</ul>
+<p><strong>This workshop is geared towards Illumina Paired-end sequencing data as those are the most common</strong></p>
+</section>
+</section>
+<section id="sequencing-terminology" class="level2">
+<h2 class="anchored" data-anchor-id="sequencing-terminology">Sequencing terminology</h2>
+<section id="raw-reads" class="level3">
+<h3 class="anchored" data-anchor-id="raw-reads">Raw reads</h3>
+<ul>
+<li>Raw reads are what you get directly out of the sequencer.</li>
+<li>Raw reads are in FASTQ format ( <a href="https://vishnuraghuram94.github.io/NWUPathogenGenomicsWorkshop/module1.html#fastq">See file formats in Module 0</a> ).</li>
+<li>For Illumina Paired-end sequencing, you get two FASTQ files - the forward (<code>R1</code>) and reverse (<code>R2</code>) reads.
+<ul>
+<li>Each fragment of DNA is sequenced twice, one from each end (i.e forward and reverse, or <code>R1</code> and <code>R2</code>).<br>
+</li>
+<li>The information that connects each read in <code>R1</code> to its mate in <code>R2</code> is kept intact in the FASTQ files.</li>
+</ul></li>
+<li>For each read, the FASTQ files also have per-base quality scores</li>
+<li>The purpose of quality scores are straightforward - you want to know if the basecalling (i.e assigning the correct nucleotide base at the correct position for each read fragment) is good.</li>
+<li>Using the quality scores, you can filter for only high-quality reads, and/or “trim” off lower quality sections in each read before you move to the next steps.</li>
+</ul>
+<p><strong>Lets download some raw reads and see what they look like</strong></p>
+<ul>
+<li>The <a href="https://www.ncbi.nlm.nih.gov/sra">Sequence Read Archive</a> (SRA) or <a href="https://www.ebi.ac.uk/ena/browser/home">European Nucleotide Archive</a> (ENA) are repositories from where we can download raw sequence reads.</li>
+<li>Lets download raw reads for the sample <code>SRR32528508</code>
+<ul>
+<li>Activate your conda environment if you haven’t already</li>
+</ul>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> activate NWU_2025_workshop</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li>Use the software <code>fasterq-dump</code> to download the specific sample</li>
+</ul>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">fasterq-dump</span> SRR32528508</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+</ul>
+<section id="read-quality-check---what-should-i-look-for" class="level4">
+<h4 class="anchored" data-anchor-id="read-quality-check---what-should-i-look-for">Read quality check - what should I look for?</h4>
+<ul>
+<li>Per-base sequence quality (You dont want too many low quality base calls)</li>
+<li>Adapter removal (Adapters are artificial short sequences ligated to your samples’s actual DNA to help with the sequencing process. These adapters must be removed as they are not biologically significant)</li>
+<li>Average per-read quality (On average you want to keep only high quality reads)</li>
+<li>N content (During basecalling, <code>N</code> is assigned (instead of <code>A</code>,<code>T</code>,<code>G</code>,<code>C</code>) if the basecaller is uncertain. You want to know how many uncertain calls were made)</li>
+<li>Read length distribution (Reads that are too short are uninformative. Each read is expected to be ~150bp for Illumina)</li>
+</ul>
+</section>
+<section id="how-do-i-check-sequence-quality" class="level4">
+<h4 class="anchored" data-anchor-id="how-do-i-check-sequence-quality">How do I check sequence quality?</h4>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Should you assemble your genome?
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>In most cases, yes. But remember that the assembly is a “consensus” of all the reads. So not all the information available in the reads will be represented in the final assembly. For example if you have low-abundance subpopulations in your samples, your assembly will only represent the sequence from the majority population.</p>
+</div>
+</div>
 
 
+</section>
+</section>
 </section>
 
 </main> <!-- /main -->

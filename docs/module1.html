@@ -6,8 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Vishnu Raghuram">
 
-<title>Module 1: Bash terminal basics – NWU_2025_Workshop</title>
+<title>Module 1 – NWU_2025_Workshop</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -132,11 +133,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="./module0.html"> 
-<span class="menu-text">Module 0: Setup</span></a>
+<span class="menu-text">Module 0</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link active" href="./module1.html" aria-current="page"> 
-<span class="menu-text">Module 1: Bash terminal basics</span></a>
+<span class="menu-text">Module 1</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./module2.html"> 
+<span class="menu-text">Module 2</span></a>
   </li>  
 </ul>
           </div> <!-- /navcollapse -->
@@ -182,13 +187,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Module 1: Bash terminal basics</h1>
+<h1 class="title">Module 1</h1>
+<p class="subtitle lead">Bash terminal basics</p>
 </div>
 
 
 
 <div class="quarto-title-meta">
 
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Vishnu Raghuram </p>
+          </div>
+  </div>
     
   
     
@@ -353,7 +365,7 @@ DO NOT USE SPACES IN FILE/FOLDER NAMES
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>In general it is good practice to not use spaces or special characters ( such as <code>?!&lt;&gt;,[]{}()</code> ) in your file or folder names as usually, spaces and special characters have a <strong>SPECIAL MEANING</strong> in the command line and stand for specific operations. This can lead to the system getting confused when you for example refer to a folder with a special character, as it will assume you are performing an operation that the character stands for. For example, the space character is usually the separator for different options/modifiers for command line tools. Use <code>_</code> instead of spaces.</p>
+<p>In general it is good practice to not use spaces or special characters ( such as <code>?!&lt;&gt;,[]{}()</code> ) in your file or folder names as usually, spaces and special characters have a <strong>SPECIAL MEANING</strong> in the command line and stand for specific operations. This can lead to the system getting confused when you refer to a folder with a special character, as it will assume you are performing an operation that the character stands for. For example, the space character is usually the separator for different options/modifiers for command line tools. Use <code>_</code> instead of spaces.</p>
 </div>
 </div>
 </section>
@@ -571,6 +583,7 @@ Note
 <li><strong>Description line</strong>: Starts with <code>&gt;</code>, followed by an identifier and optional description.</li>
 <li><strong>Sequence</strong>: The actual sequence of nucleotides (DNA) or amino acids (protein). The sequence can be in a single line or broken up into multiple lines.</li>
 </ul></li>
+<li>In a genome FASTA file, each sequence is called a <strong>contig</strong> . In most cases a genome will not be assembled “perfectly” into a single long stretch of DNA, and will be broken up into <strong>contigs</strong>. This is covered in detail in <a href="https://vishnuraghuram94.github.io/NWUPathogenGenomicsWorkshop/module2.html">Module 2</a>.</li>
 <li>Extensions: <code>.fasta</code>,<code>.fna</code>,<code>.fa</code>,<code>.faa</code></li>
 </ul>
 <p><strong>Example FASTA format</strong>:</p>
@@ -587,7 +600,7 @@ Note
 <ul>
 <li>The <strong>FASTQ</strong> format is an extension of the FASTA format, used for storing raw sequence data <strong>with quality scores</strong>. Each entry contains four lines:
 <ul>
-<li><strong>Header</strong>: Starts with <code>@</code> followed by the sequence identifier.</li>
+<li><strong>Header</strong>: Starts with <code>@</code> followed by the sequence identifier. For paired-end sequencing, this identifier is what keeps track of the “mates”.</li>
 <li><strong>Sequence</strong>: The actual sequence of nucleotides.</li>
 <li><strong>Plus line</strong>: Starts with a <code>+</code> sign (may also followed by the same sequence identifier)</li>
 <li><strong>Quality scores</strong>: Per-base quality score corresponding to the sequence in line 2. Each symbol here corresponds to a numeric score for the base call in the corresponding position. Learn more about quality scores <a href="https://help.basespace.illumina.com/files-used-by-basespace/quality-scores">here</a>.</li>
@@ -619,7 +632,7 @@ Note
 </ul></li>
 <li>Extensions: <code>.gff</code>, <code>.gff3</code></li>
 </ul>
-<p><strong>Example GenBank format</strong> : [</p>
+<p><strong>Example GFF format</strong> :</p>
 <div class="sourceCode" id="cb32"><pre class="sourceCode txt code-with-copy"><code class="sourceCode default"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>##gff-version 3</span>
 <span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>##feature-ontology https://github.com/The-Sequence-Ontology/SO-Ontologies/blob/v3.1/so.obo</span>
 <span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>contig_1    CDS     90      1232    ID=HCEKFJ_00005;Name=Biotin/lipoyl-binding protein;product=Biotin/lipoyl-binding protein;</span>

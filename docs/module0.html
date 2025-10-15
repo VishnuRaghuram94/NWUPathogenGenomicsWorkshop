@@ -6,8 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Vishnu Raghuram">
 
-<title>Module 0: Setup – NWU_2025_Workshop</title>
+<title>Module 0 – NWU_2025_Workshop</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -132,11 +133,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>  
   <li class="nav-item">
     <a class="nav-link active" href="./module0.html" aria-current="page"> 
-<span class="menu-text">Module 0: Setup</span></a>
+<span class="menu-text">Module 0</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="./module1.html"> 
-<span class="menu-text">Module 1: Bash terminal basics</span></a>
+<span class="menu-text">Module 1</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./module2.html"> 
+<span class="menu-text">Module 2</span></a>
   </li>  
 </ul>
           </div> <!-- /navcollapse -->
@@ -170,13 +175,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Module 0: Setup</h1>
+<h1 class="title">Module 0</h1>
+<p class="subtitle lead">Setup</p>
 </div>
 
 
 
 <div class="quarto-title-meta">
 
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Vishnu Raghuram </p>
+          </div>
+  </div>
     
   
     
@@ -455,12 +467,11 @@ Tip
 <h2 class="anchored" data-anchor-id="setting-up-the-conda-environment">Setting up the conda environment</h2>
 <p>Next we will set up a conda virtual ‘environment’ - think of this as a box inside your computer where all the software you need for a particular project is contained. If you have multiple projects, you can set up multiple independent boxes that will not interfere with each other. This also allows you to simultaneously maintain different versions of the same software if you need to.</p>
 <p>For the workshop, we have created a conda environment with many standard bioinformatics packages (<a href="NWU_2025_workshop.yml">available here</a>). You can use the following command to load this environment onto your computer.</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="at">-O</span> https://vishnuraghuram94.github.io/NWUPathogenGenomicsWorkshop/NWU_2025_workshop.yml</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> config <span class="at">--set</span> channel_priority flexible</span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> env create <span class="at">-f</span> NWU_2025_workshop.yml</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="at">-O</span> https://vishnuraghuram94.github.io/NWUPathogenGenomicsWorkshop/NWU_2025_workshop.yml</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> config <span class="at">--set</span> channel_priority flexible</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> env create <span class="at">-f</span> NWU_2025_workshop.yml</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>The environment can be activated with the following command:</p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> activate NWU_2025_workshop</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="callout callout-style-default callout-note callout-titled">
