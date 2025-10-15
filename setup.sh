@@ -67,9 +67,9 @@ curl https://raw.githubusercontent.com/VishnuRaghuram94/NWUPathogenGenomicsWorks
 
 # Download gene presence absence
 echo -e "\033[33mDownloading gene presence/absence matrix \033[0m"
-curl https://raw.githubusercontent.com/VishnuRaghuram94/NWUPathogenGenomicsWorkshop/refs/heads/main/results/PRJNA1230142_panaroo.Rtab -o $(pwd)/NWU_2025_workshop_data/test_datasets/results/RJNA1230142_panaroo.Rtab -s || { echo -e '\033[31mDownloading phylogeny failed\033[0m' ; exit 1; }
+curl https://raw.githubusercontent.com/VishnuRaghuram94/NWUPathogenGenomicsWorkshop/refs/heads/main/results/PRJNA1230142_panaroo.Rtab -o $(pwd)/NWU_2025_workshop_data/test_datasets/results/PRJNA1230142_panaroo.Rtab -s || { echo -e '\033[31mDownloading phylogeny failed\033[0m' ; exit 1; }
 
 echo -e "\033[33mDownloading gene presence/absence matrix (roary)\033[0m"
-curl https://raw.githubusercontent.com/VishnuRaghuram94/NWUPathogenGenomicsWorkshop/refs/heads/main/results/PRJNA1230142_roary.csv -o $(pwd)/NWU_2025_workshop_data/test_datasets/results/RJNA1230142_roary.csv -s || { echo -e '\033[31mDownloading phylogeny failed\033[0m' ; exit 1; }
+curl https://raw.githubusercontent.com/VishnuRaghuram94/NWUPathogenGenomicsWorkshop/refs/heads/main/results/PRJNA1230142_roary.csv -o $(pwd)/NWU_2025_workshop_data/test_datasets/results/PRJNA1230142_roary.csv -s || { echo -e '\033[31mDownloading phylogeny failed\033[0m' ; exit 1; }
 
 echo -e "\033[34mSetup successful\!\033[0m"
