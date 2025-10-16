@@ -67,14 +67,42 @@
     "href": "module0.html#setting-up-the-conda-environment",
     "title": "Module 0",
     "section": "Setting up the conda environment",
-    "text": "Setting up the conda environment\nNext we will set up a conda virtual ‘environment’ - think of this as a box inside your computer where all the software you need for a particular project is contained. If you have multiple projects, you can set up multiple independent boxes that will not interfere with each other. This also allows you to simultaneously maintain different versions of the same software if you need to.\nFor the workshop, we have created a conda environment with many standard bioinformatics packages (available here). You can use the following command to load this environment onto your computer.\ncurl -O https://vishnuraghuram94.github.io/NWUPathogenGenomicsWorkshop/NWU_2025_workshop.yml\n\nconda config --set channel_priority flexible\n\nconda env create -f NWU_2025_workshop.yml\nThe environment can be activated with the following command:\nconda activate NWU_2025_workshop\nOnce you have activated the environment, you will see the name of the environment in your bash prompt. It might look something like this\n# Before activating\n(base) username:~$\n\n#After activating\n(NWU_2025_workshop) username:~$"
+    "text": "Setting up the conda environment\nNext we will set up a conda virtual ‘environment’ - think of this as a box inside your computer where all the software you need for a particular project is contained. If you have multiple projects, you can set up multiple independent boxes that will not interfere with each other. This also allows you to simultaneously maintain different versions of the same software if you need to.\nFor the workshop, we have created a conda environment with many standard bioinformatics packages (available here). You can use the following command to load this environment onto your computer.\ncurl -O https://raw.githubusercontent.com/VishnuRaghuram94/NWUPathogenGenomicsWorkshop/refs/heads/main/NWU_2025_workshop.yml\n\nconda config --set channel_priority flexible\n\nconda env create -f NWU_2025_workshop.yml\nThe environment can be activated with the following command:\nconda activate NWU_2025_workshop\nOnce you have activated the environment, you will see the name of the environment in your bash prompt. It might look something like this\n# Before activating\n(base) username:~$\n\n#After activating\n(NWU_2025_workshop) username:~$"
   },
   {
     "objectID": "module0.html#downloading-example-datasets",
     "href": "module0.html#downloading-example-datasets",
     "title": "Module 0",
     "section": "Downloading example datasets",
-    "text": "Downloading example datasets\nWhile the environment is active, download the setup script from the github page and run it. This will setup some folders and download some sample datasets which we will be using for the rest of this workshop. It will take some time, start the script and then feel free to grab a coffee! Once you see the prompt again, it means the script is done. The script will also output a “Setup successful” message.\nThis setup will take 4GB of space so make sure you have sufficient space available\ncurl -O https://vishnuraghuram94.github.io/NWUPathogenGenomicsWorkshop/setup.sh\n\nbash setup.sh\n\n\n\n\n\n\nNote\n\n\n\nYou must activate an environment before you are able to use the tools within that environment. By default, you will be on the base environment. While it is fine to install packages while in the base environment, it can soon get crowded with multiple conflicting packages and lead to issues later down the line. Therefore it is good practice to keep the base environment as clean as possible while creating separate environments for different tools/projects. You can deactivate the current environment and go back to base using the command:\nconda deactivate"
+    "text": "Downloading example datasets\nWhile the environment is active, download the setup script from the github page and run it. This will setup some folders and download some sample datasets which we will be using for the rest of this workshop. It will take some time, start the script and then feel free to grab a coffee! Once you see the prompt again, it means the script is done. The script will also output a “Setup successful” message.\nThis setup will take 4GB of space so make sure you have sufficient space available\ncurl -O https://raw.githubusercontent.com/VishnuRaghuram94/NWUPathogenGenomicsWorkshop/refs/heads/main/setup.sh\n\nbash setup.sh\n\n\n\n\n\n\nNote\n\n\n\nYou must activate an environment before you are able to use the tools within that environment. By default, you will be on the base environment. While it is fine to install packages while in the base environment, it can soon get crowded with multiple conflicting packages and lead to issues later down the line. Therefore it is good practice to keep the base environment as clean as possible while creating separate environments for different tools/projects. You can deactivate the current environment and go back to base using the command:\nconda deactivate"
+  },
+  {
+    "objectID": "module3.html",
+    "href": "module3.html",
+    "title": "Module 3",
+    "section": "",
+    "text": "Overview of Public Pathogen Genomics Databases\nWhy public databases matter in microbial genomics\nLarge-scale data for research and surveillance\nComparative genomics, outbreak detection, AMR tracking\nTypes of databases\nGenomes, sequencing reads, metadata"
+  },
+  {
+    "objectID": "module3.html#bioproject-biosample-and-sra",
+    "href": "module3.html#bioproject-biosample-and-sra",
+    "title": "Module 3",
+    "section": "BioProject, BioSample, and SRA",
+    "text": "BioProject, BioSample, and SRA\n\n\n\nNCBI tree\n\n\nBioProject: Umbrella for related datasets (e.g. surveillance studies)\nBioSample: Metadata for a single sample (organism, collection site, etc.) and link to Bioproject and other data\nSRA (Sequence Read Archive): Raw fastq reads\nRefseq - non-redundant sequence data\nGenbank - all deposited assemblies"
+  },
+  {
+    "objectID": "module3.html#ncbi-search-and-navigation-tips",
+    "href": "module3.html#ncbi-search-and-navigation-tips",
+    "title": "Module 3",
+    "section": "NCBI Search and Navigation Tips",
+    "text": "NCBI Search and Navigation Tips\nUsing NCBI website search filters\nLinking between BioProject → BioSample → SRA entries\nUnderstanding accession numbers"
+  },
+  {
+    "objectID": "module3.html#retrieving-data-from-ncbi-via-command-line",
+    "href": "module3.html#retrieving-data-from-ncbi-via-command-line",
+    "title": "Module 3",
+    "section": "Retrieving Data from NCBI via Command Line",
+    "text": "Retrieving Data from NCBI via Command Line\n\nncbi-genome-download\nDownload reference genomes by organism or taxon ID\nFiltering by assembly level, refseq/genbank, etc.\nExample: ncbi-genome-download bacteria –genus Salmonella –output-folder genomes/\n\n\nncbi-datasets CLI\nModern NCBI tool to download genomes, metadata, annotations\nAdvantages over older tools (JSON output, batch downloads)\nExample: datasets download genome taxon “Escherichia coli” –reference –dehydrated\n\n\nsra-tools (prefetch, fasterq-dump)\nDownload raw read data from SRA\nprefetch to download .sra files\nfasterq-dump to convert to FASTQ\nExample workflow: prefetch SRR12345678 fasterq-dump SRR12345678"
   },
   {
     "objectID": "about.html",
