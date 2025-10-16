@@ -17,6 +17,13 @@ unzip GCA_049744075.1.zip || { echo -e '\033[31mExtracting failed\033[0m' ; exit
 mv $(pwd)/ncbi_dataset/data/GCA_049744075.1 $(pwd)/NWU_2025_workshop_data/test_datasets/
 rm -r GCA_049744075.1.zip ncbi_dataset README.md md5sum.txt
 
+# Download a complete reference genome
+echo -e "\033[33mDownload and extract complete reference genome with annotations\033[0m"
+datasets download genome accession GCA_000486855.2 --filename GCA_000486855.2.zip --include cds,genome,protein,gbff,gff3 || { echo -e '\033[31mDownloading failed\033[0m' ; exit 1; }
+unzip GCA_000486855.2.zip || { echo -e '\033[31mExtracting failed\033[0m' ; exit 1; }
+mv $(pwd)/ncbi_dataset/data/GCA_000486855.2 $(pwd)/NWU_2025_workshop_data/test_datasets/reference_genome
+rm -r GCA_000486855.2.zip ncbi_dataset README.md md5sum.txt
+
 # Download assemblies from one bioproject
 ncbi-genome-download  -s genbank -A GCA_049745255.1,GCA_049744095.1,GCA_049744075.1,GCA_049744695.1,GCA_049744875.1 -F 'fasta' -o $(pwd)/NWU_2025_workshop_data/test_datasets/salmonella_assemblies --flat-output bacteria || { echo -e '\033[31mDownloading sample assemblies from bioproject failed\033[0m' ; exit 1; }
 gunzip $(pwd)/NWU_2025_workshop_data/test_datasets/salmonella_assemblies/*

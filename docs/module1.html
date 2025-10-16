@@ -215,6 +215,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>This module will cover the basics of navigating the bash terminal, go through some key bash commands, and common file formats.</p>
 <section id="what-is-the-command-line-why-is-it-essential" class="level2">
 <h2 class="anchored" data-anchor-id="what-is-the-command-line-why-is-it-essential">What is the command line? Why is it essential?</h2>
+<ul>
+<li>The command line is a way to interact with your computer simply by typing on your keyboard, without clicking on icons</li>
+<li>Instead of manually clicking through multiple windows and files, you type out “commands” and your computer does them for you</li>
+<li>This allows you to easily reproduce what you did before, automate several tasks, and handle large datasets too cumbersome for a human to manually go through.</li>
+<li>This also provides a great foundation for learning other programming languages</li>
+<li>Several bioinformatic tools do not have a graphical user interface (GUI) and need to be used from the command-line</li>
+</ul>
 </section>
 <section id="exploring-the-file-system" class="level2">
 <h2 class="anchored" data-anchor-id="exploring-the-file-system">Exploring the file system</h2>
@@ -243,16 +250,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
 <div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">/mnt/c/Users/username/project/example.txt</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
 Directory vs.&nbsp;Folder
 </div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>Both are generally used interchangably though directory is the technically correct term.</p>
+</div>
 </div>
 </div>
 </section>
@@ -315,16 +325,19 @@ Note
 <div class="sourceCode" id="cb12"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="ex">../../another_example.txt</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><code>../../</code> goes two levels above <code>project</code> to reach <code>Users</code> and then refers to <code>another_example.txt</code> .</p>
 <div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
 Why You Should Practice Using Absolute Paths
 </div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>It’s generally a good idea to use absolute paths when you’re working with files or directories, especially when writing scripts or commands that could be run from different locations. This ensures that you are always referring to the exact file, no matter where you are in the filesystem.</p>
+</div>
 </div>
 </div>
 </section>
@@ -338,17 +351,20 @@ Why You Should Practice Using Absolute Paths
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="ex">user1</span> user2 username</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>The autocomplete feature will complete <code>/mnt/c/Users/us</code> to <code>/mnt/c/Users/user</code>, after which you can type <code>n</code> to make it <code>/mnt/c/Users/usern</code> and then press <code>tab</code> again, which will then complete it to <code>/mnt/c/Users/username</code></p>
 <p>The autocomplete feature works the same way for files, for example <code>/mnt/c/Users/username/project/exa</code> will complete to <code>/mnt/c/Users/username/project/example.txt</code> .</p>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="true" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
 The shell is CASE-SENSITIVE
 </div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
+<div id="callout-4" class="callout-4-contents callout-collapse collapse show">
 <div class="callout-body-container callout-body">
 <p><code>example.txt</code> and <code>Example.txt</code> will be treated as different files. If you type <code>exa</code> and press <code>tab</code>, it will never complete to <code>Example.txt</code>.</p>
+</div>
 </div>
 </div>
 </section>
@@ -359,17 +375,20 @@ The shell is CASE-SENSITIVE
 <h4 class="anchored" data-anchor-id="mkdir-makes-a-new-directory-called-dir1-in-the-current-directory-project"><code>mkdir</code> : Makes a new directory called <code>dir1</code> in the current directory (<code>project</code>)</h4>
 <div class="sourceCode" id="cb14"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> dir1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>I recommend making a separate <code>project</code> directory (or any name of your choosing) for this workshop to perform all upcoming exercises.</p>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="true" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
 DO NOT USE SPACES IN FILE/FOLDER NAMES
 </div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
+<div id="callout-5" class="callout-5-contents callout-collapse collapse show">
 <div class="callout-body-container callout-body">
 <p>In general it is good practice to not use spaces or special characters ( such as <code>?!&lt;&gt;,[]{}()</code> ) in your file or folder names as usually, spaces and special characters have a <strong>SPECIAL MEANING</strong> in the command line and stand for specific operations. This can lead to the system getting confused when you refer to a folder with a special character, as it will assume you are performing an operation that the character stands for. For example, the space character is usually the separator for different options/modifiers for command line tools. Use <code>_</code> instead of spaces.</p>
+</div>
 </div>
 </div>
 </section>
@@ -405,7 +424,7 @@ DO NOT USE SPACES IN FILE/FOLDER NAMES
 <section id="rm-removes-delete-a-specified-file.-in-the-below-example-we-delete-example.txt-in-dir2" class="level4">
 <h4 class="anchored" data-anchor-id="rm-removes-delete-a-specified-file.-in-the-below-example-we-delete-example.txt-in-dir2"><code>rm</code> : Removes (delete) a specified file. In the below example we delete <code>example.txt</code> in <code>dir2</code></h4>
 <div class="sourceCode" id="cb20"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span> /mnt/c/Users/username/project/dir2/example.txt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout callout-style-default callout-warning callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
@@ -733,17 +752,20 @@ Note
 <span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a><span class="ex">dir1</span></span>
 <span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a><span class="ex">dir2</span></span>
 <span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a><span class="ex">example.txt</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-11-contents" aria-controls="callout-11" aria-expanded="true" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
 THE <code>&gt;</code> REDIRECTION IS DANGEROUS
 </div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
+<div id="callout-11" class="callout-11-contents callout-collapse collapse show">
 <div class="callout-body-container callout-body">
 <p>Be very careful when writing a to file with <code>&gt;</code> as if you happen to specify an existing file, it will <strong>OVERWRITE</strong> all the contents of the existing file with whatever you are redirecting into it. This process is <strong>IRREVERSIBLE</strong> and you will lose all the original contents of the file. If you want to <strong>append</strong> (or add to) an existing file, you can use <code>&gt;&gt;</code> and it will add new lines instead of overwriting the existing lines.</p>
+</div>
 </div>
 </div>
 <p>It is also possible to redirect the <code>stdout</code> of one command into the input of another command using the “pipe” characer - <code>|</code>. This process is called piping. For example, lets redirect the output of <code>ls</code> to a new command <code>wc</code> . <code>wc</code> prints the number of lines, words, and characters present in the given input. In this case, the input would be whatever the <code>ls</code> command outputs. Here, <code>wc</code> is telling us that there are 3 lines, 3 words and 22 characters.</p>
@@ -788,16 +810,19 @@ THE <code>&gt;</code> REDIRECTION IS DANGEROUS
 <span id="cb45-6"><a href="#cb45-6" aria-hidden="true" tabindex="-1"></a><span class="st">Directory2</span></span>
 <span id="cb45-7"><a href="#cb45-7" aria-hidden="true" tabindex="-1"></a><span class="st">example.txt</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-12-contents" aria-controls="callout-12" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
 THE SAME MODIFIER CAN MEAN DIFFERENT THINGS
 </div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
+<div id="callout-12" class="callout-12-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>Both <code>grep</code> and <code>sed</code> have the <code>-i</code> modifier, however in <code>grep</code> it means to perform case-insensitive matches, while in <code>sed</code> it means to perform the substitution in-place. It is very important to note that the same modifier can mean different things for different tools. It is always a good idea to check the help page for each tool. <strong>How will you perform a case-insensitive substitution in <code>sed</code> ?</strong></p>
+</div>
 </div>
 </div>
 <p>Another useful command is <code>tr</code> or <strong>translate</strong> . While it is similar to <code>sed</code> in that it performs find+replace tasks, <code>tr</code> is faster and easier to use for character-by-character operations, while <code>sed</code> is better for longer strings. For example, if you want to replace a single character with another, <code>tr</code> can do it very easily. For example, lets pipe the <code>sed</code> output to <code>tr</code> to convert <code>Directory</code> into <code>directory</code></p>

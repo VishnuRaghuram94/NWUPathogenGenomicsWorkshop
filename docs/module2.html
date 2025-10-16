@@ -167,13 +167,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul class="collapse">
   <li><a href="#some-basic-terminology" id="toc-some-basic-terminology" class="nav-link" data-scroll-target="#some-basic-terminology">Some basic terminology</a></li>
   <li><a href="#raw-reads-and-quality-control" id="toc-raw-reads-and-quality-control" class="nav-link" data-scroll-target="#raw-reads-and-quality-control">Raw reads and quality control</a></li>
-  </ul></li>
-  <li><a href="#genome-assembly" id="toc-genome-assembly" class="nav-link" data-scroll-target="#genome-assembly">Genome assembly</a>
-  <ul class="collapse">
-  <li><a href="#what-is-genome-assembly-and-why-do-it" id="toc-what-is-genome-assembly-and-why-do-it" class="nav-link" data-scroll-target="#what-is-genome-assembly-and-why-do-it">What is genome assembly and why do it?</a></li>
-  <li><a href="#reference-based-vs-de-novo-assembly" id="toc-reference-based-vs-de-novo-assembly" class="nav-link" data-scroll-target="#reference-based-vs-de-novo-assembly">Reference-based vs <em>de novo</em> assembly</a></li>
-  </ul></li>
+  <li><a href="#genome-assembly" id="toc-genome-assembly" class="nav-link" data-scroll-target="#genome-assembly">Genome assembly</a></li>
   <li><a href="#genome-annotation" id="toc-genome-annotation" class="nav-link" data-scroll-target="#genome-annotation">Genome annotation</a></li>
+  <li><a href="#snp-calling" id="toc-snp-calling" class="nav-link" data-scroll-target="#snp-calling">SNP calling</a></li>
+  </ul></li>
+  <li><a href="#automating-processing-of-multiple-samples" id="toc-automating-processing-of-multiple-samples" class="nav-link" data-scroll-target="#automating-processing-of-multiple-samples">Automating processing of multiple samples</a>
+  <ul class="collapse">
+  <li><a href="#writing-a-script" id="toc-writing-a-script" class="nav-link" data-scroll-target="#writing-a-script">Writing a script</a></li>
+  <li><a href="#looping" id="toc-looping" class="nav-link" data-scroll-target="#looping">Looping</a></li>
+  </ul></li>
   </ul></li>
   </ul>
 </nav>
@@ -240,14 +242,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="some-basic-terminology" class="level3">
 <h3 class="anchored" data-anchor-id="some-basic-terminology">Some basic terminology</h3>
 <section id="reads" class="level4">
-<h4 class="anchored" data-anchor-id="reads">Reads:</h4>
+<h4 class="anchored" data-anchor-id="reads">Reads</h4>
 <ul>
 <li>Short strings of sequences that represent a highly fragmented version of the original genome.</li>
 <li>Raw unprocessed output from the sequencer.</li>
 </ul>
 </section>
 <section id="contigs" class="level4">
-<h4 class="anchored" data-anchor-id="contigs">Contigs:</h4>
+<h4 class="anchored" data-anchor-id="contigs">Contigs</h4>
 <ul>
 <li>Overlapping reads are stitched together to make “contiguous” strings of DNA.</li>
 <li>The more overlapping reads that are stitched, the longer the contig(s) will be and the fewer contigs you will have.</li>
@@ -256,7 +258,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
 </section>
 <section id="coverage" class="level4">
-<h4 class="anchored" data-anchor-id="coverage">Coverage:</h4>
+<h4 class="anchored" data-anchor-id="coverage">Coverage</h4>
 <ul>
 <li>The percentage of your original genome that is covered by the reads</li>
 <li>100% coverage means for every nucleotide in the original genome, there is at least one read that represents it.</li>
@@ -264,11 +266,24 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
 </section>
 <section id="depth" class="level4">
-<h4 class="anchored" data-anchor-id="depth">Depth:</h4>
+<h4 class="anchored" data-anchor-id="depth">Depth</h4>
 <ul>
 <li>The average number of reads a given nucleotide in the is represented in.</li>
 <li>30x depth means on average a any given nucleotide is present in 30 reads.</li>
 <li>Sometimes you might see something like “30x coverage” in many microbial papers. This means 100% of the genome is represented at a depth of 30x (“coverage” is assumed to be 100%).</li>
+</ul>
+</section>
+<section id="draft-genomedraft-assenbly" class="level4">
+<h4 class="anchored" data-anchor-id="draft-genomedraft-assenbly">Draft genome/draft assenbly</h4>
+<ul>
+<li>Most genome assemblies you will be working with are “draft” assemblies, meaning it is not a complete representation of the original genome, the assembly comprises multiple contigs that have not been perfectly stitched together.</li>
+</ul>
+</section>
+<section id="closed-assemblycomplete-assembly" class="level4">
+<h4 class="anchored" data-anchor-id="closed-assemblycomplete-assembly">Closed assembly/complete assembly</h4>
+<ul>
+<li>If you perform long-read/hybrid sequencing you will have enough information in your reads to assemble the complete genome as a single continuous string with no breaks or gaps. This is referred to as a ‘closed’ or ‘complete’ genome assembly.</li>
+<li>Typically, bacteria have a single circular chromosome (some bacteria have multiple) and optionally some plasmids. When an assembly is referred to as ‘closed’ or ‘complete’, it means each chromosome and each plasmid (if any) is represented by a single contig respectively.</li>
 </ul>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -296,14 +311,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="read-quality-control---what-should-i-look-for" class="level4">
 <h4 class="anchored" data-anchor-id="read-quality-control---what-should-i-look-for">Read quality control - what should I look for?</h4>
 <ul>
-<li>Per-base sequence quality (You dont want too many low quality base calls)</li>
-<li>Adapter removal (Adapters are artificial short sequences ligated to your samples’s actual DNA to help with the sequencing process. These adapters must be removed as they are not biologically significant)</li>
-<li>Average per-read quality (On average you want to keep only high quality reads)</li>
-<li>N content (During basecalling, <code>N</code> is assigned (instead of <code>A</code>,<code>T</code>,<code>G</code>,<code>C</code>) if the basecaller is uncertain. You want to know how many uncertain calls were made)</li>
-<li>Read length distribution (Reads that are too short are uninformative. Each read is expected to be ~150bp for Illumina)</li>
+<li><strong>Per-base sequence quality </strong>- You dont want too many low quality base calls</li>
+<li><strong>Adapter removal</strong> - Adapters are artificial short sequences ligated to your samples’s actual DNA to help with the sequencing process. These adapters must be removed as they are not biologically significant</li>
+<li><strong>Average per-read quality</strong> - On average you want to keep only high quality reads</li>
+<li><strong>N content</strong> - During basecalling, <code>N</code> is assigned (instead of <code>A</code>,<code>T</code>,<code>G</code>,<code>C</code>) if the basecaller is uncertain. You want to know how many uncertain calls were made</li>
+<li><strong>Read length distribution</strong> - Reads that are too short are uninformative. Each read is expected to be ~150bp for Illumina</li>
 </ul>
-<section id="exercise-sequence-quality-control-using-fastp" class="level5">
-<h5 class="anchored" data-anchor-id="exercise-sequence-quality-control-using-fastp">EXERCISE: Sequence quality control using fastp</h5>
+</section>
+<section id="exercise-sequence-quality-control-using-fastp" class="level4">
+<h4 class="anchored" data-anchor-id="exercise-sequence-quality-control-using-fastp">EXERCISE: Sequence quality control using fastp</h4>
 <p><strong>Lets download some raw reads and see what they look like</strong></p>
 <ul>
 <li><p>The <a href="https://www.ncbi.nlm.nih.gov/sra">Sequence Read Archive</a> (SRA) or <a href="https://www.ebi.ac.uk/ena/browser/home">European Nucleotide Archive</a> (ENA) are repositories from where we can download raw sequence reads.</p></li>
@@ -360,14 +376,28 @@ Note
 <li><p>In the above command, we gave the PATH to our our input reads to <code>fastp</code> through the <code>in1</code> and <code>in2</code> parameters, specified the names of the output files and the PATH in which they should be saved through the <code>out1</code> and <code>out2</code> parameters, along with the QC reports using <code>--html</code> and <code>--json</code></p></li>
 <li><p>Open the <code>.html</code> output in your browser and take a look at the results.</p></li>
 </ul>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Why is there a <code>\</code> before every new parameter in the code?
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>When you are writing commands on the command line, you can supply all the necessary arguments for whatever tool you are using continuously in one line (separated by spaces). For the sake of readability, I have split them into multiple lines. But when you simply enter a <code>newline</code> (i.e, press the <code>enter</code> key), the shell will assume you want to run your command and can lead to you running an incomplete command. Typing <code>\</code> before you press enter lets the shell know that you aren’t done yet and you are continuing with the same command.</p>
+</div>
+</div>
+</div>
 </section>
 </section>
-</section>
-</section>
-<section id="genome-assembly" class="level2">
-<h2 class="anchored" data-anchor-id="genome-assembly">Genome assembly</h2>
-<section id="what-is-genome-assembly-and-why-do-it" class="level3">
-<h3 class="anchored" data-anchor-id="what-is-genome-assembly-and-why-do-it">What is genome assembly and why do it?</h3>
+<section id="genome-assembly" class="level3">
+<h3 class="anchored" data-anchor-id="genome-assembly">Genome assembly</h3>
+<section id="what-is-genome-assembly-and-why-do-it" class="level4">
+<h4 class="anchored" data-anchor-id="what-is-genome-assembly-and-why-do-it">What is genome assembly and why do it?</h4>
 <ul>
 <li>The output from a sequencing machine contains large numbers of fragments (reads) of your original genome in no particular order.</li>
 <li>These reads are quite short (~150bp with short read sequencing) - too short to obtain a lot of meaningful information as most genes are much longer than 150bp.</li>
@@ -382,10 +412,10 @@ Note
 </figure>
 </div>
 </section>
-<section id="reference-based-vs-de-novo-assembly" class="level3">
-<h3 class="anchored" data-anchor-id="reference-based-vs-de-novo-assembly">Reference-based vs <em>de novo</em> assembly</h3>
-<section id="reference-based-assembly" class="level4">
-<h4 class="anchored" data-anchor-id="reference-based-assembly">Reference-based assembly</h4>
+<section id="reference-based-vs-de-novo-assembly" class="level4">
+<h4 class="anchored" data-anchor-id="reference-based-vs-de-novo-assembly">Reference-based vs <em>de novo</em> assembly</h4>
+<section id="reference-based-assembly" class="level5">
+<h5 class="anchored" data-anchor-id="reference-based-assembly">Reference-based assembly</h5>
 <ul>
 <li>Advantages:
 <ul>
@@ -406,8 +436,8 @@ Note
 </ul></li>
 </ul>
 </section>
-<section id="de-novo-assembly" class="level4">
-<h4 class="anchored" data-anchor-id="de-novo-assembly"><em>De novo</em> assembly</h4>
+<section id="de-novo-assembly" class="level5">
+<h5 class="anchored" data-anchor-id="de-novo-assembly"><em>De novo</em> assembly</h5>
 <ul>
 <li>Advantages:
 <ul>
@@ -429,20 +459,25 @@ Note
 </ul>
 <p><strong>In most pathogen-genomics cases, <em>de novo</em> assemblies are the way to go</strong></p>
 <div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
 Should you assemble your genome?
 </div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>In most cases, yes. But remember that the assembly is a “consensus” of all the reads. So not all the information available in the reads will be represented in the final assembly. For example if you have low-abundance subpopulations in your samples, your assembly will only represent the sequence from the majority population.</p>
 </div>
 </div>
-<section id="exercise-sequence-assembly-using-shovill" class="level5">
-<h5 class="anchored" data-anchor-id="exercise-sequence-assembly-using-shovill">EXERCISE: Sequence assembly using shovill</h5>
+</div>
+</section>
+</section>
+<section id="exercise-sequence-assembly-using-shovill" class="level4">
+<h4 class="anchored" data-anchor-id="exercise-sequence-assembly-using-shovill">EXERCISE: Sequence assembly using shovill</h4>
 <ul>
 <li><p>Similar to <code>fastp</code>, lets look at the usage instructions for <code>shovill</code></p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">shovill</span> <span class="at">--help</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
@@ -464,8 +499,8 @@ Should you assemble your genome?
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>--R1 NWU_2025_workshop_data/test_datasets/fastq_download/SRR32528508_1_trimmed.fastq <span class="dt">\</span></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>--R2 NWU_2025_workshop_data/test_datasets/fastq_download/SRR32528508_2_trimmed.fastq <span class="dt">\</span></span>
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>--outdir NWU_2025_workshop_data/test_datasets/fastq_download/SRR32528508_skesa <span class="dt">\</span></span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>--assembler skesa</span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="ex">--cpus</span> 4 <span class="co"># Will use at max 4 CPU cores, Set according to your computer</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>--assembler skesa <span class="dt">\</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>--cpus 4 <span class="co"># Will use at max 4 CPU cores, Set according to your computer \</span></span>
 <span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="ex">--ram</span> 4 <span class="co"># Will use at max 4GB RAM, set according to your computer</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
 </ul>
 <div class="callout callout-style-default callout-note callout-titled">
@@ -484,15 +519,55 @@ Note
 <ul>
 <li>In the above command, we gave the PATH to our <strong>QUALITY FILTERED reads </strong> as input to <code>shovill</code> through the <code>R1</code> and <code>R2</code> parameters, specified the name of the output PATH using <code>outdir</code>, and set the assembler to skesa using <code>--assembler skesa</code></li>
 <li>Look at the different output files using <code>ls</code> and <code>head</code>.</li>
-<li>We can also see how our assembly looks using QUAST - which is a software that outputs metrics on assembly quality</li>
-<li>Take a look at the help page for QUAST and run it for your assembly!</li>
+</ul>
+</section>
+<section id="exercise-check-your-assembly-statistics-using-quast" class="level4">
+<h4 class="anchored" data-anchor-id="exercise-check-your-assembly-statistics-using-quast">EXERCISE: Check your assembly statistics using QUAST</h4>
+<p>See how your assembly looks using <code>quast</code> - which is a software that outputs metrics on assembly quality. Take a look at the help page for <code>quast</code> and run it for your assembly!</p>
+<details>
+<summary>
+Click to reveal answer
+</summary>
+<div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">quast</span> <span class="dt">\</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>-o NWU_2025_workshop_data/test_datasets/GCA_049744075.1/quast <span class="dt">\</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>-t 4 <span class="dt">\</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>NWU_2025_workshop_data/test_datasets/GCA_049744075.1/GCA_049744075.1_ASM4974407v1_genomic.fna</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li><code>-o</code> : Path to output directory</li>
+<li><code>-t</code> : Number of threads to use</li>
+<li>&lt;contigs&gt; : Path to assembled contigs - This is a <strong>Positional argument</strong></li>
+</ul>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Positional arguments
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-5" class="callout-5-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>You may have noticed that the way you supplied the input files to <code>quast</code> is different from the way it was done for <code>fastp</code> or <code>shovill</code>. For some tools, you will explicitly state a specific parameter that accepts an input file. For example the <code>--R1</code> parameter accepts the forward read file in <code>shovill</code>. However, with <code>quast</code> there is no such parameter for the input, it automatically considers the argument in the <strong>LAST</strong> position as the input. These are called <strong>POSITIONAL ARGUMENTS</strong>. Make sure to always check the <code>--help</code> page to see if the software you are using has positional arguments.</p>
+</div>
+</div>
+</div>
+</details>
+<p>Take a look at the reports generated by QUAST</p>
+</section>
+<section id="assembly-quality---what-should-i-look-for" class="level4">
+<h4 class="anchored" data-anchor-id="assembly-quality---what-should-i-look-for">Assembly quality - what should I look for?</h4>
+<ul>
+<li><strong>Number of contigs</strong> - the fewer the better. For short-read assemblies, more than 100 is not great, more than 500 is bad.</li>
+<li><strong>Largest contig size</strong> - the larger the better. You want your largest contig to represent as much of the original genome as possible, this means that a large portion of the genome is represented by one uninterrupted large contig.</li>
+<li><strong>N50 value</strong> - the larger the better. This refers to the shortest contig such that the sum of the lengths of all contigs of that length or longer constitutes at least 50% of the total assembly length. In other words, imagine sorting all your contigs by length in descending order. How many contigs are required to reach 50% of the original genome’s length? The length of the final contig needed to reach 50% is the N50 value. This value will be higher if you have fewer contigs and longer contigs.</li>
+<li><strong>Ns per 100Kbp</strong> - the fewer the better. <code>N</code> will be called instead of an actual base (i.e <code>A</code>,<code>T</code>,<code>G</code>,<code>C</code>) if the basecaller is uncertain. You want as few uncertain base calls as possible.</li>
 </ul>
 </section>
 </section>
-</section>
-</section>
-<section id="genome-annotation" class="level2">
-<h2 class="anchored" data-anchor-id="genome-annotation">Genome annotation</h2>
+<section id="genome-annotation" class="level3">
+<h3 class="anchored" data-anchor-id="genome-annotation">Genome annotation</h3>
 <ul>
 <li>Annotation is the process of identifying protein coding genes and other significant regions such as CRISPR sites or ncRNA</li>
 <li>Genome annotation can be divided into two steps:
@@ -513,8 +588,186 @@ Note
 </ul></li>
 <li>Common bacterial genome annotation software (such as <code>prokka</code> or <code>bakta</code>) combine multiple databases to provide the most complete annotations possible.</li>
 </ul>
+<section id="exercise-annotate-your-assembly" class="level4">
+<h4 class="anchored" data-anchor-id="exercise-annotate-your-assembly">EXERCISE: Annotate your assembly</h4>
+<p>Use <code>prokka</code> to annotate your assembly!</p>
+<details>
+<summary>
+Click to reveal answer
+</summary>
+<div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">prokka</span> <span class="dt">\</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>--outdir NWU_2025_workshop_data/test_datasets/GCA_049744075.1/prokka <span class="dt">\</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>--cpu 4 <span class="dt">\</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>--prefix GCA_049744075.1_ASM4974407v1 <span class="dt">\</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>NWU_2025_workshop_data/test_datasets/GCA_049744075.1/GCA_049744075.1_ASM4974407v1_genomic.fna</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li><code>--output</code> : Path to output directory</li>
+<li><code>--cpu</code> : Number of CPUs to use</li>
+<li><code>--prefix</code> : Output file “prefix” - this prefix will be added to the name of all outputs so that you can identify them</li>
+<li>&lt;contigs&gt; : Path to assembled contigs</li>
+</ul>
+</details>
+<p>Take a look at the different output files prokka has generated and their corresponding file extensions!</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Prokka vs Bakta - Use Bakta
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-6" class="callout-6-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Prokka used to be the industry standard bacterial genome annotation tool but it has not been updated in a long time. Prokka is still a good choice and is widely used, but Bakta is now the more up-to-date tool and it is fast becoming the standard. Prokka is faster and easier to run which is why we are using it for this workshop but for your research work you should use Bakta.</p>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="snp-calling" class="level3">
+<h3 class="anchored" data-anchor-id="snp-calling">SNP calling</h3>
+<ul>
+<li>SNP calling or variant calling is the process of identifying nucleotide differences amongst your samples</li>
+<li>Calling SNPs is critical for pathogen surveillance applications such as tracking the spread of strains responsible for outbreaks, identifying transmission events between hosts, and conducting genome-wide association studies (GWAS), in which SNPs are associated with phenotypes of interest (e.g., virulence, resistance to antimicrobials)</li>
+<li>The most common approach to SNP calling relies on a reference genome, which is an assembled genome that is closely related to the genomes of interest.</li>
+<li>This means and SNPs are identified <strong>relative to that reference</strong>. Therefore the choice of reference is critical for downstream analyses.</li>
+<li>Ideally, the reference genome used must be <strong>closely related</strong> to your sample collection, be of <strong>high quality</strong> (preferably a complete genome), and be <strong>associated with a publication</strong> ( or have good metadata) such that the reference strain has been characterized well.</li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://training.galaxyproject.org/training-material/topics/sequence-analysis/images/mapping/mapping.png" class="img-fluid figure-img"></p>
+<figcaption>Mapping reads to a reference genome GalaxyTraining Network, CC-BY-4.0</figcaption>
+</figure>
+</div>
+<p>Your input data can either be assemblies (<code>.fasta</code>) or post-QC reads (<code>.fastq</code>). SNP calling with assemblies will be faster but with reads will be more accurate. Different SNP calling tools can accept different inputs and you must choose one according to your needs and what type of data you have available.</p>
+<p>In general, for bulk comparison of several isolates from a mix of sources where you are less interested in the actual functional effects SNPs and more about the overall similarity across your isolates, or if you need a <strong>core genome alignment</strong>, you can use assemblies. If you have a small collection of isolates (for eg: from an outbreak or from experimental evolution cultures) where calling accurate SNPs, as well as information regarding exact positions of SNPs and the potential mutations are important, you should use reads.</p>
+<p>We will discuss different SNP calling pipelines, and other key considerations during SNP calling in a later module. For now since we are only working though a single example genome, let us run a basic SNP calling pipeline using <code>snippy</code> with a reference genome.</p>
+<section id="exercise-variant-calling" class="level4">
+<h4 class="anchored" data-anchor-id="exercise-variant-calling">EXERCISE: Variant calling</h4>
+<p>Use <code>snippy</code> to identify variants in your assembly compared to the reference genome!</p>
+<p>If you have run <code>setup.sh</code> from Module 0, you should have a folder called <code>reference_genome</code> inside <code>test_datasets</code>. Snippy can use either the genome assembly (<code>_genomic.fna</code>) or the Genbank annotation (<code>genomic.gbff</code>) as the reference.</p>
+<p>You can also either provide the post-QC reads from <code>fastp</code> or the assembled contigs from <code>shovill</code> as input.</p>
+<p>Check the snippy help page for how to perform each combination of input file(s) and reference file!</p>
+<details>
+<summary>
+Click to reveal answer
+</summary>
+<div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ex">snippy</span> <span class="dt">\</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>--cpus 4 <span class="dt">\</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>--ram 4 <span class="dt">\</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>--outdir NWU_2025_workshop_data/test_datasets/GCA_049744075.1/snippy <span class="dt">\</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>--reference NWU_2025_workshop_data/test_datasets/reference_genome/genomic.gbff <span class="dt">\</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>--ctgs NWU_2025_workshop_data/test_datasets/GCA_049744075.1/GCA_049744075.1_ASM4974407v1_genomic.fna</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="co"># OR</span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="ex">--reference</span> NWU_2025_workshop_data/test_datasets/reference_genome/GCA_000486855.2_ASM48685v2_genomic.fna <span class="dt">\</span></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>--R1 NWU_2025_workshop_data/test_datasets/fastq_download/SRR32528508_1_trimmed.fastq <span class="dt">\</span></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>--R2 NWU_2025_workshop_data/test_datasets/fastq_download/SRR32528508_2_trimmed.fastq</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li><code>--ram</code> : The maximum amount of RAM to use</li>
+<li><code>--cpus</code> : Number of CPUs to use</li>
+<li><code>--reference</code> : Path to reference file in either <code>.fasta</code> or <code>.gbff</code> format</li>
+<li><code>--R1</code> &amp; <code>--R2</code>: Path to post-QC reads</li>
+</ul>
+<p>OR</p>
+<ul>
+<li><code>--ctgs</code> : Path to assembled contigs</li>
+</ul>
+</details>
+<p>Take a look at the different output files snippy has generated and their corresponding file extensions! If you ran both read-based and assembly-based variant calling, take a look at the list of variants reported in each case. Are there differences? How about when you used a <code>.fasta</code> reference vs a <code>.gbk</code> ? Is the output any different?</p>
+</section>
+</section>
+</section>
+<section id="automating-processing-of-multiple-samples" class="level2">
+<h2 class="anchored" data-anchor-id="automating-processing-of-multiple-samples">Automating processing of multiple samples</h2>
+<p>In this module, we started with raw <code>fastq</code> reads from the sequencer, assembled the reads into a genome, identified genes in this genome, and compared this genome to a reference to identify SNPs. We performed these steps for one sample sequentially. However, what if you have multiple samples, all of which need to undergo the same steps?</p>
+<p>Yes, you can simply copy-paste the above code, changing the input names accordingly for each sample you need to process. While this may work for a handful of samples, what if you have hundreds to process?</p>
+<p>This is where scripting comes in. You can pre-write a set of instructions, and have those same instructions be repeated for all your samples.</p>
+<section id="writing-a-script" class="level3">
+<h3 class="anchored" data-anchor-id="writing-a-script">Writing a script</h3>
+<p>Take a look at this example bash script below. This is a script to perform genome annotation on a given assembly. Create a <code>.txt</code> file called <code>prokka_script.sh</code> and save the contents below into it (you can actually name it whatever you want, just make sure to give it the <code>.sh</code> extension so that you know it is a bash script).</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co">#!/bin/bash </span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="va">fpath</span><span class="op">=</span><span class="va">$1</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="va">fname</span><span class="op">=</span><span class="va">$(</span><span class="fu">basename</span> <span class="va">${fpath}</span> _genomic.fna<span class="va">)</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Running prokka</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="ex">prokka</span> <span class="dt">\</span></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>--outdir <span class="va">${fname}</span>_prokka <span class="dt">\</span></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>--cpu 4 <span class="dt">\</span></span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>--prefix <span class="va">${fname}</span> <span class="dt">\</span></span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>--fast <span class="dt">\</span></span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a><span class="va">${fpath}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Lets go though this script line by line</p>
+<ul>
+<li><code>#!/bin/bash</code> - this is called the shebang line. This line lets your computer know that this is a bash script.</li>
+<li><code>$fpath=$1</code>
+<ul>
+<li><code>$1</code> is a <strong>positional argument</strong>. It refers to the FIRST argument provided after calling the script. Similarly, <code>$2</code> automatically refers to the second argument provided, <code>$3</code> the third, and so on. But since <code>prokka</code> accepts needs only one input (the assembly), we only need <code>$1</code> for this script.</li>
+<li><code>fpath</code> is a new variable we are creating for the <strong>path</strong> to the <strong>input file</strong>. You can call this whatever you want, but just make sure to have variable names that make sense so that you know what it is referring to (calling variables <code>x</code> or <code>y</code> or <code>var</code> etc is bad practice!)</li>
+<li><code>fpath=$1</code> means <code>fpath</code> equals whatever is in <code>$1</code>. If we input the path to the <code>fasta</code> file that we need annotated as the first positional argument, <code>fpath</code> will now carry the path.</li>
+</ul></li>
+<li><code>fname=$(basename $fpath _genomic.fna)</code>
+<ul>
+<li><code>basename</code> is a bash command that takes the <strong>base name</strong> of the file that follows it. That means if you supply a filename with the <strong>absolute path</strong>, basename will keep only the actual name of the file, not the full path.</li>
+<li><code>${fpath}</code> - we created a variable called <code>fpath</code> previously to hold the path to our input <code>fasta</code> file. Now we are calling the variable. When you want to call a variable in bash, you refer to the variable name after the <code>$</code> sign enclosed in <code>{}</code>.</li>
+<li><code>basename ${fpath}</code> means the <code>basename</code> command will take the name of the input <code>fasta</code> file and not any file paths that may be associated with it.</li>
+<li><code>basename ${fpath} _genomic.fna</code> - we have now suppled <code>_genomic.fna</code> as an additonal argument to <code>basename</code> after <code>${fpath}</code>. This tells <code>basename</code> the file suffix to also be removed. This may or may not be necessary depending on your input file. Since in our case all our files have the suffix <code>_genomic.fna</code> we can remove that too to only keep the actual name. Try it on the command line!</li>
+</ul></li>
+</ul>
+<div class="sourceCode" id="cb11"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">basename</span> NWU_2025_workshop/NWU_2025_workshop_data/test_datasets/salmonella_assemblies/GCA_049744875.1_ASM4974487v1_genomic.fna _genomic.fna</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="ex">GCA_049744875.1_ASM4974487v1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li><code>fname=$(basename ${fpath} _genomic.fna)</code>
+<ul>
+<li>We enclose the <code>basename</code> command inside <code>$()</code> because we want to store the output of the command into a variable, and this variable will be called <code>fname</code>.</li>
+<li>The reason we are storing the basename of our input file is because we want a way to control the name of the output file. Since we want to use this script for potentially <em>any</em> input fasta, we want to save the output file with an appropriate name that matches the input, so that we know which input file was used to generate which output. This is especially important when you are working with hundreds to thousands of samples as you always want to know exactly how each file was generated.</li>
+</ul></li>
+<li><code>prokka</code>
+<ul>
+<li>What follows is the same <code>prokka</code> script as before, but this time instead of directly specifying the name of the input fasta, we have specified the name of the variable.</li>
+<li>Similarly, for the <code>--outdir</code> parameter, we have specified the basename of the input (<code>${fname}</code>) and appended <code>_prokka</code> to it, so that when we see the output directory we know it was created by prokka.</li>
+<li>We are also providing <code>${fname}</code> as the <code>--prefix</code> so that all files created by prokka will have the basename of the input file, again this is to match each output file with the corresponding input.</li>
+<li>Finally we provide <code>${fpath}</code>, the actual input fasta file (with the absolute path) as the final argument for <code>prokka</code> (Remember that this is a positional argument for <code>prokka</code> so it has to be last)</li>
+</ul></li>
+</ul>
+<p>To run this script on one sample, we can do</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">chmod</span> 755 ./prokka_script.sh <span class="co"># This makes the script executable, you only have to do this once</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="ex">./prokka_script.sh</span> NWU_2025_workshop_data/test_datasets/salmonella_assemblies/GCA_049744875.1_ASM4974487v1_genomic.fna</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li>This will run prokka for the sample <code>GCA_049744875.1_ASM4974487v1_genomic.fna</code> and save the output to a file called <code>GCA_049744875.1_ASM4974487v1_prokka</code> in the working directory.</li>
+</ul>
+</section>
+<section id="looping" class="level3">
+<h3 class="anchored" data-anchor-id="looping">Looping</h3>
+<p>We have still run it for only one sample, but now that we have scripted it, we can automate running this script for a list of samples. The simplest way to do this is using a <code>for</code> loop. This simply means we run the same set of instructions for each item in the list.</p>
+<p>For loops in general follow this basic structure</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> item <span class="kw">in</span> <span class="op">&lt;</span>list of items<span class="op">&gt;</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="cf">do</span> <span class="op">&lt;</span>set <span class="ex">of</span> instructions<span class="op">&gt;</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="cf">done</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>This means, for each <code>item</code> in a list/sequence, you can state a set of instructions to be performed, and it will end automatically when the last item in your list has been processed. The word <code>item</code> in the code above is a placeholder, it can be called anything you want, it is just a way to refer to a single item in the list of items.</p>
+<p>Below is a simple bash <code>for</code> loop</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> assembly <span class="kw">in</span> <span class="va">$(</span><span class="fu">ls</span> NWU_2025_workshop_data/test_datasets/salmonella_assemblies/<span class="va">)</span><span class="kw">;</span> <span class="cf">do</span> <span class="dt">\</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="ex">./prokka_script.sh</span> NWU_2025_workshop_data/test_datasets/salmonella_assemblies/<span class="va">${assembly}</span><span class="kw">;</span> <span class="cf">done</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Explanation:</p>
+<ul>
+<li><code>for assembly in $(ls NWU_2025_workshop_data/test_datasets/salmonella_assemblies/); do</code>
+<ul>
+<li><code>ls NWU_2025_workshop_data/test_datasets/salmonella_assemblies/</code> : Lists all the files in a folder. There are five assemblies provided in the test datasets. This is enclosed in <code>$()</code> because this is the <list of="" items=""> we want our <code>for</code> loop to go over.</list></li>
+<li><code>for assembly in</code> : <code>assembly</code> here is just what we are calling the variable. As the <code>for</code> loop goes over each item from the <code>ls</code> command, that item will be stored in a variable called <code>assembly</code>. As soon as one item is done being proccessed, the next item will now take its place in the <code>assembly</code> variable.</li>
+<li><code>; do</code> : This is simply the bash <code>for</code> loop syntax. We are telling it to perform (or <code>do</code>) the following instructions</li>
+</ul></li>
+<li><code>./prokka_script.sh NWU_2025_workshop_data/test_datasets/salmonella_assemblies/${assembly}</code> : Just like we ran the script before, we are calling <code>prokka_script.sh</code> and giving it as input whatever value is stored in <code>${assembly}</code>, which in this case is the name of the assembled genome fasta file. We must providing the full path to the file so that <code>prokka</code> can correctly find it in the right location.</li>
+<li><code>; done</code> : This again is part of <code>for</code> loop syntax. The instructions that need to be looped should be in-between <code>do</code> and <code>done</code> so that the loop knows when to start and when to stop.</li>
+</ul>
 
 
+</section>
 </section>
 </section>
 
