@@ -25,3 +25,4 @@ dependencies:
   - snippy=4.6.0
   - snp-dists=0.8.2
   - snp-sites=2.5.1
+  - sra-tools=2.9.6
