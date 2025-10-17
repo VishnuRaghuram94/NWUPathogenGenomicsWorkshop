@@ -46,7 +46,7 @@ curl https://raw.githubusercontent.com/VishnuRaghuram94/NWUPathogenGenomicsWorks
 
 # Download AMRFinderPlus database
 echo -e "\033[33mDownloading AMRFinderPlus database\033[0m"
-wget -q -r ftp://ftp.ncbi.nlm.nih.gov/pathogen/Antimicrobial_resistance/AMRFinderPlus/database/latest/ || { echo -e '\033[31mDownloading AMRFinderPlus database failed\033[0m' ; exit 1; }
+amrfinder -u || { echo -e '\033[31mDownloading AMRFinderPlus database failed\033[0m' ; exit 1; }
 
 ## Cleanup
 mv ftp.ncbi.nlm.nih.gov/pathogen/Antimicrobial_resistance/AMRFinderPlus/database/latest/* $(pwd)/NWU_2025_workshop_data/databases/AMRFinderPlus/ 
