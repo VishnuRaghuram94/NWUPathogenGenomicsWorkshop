@@ -13,6 +13,7 @@ dependencies:
   - iqtree=3.0.1
   - kraken2=2.1.3
   - mashtree=1.4.6
+  - mlst=2.23.0
   - multiqc=1.19
   - ncbi-amrfinderplus=3.12.8
   - ncbi-datasets-cli=18.9.0
