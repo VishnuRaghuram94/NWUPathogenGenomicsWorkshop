@@ -6,7 +6,6 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Vishnu Raghuram">
 
 <title>Module 2 – NWU_2025_Workshop</title>
 <style>
@@ -129,12 +128,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./index.html"> 
-<span class="menu-text">Home</span></a>
+    <a class="nav-link" href="./about.html"> 
+<span class="menu-text">About this workshop</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./about.html"> 
-<span class="menu-text">Bacterial Pathogen Genomics Workshop</span></a>
+    <a class="nav-link" href="./index.html"> 
+<span class="menu-text">Contents</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="./module0.html"> 
@@ -155,6 +154,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li class="nav-item">
     <a class="nav-link" href="./module4.html"> 
 <span class="menu-text">Module 4</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./module5.html"> 
+<span class="menu-text">Module 5</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./module6.html"> 
+<span class="menu-text">Module 6</span></a>
   </li>  
 </ul>
           </div> <!-- /navcollapse -->
@@ -189,6 +196,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#writing-a-script" id="toc-writing-a-script" class="nav-link" data-scroll-target="#writing-a-script">Writing a script</a></li>
   <li><a href="#looping" id="toc-looping" class="nav-link" data-scroll-target="#looping">Looping</a></li>
   </ul></li>
+  <li><a href="#sources-and-further-reading" id="toc-sources-and-further-reading" class="nav-link" data-scroll-target="#sources-and-further-reading">Sources and further reading</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -206,12 +214,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <div class="quarto-title-meta">
 
-    <div>
-    <div class="quarto-title-meta-heading">Author</div>
-    <div class="quarto-title-meta-contents">
-             <p>Vishnu Raghuram </p>
-          </div>
-  </div>
     
   
     
@@ -324,7 +326,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="read-quality-control---what-should-i-look-for" class="level4">
 <h4 class="anchored" data-anchor-id="read-quality-control---what-should-i-look-for">Read quality control - what should I look for?</h4>
 <ul>
-<li><strong>Per-base sequence quality </strong>- You dont want too many low quality base calls</li>
+<li><strong>Per-base sequence quality</strong> - You dont want too many low quality base calls</li>
 <li><strong>Adapter removal</strong> - Adapters are artificial short sequences ligated to your samples’s actual DNA to help with the sequencing process. These adapters must be removed as they are not biologically significant</li>
 <li><strong>Average per-read quality</strong> - On average you want to keep only high quality reads</li>
 <li><strong>N content</strong> - During basecalling, <code>N</code> is assigned (instead of <code>A</code>,<code>T</code>,<code>G</code>,<code>C</code>) if the basecaller is uncertain. You want to know how many uncertain calls were made</li>
@@ -530,7 +532,7 @@ Note
 </div>
 </div>
 <ul>
-<li>In the above command, we gave the PATH to our <strong>QUALITY FILTERED reads </strong> as input to <code>shovill</code> through the <code>R1</code> and <code>R2</code> parameters, specified the name of the output PATH using <code>outdir</code>, and set the assembler to skesa using <code>--assembler skesa</code></li>
+<li>In the above command, we gave the PATH to our <strong>QUALITY FILTERED reads</strong> as input to <code>shovill</code> through the <code>R1</code> and <code>R2</code> parameters, specified the name of the output PATH using <code>outdir</code>, and set the assembler to skesa using <code>--assembler skesa</code></li>
 <li>Look at the different output files using <code>ls</code> and <code>head</code>.</li>
 </ul>
 </section>
@@ -793,10 +795,22 @@ Click to reveal answer
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="ex">amrfinder</span> <span class="at">--threads</span> 1 <span class="at">--nucleotide</span> NWU_2025_workshop_data/test_datasets/salmonella_assemblies/<span class="va">${i}</span> <span class="at">--output</span> <span class="va">${bname}</span>_amrfinderplus.tsv<span class="kw">;</span></span>
 <span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="cf">done</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
-
-
 </section>
 </section>
+</section>
+<section id="sources-and-further-reading" class="level2">
+<h2 class="anchored" data-anchor-id="sources-and-further-reading">Sources and further reading</h2>
+<ul>
+<li>bakta: <a href="https://github.com/oschwengers/bakta" class="uri">https://github.com/oschwengers/bakta</a></li>
+<li>fastp: <a href="https://github.com/OpenGene/fastp" class="uri">https://github.com/OpenGene/fastp</a></li>
+<li>prokka: <a href="https://github.com/tseemann/prokka" class="uri">https://github.com/tseemann/prokka</a></li>
+<li>QUAST: <a href="https://quast.sourceforge.net/" class="uri">https://quast.sourceforge.net/</a></li>
+<li>Shovill: <a href="https://github.com/tseemann/shovill" class="uri">https://github.com/tseemann/shovill</a></li>
+<li>SKESA: <a href="https://github.com/ncbi/SKESA" class="uri">https://github.com/ncbi/SKESA</a></li>
+<li>snippy: <a href="https://github.com/tseemann/snippy" class="uri">https://github.com/tseemann/snippy</a></li>
+</ul>
+
+
 </section>
 </section>
 

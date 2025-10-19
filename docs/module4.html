@@ -6,7 +6,6 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Vishnu Raghuram &amp; Laura Carroll">
 
 <title>Module 4 – NWU_2025_Workshop</title>
 <style>
@@ -129,12 +128,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./index.html"> 
-<span class="menu-text">Home</span></a>
+    <a class="nav-link" href="./about.html"> 
+<span class="menu-text">About this workshop</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./about.html"> 
-<span class="menu-text">Bacterial Pathogen Genomics Workshop</span></a>
+    <a class="nav-link" href="./index.html"> 
+<span class="menu-text">Contents</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="./module0.html"> 
@@ -155,6 +154,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li class="nav-item">
     <a class="nav-link active" href="./module4.html" aria-current="page"> 
 <span class="menu-text">Module 4</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./module5.html"> 
+<span class="menu-text">Module 5</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./module6.html"> 
+<span class="menu-text">Module 6</span></a>
   </li>  
 </ul>
           </div> <!-- /navcollapse -->
@@ -183,6 +190,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#recombination-filtering" id="toc-recombination-filtering" class="nav-link" data-scroll-target="#recombination-filtering">Recombination filtering</a></li>
   <li><a href="#core-genome-vs-whole-genome-alignments" id="toc-core-genome-vs-whole-genome-alignments" class="nav-link" data-scroll-target="#core-genome-vs-whole-genome-alignments">Core genome vs whole genome alignments</a></li>
   </ul></li>
+  <li><a href="#sources-and-further-reading" id="toc-sources-and-further-reading" class="nav-link" data-scroll-target="#sources-and-further-reading">Sources and further reading</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -200,12 +208,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <div class="quarto-title-meta">
 
-    <div>
-    <div class="quarto-title-meta-heading">Author</div>
-    <div class="quarto-title-meta-contents">
-             <p>Vishnu Raghuram &amp; Laura Carroll </p>
-          </div>
-  </div>
     
   
     
@@ -267,8 +269,14 @@ Click to reveal answer
 <li>A given whole genome sequence is divided into several very short sequences called <strong>K-mers</strong>, where <strong>K</strong> stands for the length of the short sequences. (for example, if the genome was divided into several 31bp long sequences, K = 31)</li>
 <li>These K-mers are then compared to see how many identical and how many non-identical k-mers there are between two different genomes.</li>
 <li>The exact computation can be seen <a href="https://mash.readthedocs.io/en/latest/distances.html#mash-distance-formulation">here</a> but in effect this gives you an approximate similarity or dissimilarity score.</li>
-<li>This method is very fast and computationally efficient, making it easy to compare thousands to tens of thousands of genomes in a very short time.</li>
 </ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="assets/images/module4/MASH.png" class="img-fluid figure-img"></p>
+<figcaption>MASH distance estimation; Adapted from <a href="https://genomebiology.biomedcentral.com/articles/10.1186/s13059-016-0997-x">Ondov et al, 2016</a></figcaption>
+</figure>
+</div>
+<p>This method is very fast and computationally efficient, making it easy to compare thousands to tens of thousands of genomes in a very short time.</p>
 <section id="exercise-calculate-pairwise-mash-distances" class="level4">
 <h4 class="anchored" data-anchor-id="exercise-calculate-pairwise-mash-distances">Exercise: Calculate pairwise MASH distances</h4>
 <p>Use the <code>mashtree</code> tool to calculate all-vs-all pairwise MASH distances for the genomes in <code>test_datasets/salmonella_assemblies/</code>. “all-vs-all pairwise” means we will be comparing every genome in our set to every other genome.</p>
@@ -298,11 +306,17 @@ Click to reveal answer
 <ul>
 <li>A method to calculate the genomic similarity by comparing the percentage of identical nucleotide sequences between two genomes.</li>
 <li>It is similar to MASH in that the two genomes being compared are fragmented into shorter sequences but these fragments are much larger (~1000 bp) than the MASH k-mers.</li>
-<li>The sequence identity of each fragment to its orthologous fragment (i.e the most similar fragment in the other genome) is measured and this is done for all orthologous fragments.</li>
-<li>The average of this nucleotide identity is then reported.</li>
+<li>The sequence identity of each fragment to its orthologous fragment (i.e the most similar fragment in the other genome). .</li>
+<li>The sequence identity is measured for all orthologous fragments and used to compute the ANI (Average Nucleotide Identity).</li>
 <li>This method is more accurate than MASH but is also more computationally intensive.</li>
 <li>ANI is commonly used for species delineation but can also be used for sub-species delineation.</li>
 </ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://raw.githubusercontent.com/moshi4/pyGenomeViz/main/notebooks/fastANI/example02.png" class="img-fluid figure-img"></p>
+<figcaption>Visualization of reciprocal mappings computed between two genomes in <a href="https://github.com/ParBLiSS/FastANI">FastANI</a></figcaption>
+</figure>
+</div>
 <section id="exercise-calculate-pairwise-ani" class="level4">
 <h4 class="anchored" data-anchor-id="exercise-calculate-pairwise-ani">EXERCISE: Calculate pairwise ANI</h4>
 <p>Use the <code>skani</code> tool to calculate all-vs-all pairwise ANI for the genomes in <code>test_datasets/salmonella_assemblies/</code>.</p>
@@ -337,8 +351,13 @@ Click to reveal answer
 </section>
 <section id="snp-distances" class="level2">
 <h2 class="anchored" data-anchor-id="snp-distances">SNP Distances</h2>
-<p>We learned about SNP (Single Nucleotide Polymorphism) calling in Module2. When performing SNP calling, we align a genome to a reference and identify specific nucleotide differences between the genome and the reference. The exact number of these nucleotide differences is called the SNP distance. This SNP calling can be performed for several genomes, all aligned against the same reference.</p>
-<p>and the all-vs-all pairwise number of SNPs can be estimated relative to that reference.</p>
+<p>We learned about SNP (Single Nucleotide Polymorphism) calling in Module2. When performing SNP calling, we align a genome to a reference and identify specific nucleotide differences between the genome and the reference. The exact number of these nucleotide differences is called the SNP distance. This SNP calling can be performed for several genomes, all aligned against the same reference, creating a <strong>core genome alignment</strong> (alignment of regions present in all genomes).</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="assets/images/module4/core_snps_explained.png" class="img-fluid figure-img"></p>
+<figcaption>Core alignment</figcaption>
+</figure>
+</div>
 <p>This is the most accurate and the most time consuming way to compare two genomes, however the resolution provided is significantly greater than ANI or MASH. For example, when comparing two genomes that are less than 10 SNPs apart (as is often the case during outbreaks), ANI or MASH will not be able to capture those differences.</p>
 <p>However, there are some key factors that need to be considered before calculating SNP distances.</p>
 <section id="choosing-a-reference-genome" class="level3">
@@ -367,7 +386,7 @@ Click to reveal answer
 <h3 class="anchored" data-anchor-id="recombination-filtering">Recombination filtering</h3>
 <p>SNPs which cluster closely together may have been acquired via recombination and/or horizontal gene transfer (HGT), not independent mutations.</p>
 <p>From a SNP calling perspective, this will appear as if a large number of SNPs have occurred one after the other in a particular region of the genome, inflating the SNP distance, when it is really a single event that led to a significant change in the genome.</p>
-<p>When your sample set comprises of a set of diverse genomes, even if they are all the same ST (i.e your sample set comprises all the diversity within that ST, and <strong>not</strong> a group of almost identical clones), you must perform recombinaion/HGT masking.</p>
+<p>When your sample set comprises of a set of diverse genomes, even if they are all the same ST (i.e your sample set comprises all the diversity within that ST, and not a group of almost identical clones), you must perform recombinaion/HGT masking.</p>
 </section>
 <section id="core-genome-vs-whole-genome-alignments" class="level3">
 <h3 class="anchored" data-anchor-id="core-genome-vs-whole-genome-alignments">Core genome vs whole genome alignments</h3>
@@ -467,11 +486,42 @@ Click to reveal answer
 </ul>
 <hr>
 <p>Genomic distance estimation methods have different strengths and applications, and there is no one-size-fits-all approach. While MLST is more for typing strains based on predefined genes, genome distance methods like MASH and ANI can provide broader, more comprehensive comparisons across whole genomes.</p>
+</section>
+</section>
+</section>
+</section>
+<section id="sources-and-further-reading" class="level2">
+<h2 class="anchored" data-anchor-id="sources-and-further-reading">Sources and further reading</h2>
+<ul>
+<li>gubbins: <a href="https://github.com/nickjcroucher/gubbins" class="uri">https://github.com/nickjcroucher/gubbins</a></li>
+<li>mash: <a href="https://mash.readthedocs.io/en/latest/index.html" class="uri">https://mash.readthedocs.io/en/latest/index.html</a></li>
+<li>mashtree: <a href="https://github.com/lskatz/mashtree" class="uri">https://github.com/lskatz/mashtree</a></li>
+<li>mlst: <a href="https://github.com/tseemann/mlst" class="uri">https://github.com/tseemann/mlst</a></li>
+<li>Lean REGEX: <a href="https://regexone.com/" class="uri">https://regexone.com/</a></li>
+<li>skani: <a href="https://github.com/bluenote-1577/skani" class="uri">https://github.com/bluenote-1577/skani</a></li>
+<li>snippy: <a href="https://github.com/tseemann/snippy" class="uri">https://github.com/tseemann/snippy</a></li>
+<li>snp-sites: <a href="https://github.com/sanger-pathogens/snp-sites" class="uri">https://github.com/sanger-pathogens/snp-sites</a></li>
+<li>snp-dists <a href="https://github.com/tseemann/snp-dists" class="uri">https://github.com/tseemann/snp-dists</a></li>
+</ul>
+<hr>
+<ul>
+<li><p>Bayliss, et al.&nbsp;2019. <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6785682/">PIRATE: A fast and scalable pangenomics toolbox for clustering diverged orthologues in bacteria.</a> <em>Gigascience</em> 8(10): giz119. doi: 10.1093/gigascience/giz119.</p></li>
+<li><p>Carroll, et al.&nbsp;2019. <a href="https://www.frontiersin.org/articles/10.3389/fmicb.2019.00144/full">Characterization of Emetic and Diarrheal <em>Bacillus cereus</em> Strains From a 2016 Foodborne Outbreak Using Whole-Genome Sequencing: Addressing the Microbiological, Epidemiological, and Bioinformatic Challenges.</a> <em>Frontiers in Microbiology</em> 10:144. DOI: 10.3389/fmicb.2019.00144.</p></li>
+<li><p>Croucher, et al.&nbsp;2015. <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4330336/">Rapid phylogenetic analysis of large samples of recombinant bacterial whole genome sequences using Gubbins.</a> <em>Nucleic Acids Research</em> 43(3): e15. doi: 10.1093/nar/gku1196.</p></li>
+<li><p>Gardner, Slezak, and Hall. 2015. <a href="https://www.ncbi.nlm.nih.gov/pubmed/25913206">kSNP3.0: SNP detection and phylogenetic analysis of genomes without genome alignment or reference genome.</a> <em>Bioinformatics</em> 31(17):2877-8. DOI: 10.1093/bioinformatics/btv271.</p></li>
+<li><p>Jain, C., et al.&nbsp;2018. <a href="https://www.nature.com/articles/s41467-018-07641-9">High throughput ANI analysis of 90K prokaryotic genomes reveals clear species boundaries</a>. <em>Nat Commun</em> 9, 5114 (2018). https://doi.org/10.1038/s41467-018-07641-9</p></li>
+<li><p>Oliver Schwengers., et al.&nbsp;2021. <a href="https://www.microbiologyresearch.org/content/journal/mgen/10.1099/mgen.0.000685">Bakta: rapid and standardized annotation of bacterial genomes via alignment-free sequence identification</a>. <em>Microbial Genomics</em> 7(11): e000685 doi: https://doi.org/10.1099/mgen.0.000685</p></li>
+<li><p>Ondov BD, et al.&nbsp;2016. <a href="https://pubmed.ncbi.nlm.nih.gov/27323842/">Mash: fast genome and metagenome distance estimation using MinHash</a>. <em>Genome Biol</em>. 2016 Jun 20;17(1):132. doi: 10.1186/s13059-016-0997-x. PMID: 27323842; PMCID: PMC4915045.</p></li>
+<li><p>Pightling, Petronella, and Pagotto. 2014. <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4140716/">Choice of Reference Sequence and Assembler for Alignment of <em>Listeria monocytogenes</em> Short-Read Sequence Data Greatly Influences Rates of Error in SNP Analyses.</a> <em>PLoS ONE</em> 9(8): e104579. DOI: 10.1371/journal.pone.0104579.</p></li>
+<li><p>Page, et al.&nbsp;2016. <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5320690/">SNP-sites: rapid efficient extraction of SNPs from multi-FASTA alignments.</a> <em>Microbial Genomics</em> 2(4): e000056. doi: 10.1099/mgen.0.000056.</p></li>
+<li><p>Shaw, et al.&nbsp;2023. <a href="https://www.nature.com/articles/s41592-023-02018-3">Fast and robust metagenomic sequence comparison through sparse chaining with skani</a> <em>Nat methods</em> 20, 1661–1665 (2023). doi: https://doi.org/10.1038/s41592-023-02018-3</p></li>
+<li><p>Talbot BM, et al.&nbsp;<a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC10200302/">Unsuspected Clonal Spread of Methicillin-Resistant Staphylococcus aureus Causing Bloodstream Infections in Hospitalized Adults Detected Using Whole Genome Sequencing</a>. <em>Clin Infect Dis</em>. 2022 Dec 19;75(12):2104-2112. doi: 10.1093/cid/ciac339. PMID: 35510945; PMCID: PMC10200302.</p></li>
+<li><p>Tonkin-Hill, et al.&nbsp;2020. <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7376924/">Producing polished prokaryotic pangenomes with the Panaroo pipeline.</a> <em>Genome Biology</em> 21: 180. doi: 10.1186/s13059-020-02090-4.</p></li>
+<li><p>Treangen, et al.&nbsp;2014 <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4262987/">The Harvest suite for rapid core-genome alignment and visualization of thousands of intraspecific microbial genomes.</a> <em>Genome Biology</em> 15: 524. doi: 10.1186/s13059-014-0524-x.</p></li>
+<li><p>Usongo, et al.&nbsp;2018. <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5798827/">Impact of the choice of reference genome on the ability of the core genome SNV methodology to distinguish strains of <em>Salmonella enterica</em> serovar Heidelberg.</a> <em>PLoS ONE</em> 13(2): e0192233. DOI: 10.1371/journal.pone.0192233.</p></li>
+</ul>
 
 
-</section>
-</section>
-</section>
 </section>
 </section>
 

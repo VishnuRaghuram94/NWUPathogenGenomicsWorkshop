@@ -1,0 +1,870 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.25">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Module 6 – NWU_2025_Workshop</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-45a48b56c8ad2523a9a31c69be39928e.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="./index.html" class="navbar-brand navbar-brand-logo">
+    </a>
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">NWU_2025_Workshop</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="./about.html"> 
+<span class="menu-text">About this workshop</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./index.html"> 
+<span class="menu-text">Contents</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./module0.html"> 
+<span class="menu-text">Module 0</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./module1.html"> 
+<span class="menu-text">Module 1</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./module2.html"> 
+<span class="menu-text">Module 2</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./module3.html"> 
+<span class="menu-text">Module 3</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./module4.html"> 
+<span class="menu-text">Module 4</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./module5.html"> 
+<span class="menu-text">Module 5</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link active" href="./module6.html" aria-current="page"> 
+<span class="menu-text">Module 6</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#phylogenetics" id="toc-phylogenetics" class="nav-link active" data-scroll-target="#phylogenetics">Phylogenetics</a>
+  <ul class="collapse">
+  <li><a href="#why-do-we-care-about-phylogenies" id="toc-why-do-we-care-about-phylogenies" class="nav-link" data-scroll-target="#why-do-we-care-about-phylogenies">Why do we care about phylogenies?</a></li>
+  <li><a href="#treephylogeny-construction-methods-and-considerations" id="toc-treephylogeny-construction-methods-and-considerations" class="nav-link" data-scroll-target="#treephylogeny-construction-methods-and-considerations">Tree/Phylogeny construction methods and considerations</a></li>
+  <li><a href="#which-phylogeny-construction-method-do-we-choose" id="toc-which-phylogeny-construction-method-do-we-choose" class="nav-link" data-scroll-target="#which-phylogeny-construction-method-do-we-choose">Which phylogeny construction method do we choose?</a></li>
+  <li><a href="#exercise-construct-a-maximum-likelihood-phylogeny" id="toc-exercise-construct-a-maximum-likelihood-phylogeny" class="nav-link" data-scroll-target="#exercise-construct-a-maximum-likelihood-phylogeny">EXERCISE: Construct a Maximum Likelihood phylogeny</a></li>
+  </ul></li>
+  <li><a href="#pangenomics" id="toc-pangenomics" class="nav-link" data-scroll-target="#pangenomics">Pangenomics</a>
+  <ul class="collapse">
+  <li><a href="#what-is-a-pangenome" id="toc-what-is-a-pangenome" class="nav-link" data-scroll-target="#what-is-a-pangenome">What is a pangenome?</a></li>
+  </ul></li>
+  <li><a href="#estimating-the-pangenome-using-panaroo" id="toc-estimating-the-pangenome-using-panaroo" class="nav-link" data-scroll-target="#estimating-the-pangenome-using-panaroo">Estimating the pangenome using Panaroo</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Module 6</h1>
+<p class="subtitle lead">Introduction to pangenomes and phylogenies</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="phylogenetics" class="level2">
+<h2 class="anchored" data-anchor-id="phylogenetics">Phylogenetics</h2>
+<p><strong>Phylogenetics</strong> is the study of evolutionary relationships among biological entities (e.g., species, genes). A phylogeny is a <strong>hypothesis</strong> explaining potential relationships between different organisms based on the data provided, which in our case will be DNA sequences.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://media.springernature.com/full/springer-static/image/art%3A10.1007%2Fs12052-008-0035-x/MediaObjects/12052_2008_35_Fig2_HTML.gif?as=webp" class="img-fluid figure-img"></p>
+<figcaption>Parts of a phylogeny (<a href="https://evolution-outreach.biomedcentral.com/articles/10.1007/s12052-008-0035-x">T. Ryan Gregory</a>).</figcaption>
+</figure>
+</div>
+<ul>
+<li><p><strong>nodes</strong>: points at the ends of branches which represent sequences or hypothetical sequences at various points in evolutionary history (includes tips and internal nodes, including the root)</p></li>
+<li><p><strong>tips (taxa, leaves, external nodes)</strong>: the individuals (e.g., bacterial isolates) that we sampled and used to construct our phylogeny, which occur on single terminal branches</p></li>
+<li><p><strong>internal nodes</strong>: occur at the points where more than one branch meet and represent the (usually inferred) ancestral sequences</p></li>
+<li><p><strong>root</strong>: the most recent common ancestor of all taxa in a tree (note that most methods of phylogenetic reconstruction do not estimate the position of the root; as such, they produce “unrooted trees”)</p></li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://www.ebi.ac.uk/training/online/courses/introduction-to-phylogenetics/wp-content/uploads/sites/36/2023/04/picture9.png" class="img-fluid figure-img"></p>
+<figcaption>Rooting a tree: before and after (note the branch lengths are not to scale; <a href="https://www.ebi.ac.uk/training/online/courses/introduction-to-phylogenetics/what-is-a-phylogeny/aspects-of-phylogenies/root/">EMBL-EBI</a>).</figcaption>
+</figure>
+</div>
+<ul>
+<li><strong>branches</strong>: show the path of transmission of genetic information from one generation to the next. Branch lengths indicate genetic change (the longer the branch, the more genetic change/divergence has occurred). Typically, the extent of genetic change is measured by estimating the average number of nucleotide or protein substitutions per site.</li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://www.ebi.ac.uk/training/online/courses/introduction-to-phylogenetics/wp-content/uploads/sites/36/2020/05/phylo7.png" class="img-fluid figure-img"></p>
+<figcaption>Representing branch lengths on a phylogeny using labels (left) and a scale bar (right; <a href="https://www.ebi.ac.uk/training/online/courses/introduction-to-phylogenetics/what-is-a-phylogeny/aspects-of-phylogenies/branches/">EMBL-EBI</a>).</figcaption>
+</figure>
+</div>
+<ul>
+<li><strong>topology</strong>: the branching structure of a tree, which indicates patterns of relatedness among taxa (trees with the same topology and root have the same biological interpretation)</li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://www.ebi.ac.uk/training/online/courses/introduction-to-phylogenetics/wp-content/uploads/sites/36/2020/05/phylo5.png" class="img-fluid figure-img"></p>
+<figcaption>Examples of trees with the same (top) and different (bottom) topologies (<a href="https://www.ebi.ac.uk/training/online/courses/introduction-to-phylogenetics/what-is-a-phylogeny/aspects-of-phylogenies/topology/">EMBL-EBI</a>).</figcaption>
+</figure>
+</div>
+<ul>
+<li><strong>bootstrapping</strong>: within phylogenetics, an approach to estimate confidence in a phylogeny’s topology</li>
+</ul>
+<section id="why-do-we-care-about-phylogenies" class="level3">
+<h3 class="anchored" data-anchor-id="why-do-we-care-about-phylogenies">Why do we care about phylogenies?</h3>
+<p><a href="https://www.ebi.ac.uk/training/online/courses/introduction-to-phylogenetics/why-is-phylogenetics-important/">Phylogenies help us understand how genes, organisms, and genomes evolve.</a> In the public health arena, phylogenies are one of the most important tools we have to help us understand how pathogens evolve (e.g., where they came from, how they spread, how they are transmitted between hosts, if they are responsible for outbreaks, illnesses, or infections). These insights are critical for informing public health policy.</p>
+<p>Core SNP distances and average nucleotide identity (ANI)-based distances that we saw in previous modules only explain genomic distance and not necessarily <strong>evolutionary distance</strong>, though they are related. Phylogenies can provide us with evolutionary relationships about our sampled genomes which the genomic-distance based metrics alone cannot. For example, during the coronavirus disease 2019 (COVID-19) pandemic, phylogenomic methods have been critical for understanding the transmission, epidemiology and spatial dispersal of severe acute respiratory syndrome coronavirus 2 (SARS-CoV-2).</p>
+<p>Phylogeny constructions is one of the key goals of pathogen surveillance work and the steps we went through in the previous lessons (Read QC, Genome assembly, alignment, variant calling) were all steps leading up to this goal. A phylogeny provides significant interpretable biological insight into our samples.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://media.springernature.com/full/springer-static/image/art%3A10.1038%2Fs41576-022-00483-8/MediaObjects/41576_2022_483_Fig1_HTML.png" class="img-fluid figure-img"></p>
+<figcaption>Example of important clinical and public health questions (top row) were tackled using phylogenomic methods (middle row), leading to actionable public health and clinical insights during the COVID-19 pandemic (bottom row; <a href="https://www.nature.com/articles/s41576-022-00483-8#rightslink">Attwood, et al.</a>).</figcaption>
+</figure>
+</div>
+</section>
+<section id="treephylogeny-construction-methods-and-considerations" class="level3">
+<h3 class="anchored" data-anchor-id="treephylogeny-construction-methods-and-considerations">Tree/Phylogeny construction methods and considerations</h3>
+<p>There are multiple different methods to construct trees or phylogenies based on the data you have. Typically, they involve starting with a nucleotide or amino acid sequence alignment. However, trees can also be constructed with discrete traits or distance values. Discussing all possible methods is outside the scope of this workshop but you can <a href="https://www.nature.com/articles/nrg3186">check out this review</a> if you are interested in learning more.</p>
+<section id="distance-based-versus-character-based-tree-reonstruction" class="level4">
+<h4 class="anchored" data-anchor-id="distance-based-versus-character-based-tree-reonstruction">Distance-based versus character-based tree reonstruction</h4>
+<p>For <strong>distance-based</strong> methods, the pairwise distances between all sequences are calculated, and the distance matrix which results is used to build a tree. An example of this is neighbor joining, which uses a clustering algorithm to yield a tree. We used <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC9380445/">Mashtree</a> in a previous module to construct a distance-based tree using Mash distances.</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Tree vs Phylogeny: Not all trees are phylogenetic trees!">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Tree vs Phylogeny: Not all trees are phylogenetic trees!
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>A phylogeny must, by definiton, explain evolutionary relationships. Distance based methods do not use evolutionary information (i.e information regarding nucleotide/aminoacid changes), they simply use a computed distance value between two samples.</p>
+</div>
+</div>
+</div>
+<p>For <strong>character-based</strong> methods (i.e., maximum parsimony, maximum likelihood, and Bayesian methods), each site (i.e., character in an alignment) is used to calculate a score for each tree:</p>
+<ul>
+<li>For <strong>maximum parsimony</strong>, this score is the minimum number of changes. (Not used often these days due to limitations)</li>
+<li>For <strong>maximum likelihood</strong>, this score is the log-likelihood value.</li>
+<li>For <strong>Bayesian</strong> methods, this score is the posterior probability.</li>
+</ul>
+</section>
+</section>
+<section id="which-phylogeny-construction-method-do-we-choose" class="level3">
+<h3 class="anchored" data-anchor-id="which-phylogeny-construction-method-do-we-choose">Which phylogeny construction method do we choose?</h3>
+<p>For typical public-health bacterial work with genome sequencing data:</p>
+<ul>
+<li>Use <strong>distance-based</strong> methods if:
+<ul>
+<li>You just want to get an overall idea of the data we’re working with.</li>
+<li>This method can also work if you have a very large number of samples (several thousand genomes) and want to get a quick sense of the big picture.</li>
+<li>This is the fastest method</li>
+<li>Example tool: <a href="https://github.com/lskatz/mashtree">Mashtree</a></li>
+</ul></li>
+<li>Use <strong>maximum likelihood</strong> (ML) if:
+<ul>
+<li>You are interested in a specific lineage (for eg: specific sequence type) and want to explore the within-lineage evolutionary relationships (An alignment of recombination-free core SNPs is required).</li>
+<li>This is adequate for the vast majority of public health applications.</li>
+<li>ML trees can be made for a multi-lineage dataset as well if appropriate an alignment is constructed (eg: concatenated core gene alignment)</li>
+<li>Much more computationally expensive than distance-based methods but gives you an actual phylogeny, not just a tree.</li>
+<li>Example tool: <a href="http://www.iqtree.org/">IQ-TREE</a>.</li>
+</ul></li>
+<li>Use <strong>Bayesian</strong> methods if:
+<ul>
+<li>You want to construct a <strong>time-scaled</strong> phylogeny and you have longitudionally sampled isolates (i.e sampled over time), with rich temporal information and good temporal resolution (knowing the time point for every sample and also having relatively even sampling over the specific window of time).</li>
+<li>Bayesian models can also aid in estimating geographic spread, population size and population growth rates.</li>
+<li>Bayesian phylogenomic methods are even more time-consuming than ML and require significant additional expertise (check out <a href="https://taming-the-beast.org/tutorials/">Taming the BEAST</a>, for tutorials).</li>
+<li>example tool: <a href="https://www.beast2.org/">BEAST2</a></li>
+</ul></li>
+</ul>
+<section id="substitution-models" class="level4">
+<h4 class="anchored" data-anchor-id="substitution-models">Substitution models</h4>
+<p>A substitution model is simply an expectation of how likely it is for one nucleotide (or amino-acid) to change to another. For example:</p>
+<ul>
+<li>JC69 model: Assumes any nucleotide is equally likely to change to any other nucleotide and the frequencies for each base are equal.</li>
+<li>K80 model: Assumes different rates for transitions (Purine to purine change or pyrimidine to pyrimidine change) and transversions (Purine to pyrimidine change or vice versa)</li>
+<li>GTR model: assumes different substitution rates for each pair of nucleotides, as well as unequal base frequencies (If you dont know which one to use, use this one)</li>
+</ul>
+<p>There are many more! You can look at a list of other substitution models <a href="https://iqtree.github.io/doc/Substitution-Models">here</a>.</p>
+</section>
+</section>
+<section id="exercise-construct-a-maximum-likelihood-phylogeny" class="level3">
+<h3 class="anchored" data-anchor-id="exercise-construct-a-maximum-likelihood-phylogeny">EXERCISE: Construct a Maximum Likelihood phylogeny</h3>
+<p>We will be using our alignment of recombination-free core SNPs (<code>clean.core.fasta</code>) to construct a ML phylogeny with <code>IQTREE</code>.</p>
+<section id="ascertainment-bias-correction" class="level4">
+<h4 class="anchored" data-anchor-id="ascertainment-bias-correction">Ascertainment bias correction<br>
+</h4>
+<ul>
+<li>Every single site in our alignment is a SNP and there are no constant sites (i.e., sites in our alignment, where all genomes have the same nucleotide).</li>
+<li>This means our alignment is significantly shorter than the actual core genome size as we are only using the SNPs.</li>
+<li>We must tell our tree-making program that we are only using the SNP sites and provide the number of constant-sites we have “masked” (i.e removed from the alignment). This is so that the program doesn’t think the alignment we are providing is indeed the full alignment.</li>
+<li>If we don’t do this, <a href="https://bitsandbugs.org/2019/11/06/two-easy-ways-to-run-iq-tree-with-the-correct-number-of-constant-sites/">the branch lengths of our tree will not be correct, and the topology of parts of the tree with short branches will potentially be affected.</a></li>
+</ul>
+<p>This is is called an <strong>ascertainment bias correction</strong>. Specifically, we will tell IQ-TREE how many constant (invariant) sites there are in our genomic alignment, so that it can scale the branches of our tree accordingly. We can do this using <a href="https://github.com/sanger-pathogens/snp-sites">SNP-sites</a>, the tool we already used to get only the sites with SNPs.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="assets/images/module6/constant_sites_explained.png" class="img-fluid figure-img"></p>
+<figcaption>Constructing a core SNP alignment and obtaining constant site counts from a full sequence alignment.</figcaption>
+</figure>
+</div>
+<ul>
+<li><p>Use SNP-sites to calculate the number of constant sites (A, C, G, and T) in our clean genomic alignment, <code>clean.full.aln</code>:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">snp-sites</span> <span class="at">-C</span> clean.full.aln <span class="op">&gt;</span> fconst.csv</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<ul>
+<li><code>snp-sites</code> : Call SNP-sites</li>
+<li><code>-C</code> : Flag to output only counts of constant sites in our alignment (A, C, G, and T)</li>
+<li><code>clean.full.aln</code> : Provide the path to our input multi-FASTA alignment (i.e., our full, clean genomic alignment produced via <code>Snippy</code>)</li>
+<li><code>&gt; fconst.csv</code> : Write the output of <code>snp-sites</code> to a file named <code>fconst.csv</code></li>
+</ul></li>
+<li><p><code>snp-sites</code> outputs a comma-separated file, where each field corresponds to the number of constant sites with (from left to right) A, C, G, and T in our full genomic alignment.</p></li>
+</ul>
+</section>
+<section id="construct-a-maximum-likelihood-ml-phylogeny-using-iq-tree" class="level4">
+<h4 class="anchored" data-anchor-id="construct-a-maximum-likelihood-ml-phylogeny-using-iq-tree">Construct a maximum likelihood (ML) phylogeny using IQ-TREE</h4>
+<ul>
+<li><p>Let’s use <a href="http://www.iqtree.org/">IQ-TREE</a> to construct a ML phylogeny, using our recombination-free core SNP alignment as input. IQ-TREE has a LOT of options. Check out the <a href="http://www.iqtree.org/doc/">IQ-TREE documentation</a> if you want more details.</p></li>
+<li><p>Use IQ-TREE to construct a ML phylogeny</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">iqtree</span> <span class="at">-s</span> clean.core.fasta <span class="at">-m</span> MFP <span class="at">-B</span> 1000 <span class="at">-T</span> 1 <span class="at">-fconst</span> <span class="va">$(</span><span class="fu">cat</span> fconst.csv<span class="va">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<ul>
+<li><code>iqtree</code> : Call IQ-TREE</li>
+<li><code>clean.core.fasta</code> : Provide the path to our input multi-FASTA alignment (i.e., our final, recombination-free core SNP alignment; )</li>
+<li><code>-m MFP</code> : Tell <code>iqtree</code> to find the best-fitting nucleotide substitution model for our data using <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5453245/">ModelFinder</a>; once the best model is found, <code>iqtree</code> will use that model to build our ML phylogeny</li>
+<li><code>-B 1000</code> : Tell <code>iqtree</code> to perform 1,000 replicates of the ultrafast bootstrap approximation; this will allow us to see how confident <code>iqtree</code> is in our phylogeny’s topology.</li>
+<li><code>-T 1</code> : Number of threads/CPUs to use</li>
+<li><code>-fconst $(cat fconst.csv)</code> : Using an ascertainment bias correction to correct our phylogeny’s branch lengths (because our alignment contains core SNPs only). You can also directly supply the number of constant sites like <code>fconst "XXXX,XXXX,XXXX,XXXX" based on the contents of</code>fconst.csv`.</li>
+</ul></li>
+</ul>
+<p>IQ-TREE produces several output files, take a look at them! The final tree is the file with the extension <code>.treefile</code>.</p>
+</section>
+</section>
+</section>
+<section id="pangenomics" class="level2">
+<h2 class="anchored" data-anchor-id="pangenomics">Pangenomics</h2>
+<section id="what-is-a-pangenome" class="level3">
+<h3 class="anchored" data-anchor-id="what-is-a-pangenome">What is a pangenome?</h3>
+<ul>
+<li>Gene gain, loss and allelic variation happens all the time​</li>
+<li>Both selective forces and random drift contribute to intraspecies variation​</li>
+<li>Bacterial genomes have a slight deletion bias, and in general the genome size for a given species remains (approximately) constant</li>
+<li>This leads to members of the same species having similar but not identical genomes​</li>
+<li><strong>A pangenome is the collection of all genes/alleles found within a population</strong></li>
+<li>A given gene can be <strong>core</strong> - present in all or most members of the population, or <strong>accessary</strong> - present in only some members of the population</li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="assets/images/module6/pangenome.png" class="img-fluid figure-img"></p>
+<figcaption>What is a Pangenome?</figcaption>
+</figure>
+</div>
+<p>Pangenomes can help identify associations between genes and pathogenesis, environments, and/or hosts. They also allow us to study the introduction and turn-over rates of genes within a population. ​</p>
+</section>
+</section>
+<section id="estimating-the-pangenome-using-panaroo" class="level2">
+<h2 class="anchored" data-anchor-id="estimating-the-pangenome-using-panaroo">Estimating the pangenome using Panaroo</h2>
+<section id="pangenome-estimation" class="level4">
+<h4 class="anchored" data-anchor-id="pangenome-estimation">Pangenome estimation</h4>
+<p>There are several pangenome pipelines currently available (<a href="https://github.com/neherlab/pan-genome-analysis">PanX</a>, <a href="https://github.com/SionBayliss/PIRATE">PIRATE</a>, <a href="https://gthlab.au/panaroo/#/">Panaroo</a>, <a href="https://sanger-pathogens.github.io/Roary/">Roary</a> and more) and they all work similarly. Pangenome tools accept genome annotations in <code>.gff</code> format as input, cluster the annotated sequences at different thresholds into gene families, and then calculate the presence/absence of gene families across the population. The different tools usually differ in exactly how the annotations are clustered into gene families. In this example, we will use Panaroo, it is one of the newer tools and has many handy downstream analysis functions built-in.</p>
+</section>
+<section id="running-panaroo" class="level4">
+<h4 class="anchored" data-anchor-id="running-panaroo">Running Panaroo</h4>
+<p>Panaroo requires <code>.gff</code> files for all genomes in your dataset to run. We created these <code>.gff</code> files in the previous genome annotation exercise using Prokka. For convenience, lets copy all the <code>.gff</code> files alone into a separate directory.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a directory for panaroo</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> panaroo</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a folder for only the gff files inside the panaroo directory</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> panaroo/gffs</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Copy all the prokka gffs to the panaroo gffs folder </span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> ./prokka/<span class="pp">*</span>.gff3 ./panaroo/gffs/</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Next, run panaroo</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="ex">panaroo</span> <span class="at">-i</span> ./panaroo/gffs/<span class="pp">*</span> <span class="at">--clean-mode</span> strict <span class="at">--core_threshold</span> 0.95 <span class="at">--remove-invalid-genes</span> <span class="at">-f</span> 0.5 <span class="at">-t</span> 20 <span class="at">-o</span> ./panaroo/panaroo_results <span class="at">-a</span> core</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Command explanation:</p>
+<ul>
+<li><p><code>panaroo</code> : Call panaroo</p></li>
+<li><p><code>-i ./panaroo/gffs/*</code> : Path to all gff files</p></li>
+<li><p><code>--clean-mode strict</code> : Panaroo has a correction mode for filtering out potential contaminant genes. Strict will only keep ‘contaminant’ genes present in &gt; 5% of the total population.</p></li>
+<li><p><code>--core_threshold 0.95</code> : Genes present in 95% of the population or more are considered core</p></li>
+<li><p><code>-–remove-invalid-genes</code> : Removes genes with premature stop codons</p></li>
+<li><p><code>-f 0.5</code> : Identity threshold for clustering genes into families, 0.5 to 0.7 is typically used.</p></li>
+<li><p><code>-t 20</code> : Number of threads to use, 20 in this case</p></li>
+<li><p><code>-o ./panaroo/panaroo_results</code> : Output directory</p></li>
+<li><p><code>-a core</code> : Outputs individual gene alignments for all core genes. Set <code>-a pan</code> for ALL genes</p></li>
+</ul>
+<p>Panaroo produces a lot of output files, we can go over some of the most important ones. Please check the <a href="https://gthlab.au/panaroo/#/gettingstarted/output">panaroo github</a> for more detailed explanations for all output files.</p>
+<ul>
+<li><p><code>summary_statistics.txt</code> : Basic pangenome summary statistics, eg: Number of core genes, number of accessory genes, etc.</p></li>
+<li><p><code>core_gene_alignment_filtered.aln</code> : An alignment of all core genes in the population. For each genome, all core genes are concatenated in the same order and then aligned. This core gene alignment is different from snippy’s core genome alignment as here only the coding regions are used. Since the genes are concatenated in a specific order, this does not necessarily represent the true order of the core genes in all genomes.</p>
+<ul>
+<li><p>This alignment can directly be used to construct a phylogeny (for example using IQ-TREE)</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="ex">iqtree</span> <span class="at">-s</span> core_gene_alignment_filtered.aln <span class="at">-m</span> MFP <span class="at">-B</span> 1000 <span class="at">-T</span> 1</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
+</ul></li>
+<li><p><code>pan_genome_reference.fa</code> : Representative sequences for all gene families (one each)</p></li>
+<li><p><code>gene_presence_absence.Rtab</code> : Binary gene family presence absence matrix</p></li>
+</ul>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

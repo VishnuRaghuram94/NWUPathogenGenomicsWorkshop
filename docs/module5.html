@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Module 3 – NWU_2025_Workshop</title>
+<title>Module 5 – NWU_2025_Workshop</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -148,7 +148,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span class="menu-text">Module 2</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="./module3.html" aria-current="page"> 
+    <a class="nav-link" href="./module3.html"> 
 <span class="menu-text">Module 3</span></a>
   </li>  
   <li class="nav-item">
@@ -156,7 +156,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span class="menu-text">Module 4</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./module5.html"> 
+    <a class="nav-link active" href="./module5.html" aria-current="page"> 
 <span class="menu-text">Module 5</span></a>
   </li>  
   <li class="nav-item">
@@ -179,27 +179,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#public-genomic-databases-for-pathogen-surveillance" id="toc-public-genomic-databases-for-pathogen-surveillance" class="nav-link active" data-scroll-target="#public-genomic-databases-for-pathogen-surveillance">Public Genomic Databases for Pathogen Surveillance</a></li>
-  <li><a href="#key-ncbi-resources" id="toc-key-ncbi-resources" class="nav-link" data-scroll-target="#key-ncbi-resources">Key NCBI Resources</a>
-  <ul class="collapse">
-  <li><a href="#bioproject-biosample-and-sra" id="toc-bioproject-biosample-and-sra" class="nav-link" data-scroll-target="#bioproject-biosample-and-sra">BioProject, BioSample, and SRA</a>
-  <ul class="collapse">
-  <li><a href="#bioproject" id="toc-bioproject" class="nav-link" data-scroll-target="#bioproject">BioProject</a></li>
-  <li><a href="#biosample" id="toc-biosample" class="nav-link" data-scroll-target="#biosample">BioSample</a></li>
-  <li><a href="#sra-sequence-read-archive-raw-fastq-reads" id="toc-sra-sequence-read-archive-raw-fastq-reads" class="nav-link" data-scroll-target="#sra-sequence-read-archive-raw-fastq-reads">SRA (Sequence Read Archive): Raw fastq reads</a></li>
-  <li><a href="#nucleotide-sequences" id="toc-nucleotide-sequences" class="nav-link" data-scroll-target="#nucleotide-sequences">Nucleotide sequences</a></li>
-  </ul></li>
-  <li><a href="#retrieving-data-from-ncbi-via-command-line" id="toc-retrieving-data-from-ncbi-via-command-line" class="nav-link" data-scroll-target="#retrieving-data-from-ncbi-via-command-line">Retrieving Data from NCBI via Command Line</a>
-  <ul class="collapse">
-  <li><a href="#ncbi-datasets-cli" id="toc-ncbi-datasets-cli" class="nav-link" data-scroll-target="#ncbi-datasets-cli">ncbi-datasets CLI</a></li>
-  <li><a href="#ncbi-genome-download" id="toc-ncbi-genome-download" class="nav-link" data-scroll-target="#ncbi-genome-download">ncbi-genome-download</a></li>
-  <li><a href="#sra-tools" id="toc-sra-tools" class="nav-link" data-scroll-target="#sra-tools">sra-tools</a></li>
-  </ul></li>
-  </ul></li>
-  <li><a href="#exploring-enterobase" id="toc-exploring-enterobase" class="nav-link" data-scroll-target="#exploring-enterobase">Exploring EnteroBase</a>
-  <ul class="collapse">
-  <li><a href="#sources-and-further-reading" id="toc-sources-and-further-reading" class="nav-link" data-scroll-target="#sources-and-further-reading">Sources and further reading</a></li>
-  </ul></li>
+  <li><a href="#setting-up-your-r-environment" id="toc-setting-up-your-r-environment" class="nav-link active" data-scroll-target="#setting-up-your-r-environment">Setting up your R environment</a></li>
+  <li><a href="#reading-your-data" id="toc-reading-your-data" class="nav-link" data-scroll-target="#reading-your-data">Reading your data</a></li>
+  <li><a href="#making-simple-plots-using-ggplot2" id="toc-making-simple-plots-using-ggplot2" class="nav-link" data-scroll-target="#making-simple-plots-using-ggplot2">Making simple plots using ggplot2</a></li>
+  <li><a href="#data-cleaningwrangling" id="toc-data-cleaningwrangling" class="nav-link" data-scroll-target="#data-cleaningwrangling">Data cleaning/wrangling</a></li>
   </ul>
 </nav>
     </div>
@@ -208,8 +191,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Module 3</h1>
-<p class="subtitle lead">Using publicly available data for pathogen surveillance</p>
+<h1 class="title">Module 5</h1>
+<p class="subtitle lead">Basic data visualization in RStudio</p>
 </div>
 
 
@@ -226,192 +209,127 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="public-genomic-databases-for-pathogen-surveillance" class="level1">
-<h1>Public Genomic Databases for Pathogen Surveillance</h1>
+<p>R is very commonly used in scientific research for statistical analysis and data visualization for many different types of data modalities.</p>
+<p>R is a programming language, whereas Rstudio is an <strong>Integrated development environment</strong> or IDE.</p>
+<p>The goal of an IDE is to provide a single environment for writing and running code, troubleshooting/debugging, package management as well as rendering visualizations.</p>
+<p>In this workshop, we will primarily be using R/Rstudio for data visualization. I will quickly get to reading tabular data and creating plots while explaining some basic concepts along the way. However, if you would like a comprehensive tutorial on the basics of R from scratch, please check out the <a href="https://swcarpentry.github.io/r-novice-gapminder/01-rstudio-intro.html">Software Carpentry R tutorial</a> and/or <a href="https://swirlstats.com/">Swirl</a></p>
+<p>Your RStudio will look something like this:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://docs.posit.co/ide/user/ide/get-started/images/rstudio-panes-labeled.jpeg" class="img-fluid figure-img"></p>
+<figcaption><a href="https://docs.posit.co/ide/user/ide/get-started/">RStudio Panes</a></figcaption>
+</figure>
+</div>
+<p>You can write your code in the <strong>Source</strong> pane and press <code>ctrl + enter</code> to run the selected line(s). This is your scripting environment where you can save everything you are typing.</p>
+<p>Alternatively, you can also write code in the <strong>Console</strong> pane and press <code>enter</code> to run as you were doing for the bash command line. <strong>The code in the console is not saved.</strong></p>
+<p>Any datasets you load or variables/functions you set will be visible in the <strong>Environments</strong> pane.</p>
+<p>Any plots/documents that you render will be visible in the <strong>Output</strong> pane.</p>
+<section id="setting-up-your-r-environment" class="level3">
+<h3 class="anchored" data-anchor-id="setting-up-your-r-environment">Setting up your R environment</h3>
+<p>New packages can be installed using <code>install.packages("package_name")</code></p>
+<p>Not all installed R packages are available by default. You can load packages using the <code>library</code> function.</p>
+<p>The R working directory can be seen using the <code>getwd()</code> command</p>
+<p>You can change the working directory using <code>setwd("/path/to/dir")</code></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="fu">c</span>(<span class="st">"data.table"</span>),(dplyr),(tidyverse),(ggplot2))</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="fu">getwd</span>()</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="fu">setwd</span>(<span class="st">"C:/Users/Work/NWU_2025_workshop/NWU_2025_workshop_data/test_datasets/results"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="reading-your-data" class="level3">
+<h3 class="anchored" data-anchor-id="reading-your-data">Reading your data</h3>
+<p>If you performed the <code>setup.sh</code> step in Module 0, you should have a directory called <code>results</code> within <code>test_datasets</code> that has multiple example datasets.</p>
+<p>We are using the <strong>function</strong> <code>fread</code> which is part of the <code>data.table</code> package to read a table.</p>
+<p>To use <strong>functions</strong> in R, you call the name of the function, and enclose the different values the function will accept within parenthesis.</p>
+<p>To access the help page for any function, type <code>?</code> followed by the name of the function</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>?fread</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><code>fread</code> is a function to quickly read <code>.tsv</code> or <code>.csv</code> files</p>
+<section id="lets-read-in-our-quast-assembly-quality-table" class="level4">
+<h4 class="anchored" data-anchor-id="lets-read-in-our-quast-assembly-quality-table">Lets read in our QUAST assembly quality table</h4>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>quast<span class="ot">&lt;-</span><span class="fu">fread</span>(<span class="at">file=</span><span class="st">"PRJNA1230142_QUAST.tsv"</span>,<span class="at">header=</span>T,<span class="at">sep=</span><span class="st">"</span><span class="sc">\t</span><span class="st">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <ul>
-<li>Free, accessible, and global data can be integrated for comprehensive monitoring of infectious diseases</li>
-<li>Helps contextualize local outbreaks/epidemics on a global scale (i.e: Has this strain been seen before? When? Where?)</li>
-<li>Allows comparisons between different time periods, geographical locations, and strains of different genetic backgrounds.</li>
-</ul>
-<p><strong>Understanding how to use the different sources of publicly available data along with careful interpretation of metadata is key for pathogen genomics research</strong></p>
-</section>
-<section id="key-ncbi-resources" class="level1">
-<h1>Key NCBI Resources</h1>
-<section id="bioproject-biosample-and-sra" class="level2">
-<h2 class="anchored" data-anchor-id="bioproject-biosample-and-sra">BioProject, BioSample, and SRA</h2>
-<div class="quarto-figure quarto-figure-left">
-<figure class="figure">
-<p><img src="assets/images/module3/NCBI_tree.png" class="img-fluid figure-img" style="width:70.0%"></p>
-<figcaption>NCBI tree</figcaption>
-</figure>
-</div>
-<section id="bioproject" class="level3">
-<h3 class="anchored" data-anchor-id="bioproject">BioProject</h3>
-<p>The BioProject serves as a central repository linking all deposited data for a specific research project. The BioProject is a single place that can be used to find all other diverse data types deposited under that one project.</p>
-<p>BioProjects will have identifiers (or accession number) starting with <code>PRJNA</code></p>
-<p>The BioProject accession for the source of the sample data we are using in this module is <a href="https://www.ncbi.nlm.nih.gov/bioproject/?term=PRJNA1230142">PRJNA1230142</a>. Click on the link and take a look at the information available.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="assets/images/module3/PRJNA1230142_bioproject_1.png" class="img-fluid figure-img"></p>
-<figcaption>BioProject details</figcaption>
-</figure>
-</div>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="assets/images/module3/PRJNA1230142_bioproject_2.png" class="img-fluid figure-img"></p>
-<figcaption>Available data under a single BioProject</figcaption>
-</figure>
-</div>
-<p>Below which, you can also find individual links to each sample record under the BioProject along with the option to download the summary table.</p>
-</section>
-<section id="biosample" class="level3">
-<h3 class="anchored" data-anchor-id="biosample">BioSample</h3>
-<p>Like how the BioProject is the link to all samples deposited under a single project, the BioSample is the link to all data deposited for a <strong>single sample</strong>. This includes metadata for a single sample (organism, collection site, etc.), the raw reads for that sample (if deposited), and the genome assembly/annotation data. The BioSample also serves as link back to the BioProject.</p>
-<p>BioSamples will have identifiers (or accession number) starting with <code>SAM</code></p>
-<p>Click on the BioSample link to any one of the records and take a look.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="assets/images/module3/BioSample.png" class="img-fluid figure-img"></p>
-<figcaption>BioSample details</figcaption>
-</figure>
-</div>
-<p>The <strong>attributes</strong> section in each BioSample record comprises important metadata regarding when and where the sample was collected, and some information about strain background and genotype. Further below you can access the <strong>SRA</strong> (raw reads) and <strong>Nucleotide</strong> (assembly) records for each BioSample.</p>
-<div class="callout callout-style-default callout-tip callout-titled" title="The challenge with publicly available metadata">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span>The challenge with publicly available metadata
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-1" class="callout-1-contents callout-collapse collapse">
-<div class="callout-body-container callout-body">
-<p>Remember that metadata is simply what is reported by the submitter. You will often find samples with vague descriptions, typos or even no metadata at all. When you are depositing samples in NCBI make sure to provide rich metadata with no errors!</p>
-</div>
-</div>
-</div>
-</section>
-<section id="sra-sequence-read-archive-raw-fastq-reads" class="level3">
-<h3 class="anchored" data-anchor-id="sra-sequence-read-archive-raw-fastq-reads">SRA (Sequence Read Archive): Raw fastq reads</h3>
-<p>SRA is a repository of all high-throughput sequencing data. It contains raw sequence reads from genomic, metagenomic, and transcriptomic sources.</p>
-<p>Through the BioSample, you can also access the raw reads by clicking on the <strong>SRA</strong> link at the bottom of the page. This will take you to the SRA <strong>experiment</strong> page.</p>
-<p>The SRA experiment has information regarding how the reads were generated (i.e the experimental design). This also links back to the BioProject and BioSample.</p>
-<p>The SRA experiment accessions start with <code>SRX</code>, <code>ERX</code> or <code>DRX</code>.</p>
-<p>The SRA experiment page also link to the SRA <strong>run</strong> for that sample. The SRA run page has the actual <code>.fastq</code> sequence reads. The SRA runs have accessions that start with <code>SRR</code>,<code>ERR</code> or <code>DRR</code></p>
-<p>The SRA run page for a given sample also links back to the SRA experiment, BioSample and BioProject. It also has a download link to the raw <code>fastq</code> reads.</p>
-<p>Navigate to the SRR page for any sample and take a look at the information available.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="assets/images/module3/SRR_download.png" class="img-fluid figure-img"></p>
-<figcaption>SRA Run - downloading reads</figcaption>
-</figure>
-</div>
-</section>
-<section id="nucleotide-sequences" class="level3">
-<h3 class="anchored" data-anchor-id="nucleotide-sequences">Nucleotide sequences</h3>
-<p>NCBI has multiple nucleotide sequence databases, but all deposited sequences are stored in <strong>Nuccore</strong> - this can be individual contigs from each assembly, plasmid sequences, or gene sequences.</p>
-<p>There are smaller databases with more specific nucleotide sequences branching from Nuccore, for eg: the <strong>Gene</strong> database for gene sequences and <strong>Genome</strong> database for whole genome sequences. The Genome (or ‘Assembly’) database accessions begin with <code>ASM</code>. The <code>ASM</code> record for a given sample provides the assembly itself, assembly statistics, annotation information and also links back to the BioSample and BioProject.</p>
-<p>The assembly can be obtained from RefSeq or GenBank, two repositories of genome sequences deposited in NCBI with minor differences.For our purposes, we will mostly be interacting with <strong>GenBank</strong>. GenBank accessions start with <code>GCA</code>. Navigate to the genome assembly page for any sample and take a look.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="assets/images/module3/ASM.png" class="img-fluid figure-img"></p>
-<figcaption>Genome assembly</figcaption>
-</figure>
-</div>
-</section>
-</section>
-<section id="retrieving-data-from-ncbi-via-command-line" class="level2">
-<h2 class="anchored" data-anchor-id="retrieving-data-from-ncbi-via-command-line">Retrieving Data from NCBI via Command Line</h2>
-<p>As you may have seen above, it is possible to click through the NCBI website and access various types of information from a given sample. However, this starts becoming impractical as soon as you need files on hundreds or even tens of samples. Luckily, there are useful command-line tools available that let us programmatically retrieve data from NCBI.</p>
-<section id="ncbi-datasets-cli" class="level3">
-<h3 class="anchored" data-anchor-id="ncbi-datasets-cli">ncbi-datasets CLI</h3>
-<p>This is the official NCBI software for accessing different datasets. If you have the BioSample or BioProject accession, <code>datasets</code> lets you download assemblies, annotations and summary information.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">datasets</span> download genome accession GCA_000486855.2 <span class="at">--filename</span> GCA_000486855.2.zip <span class="at">--include</span> cds,genome,protein,gbff,gff3  </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>A <code>zip</code> file will be downloaded which you can extract using the <code>unzip</code> command and access the files.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">unzip</span> GCA_000486855.2.zip</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Use <code>datasets download genome --help</code> to see the different options, you can fetch a lot of data by using the right set of options!</p>
-</section>
-<section id="ncbi-genome-download" class="level3">
-<h3 class="anchored" data-anchor-id="ncbi-genome-download">ncbi-genome-download</h3>
-<p>This is an alternative to ncbi <code>datasets</code> that is very similar. <code>ncbi-genome-download</code> is not an official tool made and maintained by NCBI, it was just the bioinformatics community’s solution to downloading NCBI datasets before <code>datasets</code> existed. It is still a viable alternative today. It offers some options not found in <code>datasets</code> such as downloading assembly metadata in <code>.tsv</code>.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">ncbi-genome-download</span> <span class="at">-A</span> GCA_049745</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="ex">255.1,GCA_049744095.1,GCA_049744075.1,GCA_049744695.1,GCA_049744875.1</span> <span class="at">-m</span> metadata.tsv bacteria</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</section>
-<section id="sra-tools" class="level3">
-<h3 class="anchored" data-anchor-id="sra-tools">sra-tools</h3>
-<p>The SRA Toolkit is NCBI’s official software for downloading and extracting <code>fastq</code> files from SRA runs. It has two main parts - <code>prefetch</code> and <code>fasterq-dump</code>.</p>
-<p><code>prefetch</code> downloads an SRA run in <code>.sra</code> format which can then be converted to <code>.fastq</code> using <code>fasterq-dump</code>. Alternatively you can also directly download reads using <code>fasterq-dump</code></p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">fasterq-dump</span> SRR3252850</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<section id="exercise-retrieve-data-from-ncbi-using-datasets" class="level4">
-<h4 class="anchored" data-anchor-id="exercise-retrieve-data-from-ncbi-using-datasets">EXERCISE: retrieve data from NCBI using <code>datasets</code></h4>
-<ul>
-<li><p>Download only the assemblies in the GenBank database from the BioProject <code>PRJNA1230142</code></p>
-<details>
-<summary>
-<p>Click to reveal answer</p>
-</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">datasets</span> download  genome accession PRJNA1230142 <span class="at">--assembly-source</span> <span class="st">'GenBank'</span> <span class="at">--include</span> <span class="st">'genome'</span> </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details></li>
-<li><p>Download all “chromosome” and “complete” level <em>Salmonella enterica</em> assemblies and their corresponding annotation files in genbank format from the GenBank database deposited after October 1st, 2025.</p>
-<details>
-<summary>
-<p>Click to reveal answer</p>
-</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">datasets</span> download  genome taxon <span class="st">'Salmonella enterica'</span> <span class="at">--assembly-source</span> <span class="st">'GenBank'</span> <span class="at">--assembly-level</span> <span class="st">'chromosome,complete'</span> <span class="at">--include</span> <span class="st">'genome,gbff'</span> <span class="at">--released-after</span> 2025-10-01</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details></li>
+<li><code>fread(...)</code> : Calling the <code>fread</code> function</li>
+<li><code>file="..."</code> : Providing the path for the file to be read</li>
+<li><code>header=T</code>: Stating that the file has a header (which is the first line in the <code>csv</code> or <code>tsv</code> that has all the column names). <code>T</code> is short for <code>TRUE</code>.</li>
+<li><code>sep="\t"</code>: Stating the delimiter in the file, since our file is tab separated, we set the delimiter as <code>\t</code>.</li>
+<li><code>qast&lt;-</code>: We are saving the read table to an object called <code>quast</code> . Once it is saved, it should appear in your <strong>Environment</strong> pane. You can click on it here and it will open a new tab in your <strong>Source</strong> pane where you can browse through the table.</li>
 </ul>
 </section>
 </section>
-</section>
-</section>
-<section id="exploring-enterobase" class="level1">
-<h1>Exploring EnteroBase</h1>
-<p>Enterobase is a web-based platform for genomic epidemiology of key pathogens such as <em>Salmonella</em>, <em>Shigella</em>, MTb, and others.</p>
-<p>Like NCBI, EnteroBase is also a repository of sequencing data. However, unlike NCBI, EnteroBase is a lot more specific in its scope. It only hosts data regarding a handful of pathogens, and the focus is more on tracking different lineages temporally and geographically. This makes <strong>EnteroBase</strong> a rich source of metadata for specific organisms.</p>
-<p>Head over to https://enterobase.warwick.ac.uk/ and select “Salmonella enterica” and click “Search strains”.</p>
+<section id="making-simple-plots-using-ggplot2" class="level3">
+<h3 class="anchored" data-anchor-id="making-simple-plots-using-ggplot2">Making simple plots using ggplot2</h3>
+<p>Ggplot is the most common R tool used for creating publication quality plots.</p>
+<p>ggplot follows a consistent grammar (The <strong>gg</strong> in ggplot means <strong>g</strong>rammar of <strong>g</strong>raphics) making it very easy to build upon.</p>
+<p>Apart from the default ggplot options, there are several additional packages using the ggplot grammar such as <a href="https://guangchuangyu.github.io/software/ggtree/">ggtree</a>, <a href="https://github.com/jtlandis/ggside">ggside</a>, <a href="https://const-ae.github.io/ggsignif/">ggsignif</a> and many others that are all very helpful in scientific data visualization. ggplot can make (<em>almost</em>) any kind of plot you can think of!</p>
+<section id="making-a-histogram-using-ggplot2" class="level4">
+<h4 class="anchored" data-anchor-id="making-a-histogram-using-ggplot2">Making a histogram using ggplot2</h4>
+<p>Lets make a simple histogram showing the distribution of the number of contigs in our dataset</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> quast,<span class="fu">aes</span>(<span class="at">x=</span><span class="st">`</span><span class="at"># contigs (&gt;= 0 bp)</span><span class="st">`</span>))<span class="sc">+</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="dv">5</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="assets/images/module3/Enterobase_search.png" class="img-fluid figure-img"></p>
-<figcaption>Enterobase Search Filters</figcaption>
+<p><img src="assets/images/module5/simple_scatter.png" class="img-fluid figure-img"></p>
+<figcaption>Simple histogram in ggplot</figcaption>
 </figure>
 </div>
-<p>Here you can apply several granular filters to access strains with very specific properties, which is not easy to do in NCBI resources.</p>
-<p>For example, here is how you can search for only <em>Salmonella enterica</em> serovar Minnesota strains from the African continent isolated from humans</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="assets/images/module3/Enterobase_search_filters.png" class="img-fluid figure-img"></p>
-<figcaption>Enterobase Search Filters</figcaption>
-</figure>
-</div>
-<p>After which you can select and download the assemblies or the data tables (of which there are multiple to choose from). Apart from ‘Strain Metadata’ filters, we can also add filters to these additional data tables in the ‘Experimental Data’ tab for even more granularity.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="assets/images/module3/Enterobase_search_datatables.png" class="img-fluid figure-img"></p>
-<figcaption>Enterobase Search Filters</figcaption>
-</figure>
-</div>
-<section id="exercise-retrieve-data-from-enterobase" class="level4">
-<h4 class="anchored" data-anchor-id="exercise-retrieve-data-from-enterobase">EXERCISE: Retrieve data from enterobase</h4>
 <ul>
-<li>Filter for all <em>Salmonella enterica</em> serovar Minnesota genomes from both Africa and Europe collected after the year 2023 (2024 or above) having the Sulfonamide antibiotic resistance gene <em>sul2</em></li>
-</ul>
-<details>
-<summary>
-Click to reveal answer
-</summary>
-<p><img src="assets/images/module3/Enterobase_search_filters_exercise_1.png" class="img-fluid" alt="Filters in the Strain Metadata tab"> <img src="assets/images/module3/Enterobase_search_filters_exercise_2.png" class="img-fluid" alt="Filters in the Experimental Data tab"></p>
-</details>
-</section>
-<section id="sources-and-further-reading" class="level2">
-<h2 class="anchored" data-anchor-id="sources-and-further-reading">Sources and further reading</h2>
+<li><code>ggplot()</code> : Calling the ggplot function</li>
+<li><code>data = quast</code>: The data that we want to use, here it is <code>quast</code>, which is the QUAST output table that we read</li>
+<li><code>aes()</code> : These are the mapping aesthetics (i.e which column of the input dataset we want our x and y axes to be)
 <ul>
-<li>NCBI datasets CLI: <a href="https://www.ncbi.nlm.nih.gov/datasets/docs/v2/command-line-tools/download-and-install/" class="uri">https://www.ncbi.nlm.nih.gov/datasets/docs/v2/command-line-tools/download-and-install/</a></li>
-<li>NCBI sra-tools: <a href="https://github.com/ncbi/sra-tools" class="uri">https://github.com/ncbi/sra-tools</a></li>
-<li>NCBI e-utilities: <a href="https://www.ncbi.nlm.nih.gov/books/NBK25500/" class="uri">https://www.ncbi.nlm.nih.gov/books/NBK25500/</a></li>
-<li>ncbi-genome-download: <a href="https://github.com/kblin/ncbi-genome-download" class="uri">https://github.com/kblin/ncbi-genome-download</a></li>
+<li><code>x=`# contigs (&gt;= 0 bp)`</code> : The name of the column we want on the <code>x</code> axis.</li>
+<li>Unfortunately, quast has named columns with spaces and special characters like <code>#</code> which can have different special meaning. So we have to take some extra steps to make sure the column names are read properly.</li>
+<li>Here we enclose the column name in `` - these are called “backticks”.</li>
+<li>Now, the column name will be read literally and the special characters will not have special meanings.</li>
+<li>Normally you could simply say <code>x=column_name</code> if your column names don’t have any special characters</li>
+</ul></li>
+<li><code>+ geom_histogram(binwidth = 5)</code> - Adding a new layer
+<ul>
+<li>In ggplot, the <code>+</code> symbol is used to signify the addition of a new layer. We used <code>ggplot()</code> to tell it what data to use, and now we use <code>geom_</code> to tell it how to visually represent the data.</li>
+<li><code>geom_histogram</code> is the histogram function in ggplot.</li>
+<li><code>binwidth = 5</code> is a value for the width of the histogram “bars” that <code>geom_histogram</code> accepts. This is the range of values that are represented by one bar in the histogram. Increase or decrease this number to see how it changes the plot!</li>
+</ul></li>
 </ul>
+</section>
+<section id="making-a-scatterplot-using-ggplot2" class="level4">
+<h4 class="anchored" data-anchor-id="making-a-scatterplot-using-ggplot2">Making a scatterplot using ggplot2</h4>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> quast,<span class="fu">aes</span>(<span class="at">x=</span><span class="st">`</span><span class="at"># contigs (&gt;= 0 bp)</span><span class="st">`</span>,<span class="at">y=</span>N50))<span class="sc">+</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="assets/images/module5/simple_histogram.png" class="img-fluid figure-img"></p>
+<figcaption>Simple histogram in ggplot</figcaption>
+</figure>
+</div>
+</section>
+</section>
+<section id="data-cleaningwrangling" class="level3">
+<h3 class="anchored" data-anchor-id="data-cleaningwrangling">Data cleaning/wrangling</h3>
+<section id="download-table-from-enterobase" class="level5">
+<h5 class="anchored" data-anchor-id="download-table-from-enterobase">Download table from enterobase</h5>
+</section>
+<section id="get-rid-of-nas" class="level5">
+<h5 class="anchored" data-anchor-id="get-rid-of-nas">Get rid of NAs</h5>
+</section>
+<section id="non-standard-column-values-unknown-unknown-na" class="level5">
+<h5 class="anchored" data-anchor-id="non-standard-column-values-unknown-unknown-na">Non-standard column values (“unknown” “Unknown” “NA”)</h5>
+</section>
+<section id="merging-data-tables" class="level5">
+<h5 class="anchored" data-anchor-id="merging-data-tables">Merging data tables</h5>
+</section>
+<section id="wide-and-long-data" class="level5">
+<h5 class="anchored" data-anchor-id="wide-and-long-data">‘Wide’ and ‘Long’ data</h5>
+</section>
+<section id="mutate" class="level5">
+<h5 class="anchored" data-anchor-id="mutate">mutate</h5>
+</section>
+<section id="group_by-and-summarize" class="level5">
+<h5 class="anchored" data-anchor-id="group_by-and-summarize">group_by and summarize</h5>
 
 
 </section>
