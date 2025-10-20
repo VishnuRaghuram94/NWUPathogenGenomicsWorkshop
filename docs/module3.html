@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.25">
+<meta name="generator" content="quarto-1.7.32">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -67,15 +67,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <meta name="quarto:offset" content="./">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-45a48b56c8ad2523a9a31c69be39928e.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dfb324f25d9b1687192fa8be62ac8f9c.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -115,8 +114,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a href="./index.html" class="navbar-brand navbar-brand-logo">
-    </a>
     <a class="navbar-brand" href="./index.html">
     <span class="navbar-title">NWU_2025_Workshop</span>
     </a>
@@ -277,12 +274,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>The <strong>attributes</strong> section in each BioSample record comprises important metadata regarding when and where the sample was collected, and some information about strain background and genotype. Further below you can access the <strong>SRA</strong> (raw reads) and <strong>Nucleotide</strong> (assembly) records for each BioSample.</p>
 <div class="callout callout-style-default callout-tip callout-titled" title="The challenge with publicly available metadata">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span>The challenge with publicly available metadata
+The challenge with publicly available metadata
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
@@ -328,22 +325,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="ncbi-datasets-cli" class="level3">
 <h3 class="anchored" data-anchor-id="ncbi-datasets-cli">ncbi-datasets CLI</h3>
 <p>This is the official NCBI software for accessing different datasets. If you have the BioSample or BioProject accession, <code>datasets</code> lets you download assemblies, annotations and summary information.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">datasets</span> download genome accession GCA_000486855.2 <span class="at">--filename</span> GCA_000486855.2.zip <span class="at">--include</span> cds,genome,protein,gbff,gff3  </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">datasets</span> download genome accession GCA_000486855.2 <span class="at">--filename</span> GCA_000486855.2.zip <span class="at">--include</span> cds,genome,protein,gbff,gff3  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>A <code>zip</code> file will be downloaded which you can extract using the <code>unzip</code> command and access the files.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">unzip</span> GCA_000486855.2.zip</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">unzip</span> GCA_000486855.2.zip</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Use <code>datasets download genome --help</code> to see the different options, you can fetch a lot of data by using the right set of options!</p>
 </section>
 <section id="ncbi-genome-download" class="level3">
 <h3 class="anchored" data-anchor-id="ncbi-genome-download">ncbi-genome-download</h3>
 <p>This is an alternative to ncbi <code>datasets</code> that is very similar. <code>ncbi-genome-download</code> is not an official tool made and maintained by NCBI, it was just the bioinformatics community’s solution to downloading NCBI datasets before <code>datasets</code> existed. It is still a viable alternative today. It offers some options not found in <code>datasets</code> such as downloading assembly metadata in <code>.tsv</code>.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">ncbi-genome-download</span> <span class="at">-A</span> GCA_049745</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="ex">255.1,GCA_049744095.1,GCA_049744075.1,GCA_049744695.1,GCA_049744875.1</span> <span class="at">-m</span> metadata.tsv bacteria</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">ncbi-genome-download</span> <span class="at">-A</span> GCA_049745</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="ex">255.1,GCA_049744095.1,GCA_049744075.1,GCA_049744695.1,GCA_049744875.1</span> <span class="at">-m</span> metadata.tsv bacteria</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="sra-tools" class="level3">
 <h3 class="anchored" data-anchor-id="sra-tools">sra-tools</h3>
 <p>The SRA Toolkit is NCBI’s official software for downloading and extracting <code>fastq</code> files from SRA runs. It has two main parts - <code>prefetch</code> and <code>fasterq-dump</code>.</p>
 <p><code>prefetch</code> downloads an SRA run in <code>.sra</code> format which can then be converted to <code>.fastq</code> using <code>fasterq-dump</code>. Alternatively you can also directly download reads using <code>fasterq-dump</code></p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">fasterq-dump</span> SRR3252850</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">fasterq-dump</span> SRR3252850</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <section id="exercise-retrieve-data-from-ncbi-using-datasets" class="level4">
 <h4 class="anchored" data-anchor-id="exercise-retrieve-data-from-ncbi-using-datasets">EXERCISE: retrieve data from NCBI using <code>datasets</code></h4>
 <ul>
@@ -352,14 +349,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <summary>
 <p>Click to reveal answer</p>
 </summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">datasets</span> download  genome accession PRJNA1230142 <span class="at">--assembly-source</span> <span class="st">'GenBank'</span> <span class="at">--include</span> <span class="st">'genome'</span> </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">datasets</span> download  genome accession PRJNA1230142 <span class="at">--assembly-source</span> <span class="st">'GenBank'</span> <span class="at">--include</span> <span class="st">'genome'</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details></li>
 <li><p>Download all “chromosome” and “complete” level <em>Salmonella enterica</em> assemblies and their corresponding annotation files in genbank format from the GenBank database deposited after October 1st, 2025.</p>
 <details>
 <summary>
 <p>Click to reveal answer</p>
 </summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">datasets</span> download  genome taxon <span class="st">'Salmonella enterica'</span> <span class="at">--assembly-source</span> <span class="st">'GenBank'</span> <span class="at">--assembly-level</span> <span class="st">'chromosome,complete'</span> <span class="at">--include</span> <span class="st">'genome,gbff'</span> <span class="at">--released-after</span> 2025-10-01</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">datasets</span> download  genome taxon <span class="st">'Salmonella enterica'</span> <span class="at">--assembly-source</span> <span class="st">'GenBank'</span> <span class="at">--assembly-level</span> <span class="st">'chromosome,complete'</span> <span class="at">--include</span> <span class="st">'genome,gbff'</span> <span class="at">--released-after</span> 2025-10-01</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details></li>
 </ul>
 </section>
@@ -469,14 +466,13 @@ Click to reveal answer
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-      const outerScaffold = trigger.parentElement.cloneNode(true);
-      const codeEl = outerScaffold.querySelector('code');
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
         }
-      }
-      return codeEl.innerText;
+        return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy

@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.25">
+<meta name="generator" content="quarto-1.7.32">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -67,15 +67,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <meta name="quarto:offset" content="./">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-45a48b56c8ad2523a9a31c69be39928e.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dfb324f25d9b1687192fa8be62ac8f9c.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -115,8 +114,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a href="./index.html" class="navbar-brand navbar-brand-logo">
-    </a>
     <a class="navbar-brand" href="./index.html">
     <span class="navbar-title">NWU_2025_Workshop</span>
     </a>
@@ -288,8 +285,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Sometimes you might see something like “30x coverage” in many microbial papers. This means 100% of the genome is represented at a depth of 30x (“coverage” is assumed to be 100%).</li>
 </ul>
 </section>
-<section id="draft-genomedraft-assenbly" class="level4">
-<h4 class="anchored" data-anchor-id="draft-genomedraft-assenbly">Draft genome/draft assenbly</h4>
+<section id="draft-genomedraft-assembly" class="level4">
+<h4 class="anchored" data-anchor-id="draft-genomedraft-assembly">Draft genome/draft assembly</h4>
 <ul>
 <li>Most genome assemblies you will be working with are “draft” assemblies, meaning it is not a complete representation of the original genome, the assembly comprises multiple contigs that have not been perfectly stitched together.</li>
 </ul>
@@ -342,11 +339,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ul>
 <li>Activate your conda environment if you haven’t already</li>
 </ul>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> activate NWU_2025_workshop</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> activate NWU_2025_workshop</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
 <li>Use the software <code>fasterq-dump</code> to download the specific sample</li>
 </ul>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">fasterq-dump</span> SRR32528508</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">fasterq-dump</span> SRR32528508</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
 </ul>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -370,7 +367,7 @@ Note
 <li>While the concept will largely be the same, the exact syntax for using each software will differ slightly.</li>
 <li>That is why it is very important to <strong>read these instructions every time you attempt to use a tool</strong></li>
 </ul>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">fastp</span> <span class="at">--help</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
+<div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">fastp</span> <span class="at">--help</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
 <li><p>Based on the <code>--help</code> page, we can see that the essential requirements for running <code>fastp</code> are:</p>
 <ul>
 <li><code>i</code> or <code>--in1</code> : Paired-end read 1 (<code>R1</code>) file as input</li>
@@ -381,23 +378,23 @@ Note
 <li><p><code>fastp</code> will also generate a QC report, by default the files will be called <code>fastp.html</code> and <code>fastp.json</code>, but we can rename those files using the <code>--html</code> and <code>--json</code> parameters.</p></li>
 <li><p>There are many other options, feel free to go through them, but for our purposes there is no need to change anything else.</p></li>
 <li><p>Now we can run <code>fastp</code> on our sample</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">fastp</span> <span class="dt">\</span></span>
+<div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">fastp</span> <span class="dt">\</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>--in1 NWU_2025_workshop_data/test_datasets/fastq_download/SRR32528508_1.fastq <span class="dt">\</span></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>--in2 NWU_2025_workshop_data/test_datasets/fastq_download/SRR32528508_2.fastq <span class="dt">\</span></span>
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>--out1 NWU_2025_workshop_data/test_datasets/fastq_download/SRR32528508_1_trimmed.fastq <span class="dt">\</span></span>
 <span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>--out2 NWU_2025_workshop_data/test_datasets/fastq_download/SRR32528508_2_trimmed.fastq <span class="dt">\</span></span>
 <span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>--html NWU_2025_workshop_data/test_datasets/fastq_download/SRR32528508_trimmed.html <span class="dt">\</span></span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>--json NWU_2025_workshop_data/test_datasets/fastq_download/SRR32528508_trimmed.json</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>--json NWU_2025_workshop_data/test_datasets/fastq_download/SRR32528508_trimmed.json</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
 <li><p>In the above command, we gave the PATH to our our input reads to <code>fastp</code> through the <code>in1</code> and <code>in2</code> parameters, specified the names of the output files and the PATH in which they should be saved through the <code>out1</code> and <code>out2</code> parameters, along with the QC reports using <code>--html</code> and <code>--json</code></p></li>
 <li><p>Open the <code>.html</code> output in your browser and take a look at the results.</p></li>
 </ul>
 <div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span>Why is there a <code>\</code> before every new parameter in the code?
+Why is there a <code>\</code> before every new parameter in the code?
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
@@ -474,12 +471,12 @@ Note
 </ul>
 <p><strong>In most pathogen-genomics cases, <em>de novo</em> assemblies are the way to go</strong></p>
 <div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span>Should you assemble your genome?
+Should you assemble your genome?
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
@@ -495,7 +492,7 @@ Note
 <h4 class="anchored" data-anchor-id="exercise-sequence-assembly-using-shovill">EXERCISE: Sequence assembly using shovill</h4>
 <ul>
 <li><p>Similar to <code>fastp</code>, lets look at the usage instructions for <code>shovill</code></p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">shovill</span> <span class="at">--help</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
+<div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">shovill</span> <span class="at">--help</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
 <li><p>Based on the <code>--help</code> page, we can see that the essential requirements for running <code>shovill</code> are:</p>
 <ul>
 <li><code>--R1</code> : Paired-end read 1 (<code>R1</code>) file as input</li>
@@ -510,13 +507,13 @@ Note
 </ul></li>
 <li><p>Genome assembly tools may also use a lot of CPU and RAM, if you are running this on your personal computer, you many not have a lot of resources to spare, so it is a good idea to limit this using the <code>--cpus</code> and <code>--ram</code> parameters</p></li>
 <li><p>Putting it all together:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">shovill</span> <span class="dt">\</span></span>
+<div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">shovill</span> <span class="dt">\</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>--R1 NWU_2025_workshop_data/test_datasets/fastq_download/SRR32528508_1_trimmed.fastq <span class="dt">\</span></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>--R2 NWU_2025_workshop_data/test_datasets/fastq_download/SRR32528508_2_trimmed.fastq <span class="dt">\</span></span>
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>--outdir NWU_2025_workshop_data/test_datasets/fastq_download/SRR32528508_skesa <span class="dt">\</span></span>
 <span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>--assembler skesa <span class="dt">\</span></span>
 <span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>--cpus 4 <span class="co"># Will use at max 4 CPU cores, Set according to your computer \</span></span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="ex">--ram</span> 4 <span class="co"># Will use at max 4GB RAM, set according to your computer</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="ex">--ram</span> 4 <span class="co"># Will use at max 4GB RAM, set according to your computer</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
 </ul>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -543,22 +540,22 @@ Note
 <summary>
 Click to reveal answer
 </summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">quast</span> <span class="dt">\</span></span>
+<div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">quast</span> <span class="dt">\</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>-o NWU_2025_workshop_data/test_datasets/GCA_049744075.1/quast <span class="dt">\</span></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>-t 4 <span class="dt">\</span></span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>NWU_2025_workshop_data/test_datasets/GCA_049744075.1/GCA_049744075.1_ASM4974407v1_genomic.fna</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>NWU_2025_workshop_data/test_datasets/GCA_049744075.1/GCA_049744075.1_ASM4974407v1_genomic.fna</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
 <li><code>-o</code> : Path to output directory</li>
 <li><code>-t</code> : Number of threads to use</li>
 <li>&lt;contigs&gt; : Path to assembled contigs - This is a <strong>Positional argument</strong></li>
 </ul>
 <div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span>Positional arguments
+Positional arguments
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
@@ -610,11 +607,11 @@ Click to reveal answer
 <summary>
 Click to reveal answer
 </summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">prokka</span> <span class="dt">\</span></span>
+<div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">prokka</span> <span class="dt">\</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>--outdir NWU_2025_workshop_data/test_datasets/GCA_049744075.1/prokka <span class="dt">\</span></span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>--cpu 4 <span class="dt">\</span></span>
 <span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>--prefix GCA_049744075.1_ASM4974407v1 <span class="dt">\</span></span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>NWU_2025_workshop_data/test_datasets/GCA_049744075.1/GCA_049744075.1_ASM4974407v1_genomic.fna</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>NWU_2025_workshop_data/test_datasets/GCA_049744075.1/GCA_049744075.1_ASM4974407v1_genomic.fna</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
 <li><code>--output</code> : Path to output directory</li>
 <li><code>--cpu</code> : Number of CPUs to use</li>
@@ -624,12 +621,12 @@ Click to reveal answer
 </details>
 <p>Take a look at the different output files prokka has generated and their corresponding file extensions!</p>
 <div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span>Prokka vs Bakta - Use Bakta
+Prokka vs Bakta - Use Bakta
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
@@ -669,7 +666,7 @@ Click to reveal answer
 <summary>
 Click to reveal answer
 </summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ex">snippy</span> <span class="dt">\</span></span>
+<div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ex">snippy</span> <span class="dt">\</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>--cpus 4 <span class="dt">\</span></span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>--ram 4 <span class="dt">\</span></span>
 <span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>--outdir NWU_2025_workshop_data/test_datasets/GCA_049744075.1/snippy <span class="dt">\</span></span>
@@ -679,7 +676,7 @@ Click to reveal answer
 <span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="co"># OR</span></span>
 <span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="ex">--reference</span> NWU_2025_workshop_data/test_datasets/reference_genome/GCA_000486855.2_ASM48685v2_genomic.fna <span class="dt">\</span></span>
 <span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>--R1 NWU_2025_workshop_data/test_datasets/fastq_download/SRR32528508_1_trimmed.fastq <span class="dt">\</span></span>
-<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>--R2 NWU_2025_workshop_data/test_datasets/fastq_download/SRR32528508_2_trimmed.fastq</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>--R2 NWU_2025_workshop_data/test_datasets/fastq_download/SRR32528508_2_trimmed.fastq</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
 <li><code>--ram</code> : The maximum amount of RAM to use</li>
 <li><code>--cpus</code> : Number of CPUs to use</li>
@@ -703,7 +700,7 @@ Click to reveal answer
 <section id="writing-a-script" class="level3">
 <h3 class="anchored" data-anchor-id="writing-a-script">Writing a script</h3>
 <p>Take a look at this example bash script below. This is a script to perform genome annotation on a given assembly. Create a <code>.txt</code> file called <code>prokka_script.sh</code> and save the contents below into it (you can actually name it whatever you want, just make sure to give it the <code>.sh</code> extension so that you know it is a bash script).</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co">#!/bin/bash </span></span>
+<div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co">#!/bin/bash </span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="va">fpath</span><span class="op">=</span><span class="va">$1</span></span>
 <span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a></span>
@@ -715,7 +712,7 @@ Click to reveal answer
 <span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>--cpu 4 <span class="dt">\</span></span>
 <span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>--prefix <span class="va">${fname}</span> <span class="dt">\</span></span>
 <span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>--fast <span class="dt">\</span></span>
-<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a><span class="va">${fpath}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a><span class="va">${fpath}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Lets go though this script line by line</p>
 <ul>
 <li><code>#!/bin/bash</code> - this is called the shebang line. This line lets your computer know that this is a bash script.</li>
@@ -733,9 +730,9 @@ Click to reveal answer
 <li><code>basename ${fpath} _genomic.fna</code> - we have now suppled <code>_genomic.fna</code> as an additonal argument to <code>basename</code> after <code>${fpath}</code>. This tells <code>basename</code> the file suffix to also be removed. This may or may not be necessary depending on your input file. Since in our case all our files have the suffix <code>_genomic.fna</code> we can remove that too to only keep the actual name. Try it on the command line!</li>
 </ul></li>
 </ul>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">basename</span> NWU_2025_workshop/NWU_2025_workshop_data/test_datasets/salmonella_assemblies/GCA_049744875.1_ASM4974487v1_genomic.fna _genomic.fna</span>
+<div class="sourceCode" id="cb11"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">basename</span> NWU_2025_workshop/NWU_2025_workshop_data/test_datasets/salmonella_assemblies/GCA_049744875.1_ASM4974487v1_genomic.fna _genomic.fna</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="ex">GCA_049744875.1_ASM4974487v1</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="ex">GCA_049744875.1_ASM4974487v1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
 <li><code>fname=$(basename ${fpath} _genomic.fna)</code>
 <ul>
@@ -751,9 +748,9 @@ Click to reveal answer
 </ul></li>
 </ul>
 <p>To run this script on one sample, we can do</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">chmod</span> 755 ./prokka_script.sh <span class="co"># This makes the script executable, you only have to do this once</span></span>
+<div class="sourceCode" id="cb12"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">chmod</span> 755 ./prokka_script.sh <span class="co"># This makes the script executable, you only have to do this once</span></span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="ex">./prokka_script.sh</span> NWU_2025_workshop_data/test_datasets/salmonella_assemblies/GCA_049744875.1_ASM4974487v1_genomic.fna</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="ex">./prokka_script.sh</span> NWU_2025_workshop_data/test_datasets/salmonella_assemblies/GCA_049744875.1_ASM4974487v1_genomic.fna</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
 <li>This will run prokka for the sample <code>GCA_049744875.1_ASM4974487v1_genomic.fna</code> and save the output to a file called <code>GCA_049744875.1_ASM4974487v1_prokka</code> in the working directory.</li>
 </ul>
@@ -762,15 +759,15 @@ Click to reveal answer
 <h3 class="anchored" data-anchor-id="looping">Looping</h3>
 <p>We have still run it for only one sample, but now that we have scripted it, we can automate running this script for a list of samples. The simplest way to do this is using a <code>for</code> loop. This simply means we run the same set of instructions for each item in the list.</p>
 <p>For loops in general follow this basic structure</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> item <span class="kw">in</span> <span class="op">&lt;</span>list of items<span class="op">&gt;</span></span>
+<div class="sourceCode" id="cb13"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> item <span class="kw">in</span> <span class="op">&lt;</span>list of items<span class="op">&gt;</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="cf">do</span> </span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="op">&lt;</span>set <span class="ex">of</span> instructions<span class="op">&gt;</span></span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>  <span class="cf">done</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>  <span class="cf">done</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>This means, for each <code>item</code> in a list/sequence, you can state a set of instructions to be performed, and it will end automatically when the last item in your list has been processed. The word <code>item</code> in the code above is a placeholder, it can be called anything you want, it is just a way to refer to a single item in the list of items.</p>
 <p>Below is a simple bash <code>for</code> loop</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> assembly <span class="kw">in</span> <span class="va">$(</span><span class="fu">ls</span> NWU_2025_workshop_data/test_datasets/salmonella_assemblies/<span class="va">)</span><span class="kw">;</span> <span class="cf">do</span></span>
+<div class="sourceCode" id="cb14"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> assembly <span class="kw">in</span> <span class="va">$(</span><span class="fu">ls</span> NWU_2025_workshop_data/test_datasets/salmonella_assemblies/<span class="va">)</span><span class="kw">;</span> <span class="cf">do</span></span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="ex">./prokka_script.sh</span> NWU_2025_workshop_data/test_datasets/salmonella_assemblies/<span class="va">${assembly}</span><span class="kw">;</span> </span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="cf">done</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="cf">done</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Explanation:</p>
 <ul>
 <li><code>for assembly in $(ls NWU_2025_workshop_data/test_datasets/salmonella_assemblies/); do</code>
@@ -790,10 +787,10 @@ Click to reveal answer
 <summary>
 Click to reveal answer
 </summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="va">$(</span><span class="fu">ls</span> NWU_2025_workshop_data/test_datasets/salmonella_assemblies/<span class="va">)</span><span class="kw">;</span> <span class="cf">do</span></span>
+<div class="sourceCode" id="cb15"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="va">$(</span><span class="fu">ls</span> NWU_2025_workshop_data/test_datasets/salmonella_assemblies/<span class="va">)</span><span class="kw">;</span> <span class="cf">do</span></span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="va">bname</span><span class="op">=</span><span class="va">$(</span><span class="fu">basename</span> NWU_2025_workshop_data/test_datasets/salmonella_assemblies/<span class="va">${i}</span> _genomic.fna<span class="va">)</span><span class="kw">;</span> </span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="ex">amrfinder</span> <span class="at">--threads</span> 1 <span class="at">--nucleotide</span> NWU_2025_workshop_data/test_datasets/salmonella_assemblies/<span class="va">${i}</span> <span class="at">--output</span> <span class="va">${bname}</span>_amrfinderplus.tsv<span class="kw">;</span></span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="cf">done</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="cf">done</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </section>
 </section>
@@ -866,14 +863,13 @@ Click to reveal answer
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-      const outerScaffold = trigger.parentElement.cloneNode(true);
-      const codeEl = outerScaffold.querySelector('code');
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
         }
-      }
-      return codeEl.innerText;
+        return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy
