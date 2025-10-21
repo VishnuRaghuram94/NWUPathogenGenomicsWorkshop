@@ -191,7 +191,7 @@ To calculate SNP distances, we will first perform SNP calling using `snippy` and
 To run Snippy [using multiple genomes as input](snippy-multi) (i.e., using the `snippy-multi` command), we need to provide Snippy with a tab-separated input file. This input file will have one line per each of our input genomes, with the name of the sample as the first column and the absolute path to the sample as the second column.
 
 ``` bash
-for filename in $(ls NWU_2025_workshop_data/test_datasets/salmonella_assemblies/*); do bname=$(basename $filename _genomic.fna); echo -e "${bname}\t$(pwd)/${filename}"; done; > snippy_input.tsv
+for filename in $(ls NWU_2025_workshop_data/test_datasets/salmonella_assemblies/*); do bname=$(basename $filename _genomic.fna); echo -e "${bname}\t$(pwd)/${filename}"; done > snippy_input.tsv
 ```
 
 :::callout-note
