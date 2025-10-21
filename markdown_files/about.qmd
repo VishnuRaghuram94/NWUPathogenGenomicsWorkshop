@@ -1,0 +1,26 @@
+---
+title: "About this workshop"
+format: html
+execute: 
+  echo: false
+---
+
+**This website is under construction**
+
+This workshop was facilitated by Vishnu Raghuram (Umeå University, Sweden) and co-ordinated by Prof. Kgaugelo Lekota (North West University, South Africa). 
+
+The source of all example datasets for this workshop came from [this](https://www.medrxiv.org/content/10.1101/2025.04.16.25325939v2) preprint where 36 *Salmonella enterica* sequences were collected from raw poultry meat as part of port-of-entry surveillance in South Africa. The sequences are deposited under the Bioproject [PRJNA1230142](https://www.ncbi.nlm.nih.gov/bioproject/?term=PRJNA1230142).
+
+To gather materials for this workshop, I used several online resources as well as content from past workshops with other colleagues. The online sources will be linked wherever relevant in the workshop materials. I would mainly like to acknowledge:
+
+- Dr. Laura Carroll and the [CompMicroLab](https://www.microbe.dev/) at Umeå University, Sweden
+
+- The Data Visualization and Analysis club at Emory University, USA
+
+
+**Contact information:**
+
+- Vishnu Raghuram
+- email: vr.prod+github@proton.me
+- github: [vishnuraghuram94](https://github.com/VishnuRaghuram94)
+- ORCID: [0000-0002-7435-6435](https://orcid.org/0000-0002-7435-6435)

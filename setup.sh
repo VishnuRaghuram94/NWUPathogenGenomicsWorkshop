@@ -48,10 +48,6 @@ curl https://raw.githubusercontent.com/VishnuRaghuram94/NWUPathogenGenomicsWorks
 echo -e "\033[33mDownloading AMRFinderPlus database\033[0m"
 amrfinder -u || { echo -e '\033[31mDownloading AMRFinderPlus database failed\033[0m' ; exit 1; }
 
-## Cleanup
-mv ftp.ncbi.nlm.nih.gov/pathogen/Antimicrobial_resistance/AMRFinderPlus/database/latest/* $(pwd)/NWU_2025_workshop_data/databases/AMRFinderPlus/ 
-rm -r $(pwd)/ftp.ncbi.nlm.nih.gov
-
 # Download AMRFinderPlus results summary
 echo -e "\033[33mDownloading AMRFinder results\033[0m"
 curl https://raw.githubusercontent.com/VishnuRaghuram94/NWUPathogenGenomicsWorkshop/refs/heads/main/results/PRJNA1230142_amrfinderplus.tsv -o $(pwd)/NWU_2025_workshop_data/test_datasets/results/PRJNA1230142_amrfinderplus.tsv -s || { echo -e '\033[31mDownloading AMRFinder results failed\033[0m' ; exit 1; }

@@ -1,0 +1,100 @@
+---
+title: "Bacterial Pathogen Genomics Workshop"
+author: "Vishnu Raghuram"
+format: html
+execute: 
+  echo: false
+---
+
+## 5-Day Pathogen Genomics Workshop Schedule
+
+**The goal of this workshop is to provide participants with a solid foundation in pathogen genomics, covering key bioinformatics tools and concepts, ensuring a mix of theoretical learning and hands-on exercises.**
+
+------------------------------------------------------------------------
+
+### Day 1: Bash Basics & Genomics Workflow
+
+**Goal:** Get everyone on the same page regarding command-line basics, the bacterial genomics workflow, and basic tools used in pathogen genomics.
+
+#### 1. Introduction to the Command Line
+
+-   What is the command line? Why is it essential in genomics?
+-   File structure, directories, and navigating the command line.
+-   Key commands (e.g., `ls`, `cd`, `cp`,`mkdir`, etc.)
+-   Simple text processing (using `grep`, `sed`, `tr`)
+-   Hands-on exercises combining different commands, piping and output redirection.
+
+#### 2. Overview of the Bacterial Genomics Workflow
+
+-   Overview of the genomic analysis pipeline for bacteria: QC, genome assembly, annotation, variant calling
+-   Why do we perform each step? What are the key questions each step answers in pathogen genomics?
+-   Participants will run `fastp`, `Shovill`, `bakta` and `snippy` (or `snippy-multi`) on sample data.
+-   Writing a simple loop to automate processing multiple samples
+
+------------------------------------------------------------------------
+
+### Day 2: Public Databases and overall genomic distance estimation
+
+**Goal:** Introduce public pathogen surveillance databases and tools for genome comparison.
+
+#### 3. Public Pathogen Genomics Databases
+
+-   Exploring of NCBI, SRA, BioSamples, BioProjects.
+-   The importance of using public databases in surveillance and research
+-   Retrieving genomic data from public databases (`ncbi-genome-download`,`ncbi-datasets`,`sratools`).
+-   Exploring Enterobase.
+
+#### 4. Genomic distance estimation
+
+-   MLST and how it's used in pathogen typing
+-   Introduction to genome distance estimation methods (MASH, ANI, SNP distances)
+-   Participants will use MLST to assign sequence types to bacterial genomes.
+-   Participants will run `mash`,`skani`, and `snp-dists` calculate genome distances from sample data.
+
+#### 5. Basic Data Visualization with RStudio
+
+-   Setting up RStudio, installing essential packages, reading data tables
+-   Data visualization in RStudio: ggplot2, ggtree, and other essential packages.
+-   Participants will create basic visualizations using `ggplot2` (e.g., bar plots, scatter plots).
+
+------------------------------------------------------------------------
+
+### Day 3: Analysis of popoulations using pangenomics and phylogenies
+
+**Goal:** Introduce pangenomes and phylogenies
+
+#### 6. Phylogenetic Trees and gene presence/absence data
+
+-   What is a phylogenetic tree? How is it used to study pathogen evolution?
+-   Discussion on tree-building methods (e.g. Neighbor-Joining, Maximum Likelihood)
+-   Participants will generate a Neighbour-Joining tree using `mashtree` and a ML tree using `IQ-TREE`.
+-   What is pangenomics? Why is it important for studying pathogen diversity?
+-   Overview of pangenomic analysis workflows and tools (e.g., `Panaroo` for bacterial pangenomes).
+
+------------------------------------------------------------------------
+
+### Day 4: Advanced Visualization & Data Analysis
+
+**Goal:** Dive deeper into RStudio for advanced data visualization techniques and analysis.
+
+#### 7. Advanced Visualization with R
+
+-   Advanced visualizations: Heatmaps, PCA/UMAP, faceting.
+-   Advanced `ggtree` usage with `gheatmap`
+-   Exploring visualization of SNP distances, pangenomes, and phylogenetic trees.
+
+#### 8. Large-scale data analysis using HPCs, Nextflow, SLURM
+
+-   Brief overview of writing pipelines, NextFlow, SLURM
+-   Discussing scaling up and automation (using `Bactopia`)
+
+------------------------------------------------------------------------
+
+### Day 5: Troubleshooting & Open Session
+
+**Goal:** Allow time for troubleshooting, revisiting any unclear topics, and addressing specific questions.
+
+-   Extra time in case of any overflow from previous days
+-   Brief recap of everything covered over the week.
+-   Participants can ask specific questions or seek help with problems encountered during the week.
+-   Help with more advanced problems that might relate to participants' own research.

@@ -398,11 +398,37 @@ Cleaning up output files
 <h5 class="anchored" data-anchor-id="create-the-snippy-input-file-for-snippy-multi">Create the snippy input file for <code>snippy-multi</code></h5>
 <p>To run Snippy <a href="snippy-multi">using multiple genomes as input</a> (i.e., using the <code>snippy-multi</code> command), we need to provide Snippy with a tab-separated input file. This input file will have one line per each of our input genomes, with the name of the sample as the first column and the absolute path to the sample as the second column.</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> filename <span class="kw">in</span> <span class="va">$(</span><span class="fu">ls</span> NWU_2025_workshop_data/test_datasets/salmonella_assemblies/<span class="pp">*</span><span class="va">)</span><span class="kw">;</span> <span class="cf">do</span> <span class="va">bname</span><span class="op">=</span><span class="va">$(</span><span class="fu">basename</span> <span class="va">$filename</span> _genomic.fna<span class="va">)</span><span class="kw">;</span> <span class="bu">echo</span> <span class="at">-e</span> <span class="st">"</span><span class="va">${bname}</span><span class="st">\t</span><span class="va">$(</span><span class="bu">pwd</span><span class="va">)</span><span class="st">/</span><span class="va">${filename}</span><span class="st">"</span><span class="kw">;</span> <span class="cf">done</span><span class="kw">;</span> <span class="op">&gt;</span> snippy_input.tsv</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Make sure to provide the ABSOLUTE PATH to the reads/assemblies you want aligned!</p>
+</div>
+</div>
 </section>
 <section id="run-snippy-multi-to-generate-a-list-of-snippy-commands" class="level5">
 <h5 class="anchored" data-anchor-id="run-snippy-multi-to-generate-a-list-of-snippy-commands">Run <code>snippy-multi</code> to generate a list of <code>snippy</code> commands</h5>
 <p>Now that we have our input file, we can use <code>snippy-multi</code> to create a script, which will tell Snippy which commands to run. To do this, run the following command:</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">snippy-multi</span> snippy_input.tsv <span class="at">--ref</span> NWU_2025_workshop_data/test_datasets/reference_genome/genomic.gbff <span class="at">--cpus</span> 1 <span class="op">&gt;</span> runme.sh</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">snippy-multi</span> snippy_input.tsv <span class="at">--ref</span> /path/to/NWU_2025_workshop_data/test_datasets/reference_genome/genomic.gbff <span class="at">--cpus</span> 1 <span class="op">&gt;</span> runme.sh</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Make sure to provide the ABSOLUTE PATH to your reference!</p>
+</div>
+</div>
 <ul>
 <li><code>snippy-multi</code> - Snippy’s command for dealing with multiple genomes as input</li>
 <li><code>snippy_input.tsv</code> - Provide <code>snippy-multi</code> with the path to our Snippy input file</li>
@@ -423,40 +449,35 @@ Cleaning up output files
 <li>Once we’ve created our <code>snippy_final</code> directory, let’s move all of the Snippy results that we want to keep to <code>snippy_final</code> (i.e., all the files starting with <code>core.*</code>):</li>
 </ul>
 <div class="sourceCode" id="cb11"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mv</span> core.<span class="pp">*</span> snippy_final</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>If we type <code>ls snippy_final</code>, we should see several files within <code>snippy_final</code>, each starting with <code>core.</code>:</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> snippy_final</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>For the rest of the lesson, let’s move to our <code>snippy_final</code> directory:</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> snippy_final</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>If we type <code>pwd</code>, we should see that we are in our <code>snippy_final</code> directory:</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="bu">pwd</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>If we type <code>ls</code>, we should see our Snippy output files:</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> snippy_final</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="clean-a-genomic-alignment-produced-using-snippy" class="level5">
 <h5 class="anchored" data-anchor-id="clean-a-genomic-alignment-produced-using-snippy">Clean a genomic alignment produced using <code>snippy</code></h5>
 <p>The file named <code>core.full.aln</code> is an output file produced by Snippy, which contains our genomic alignment. Specifically, <code>core.full.aln</code> file is a FASTA-formatted multiple sequence alignment file. It has one sequence for the reference, and one for each sample; each sequence has the same length as the reference sequence.</p>
 <p>To show the names of the sequences in our genomic alignment, run the following command, which prints the sequence headers in our genomic alignment multi-FASTA:</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">grep</span> <span class="st">"&gt;"</span> core.full.aln </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">grep</span> <span class="st">"&gt;"</span> core.full.aln </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>We should see all of our input genomes, plus our reference genome (<code>Reference</code>).</p>
 <p>We want to supply our genomic alignment to Gubbins so that we can identify and remove recombination. However, <a href="https://github.com/tseemann/snippy"><code>core.full.aln</code> contains some weird characters, which Gubbins (and other downstream programs) may not like.</a> Before we can do anything else with <code>core.full.aln</code>, we need to “clean” it using Snippy’s <code>snippy-clean_full_aln</code> function. This will replace all the “weird” characters with <code>N</code>, so that we can use our genomic alignment as input to other tools.</p>
-<p>To clean <code>core.full.aln</code>, let’s run <code>snippy-clean_full_aln</code> and output our clean alignment to a file named <code>clean.full.aln</code>:</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="ex">snippy-clean_full_aln</span> core.full.aln <span class="op">&gt;</span> clean.full.aln</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Once <code>snippy-clean_full_aln</code> finishes, we can type <code>ls</code> and see that a new file, <code>clean.full.aln</code> has been created:</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Our new file, <code>clean.full.aln</code>, contains our clean genomic alignment. We can see that it contains the same sequence headers as <code>core.full.aln</code>:</p>
-<div class="sourceCode" id="cb19"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">grep</span> <span class="st">"&gt;"</span> clean.full.aln</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>To clean <code>core.full.aln</code>, let’s run <code>snippy-clean_full_aln</code> and output our clean alignment to a file named <code>clean_core.full.aln</code>:</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="ex">snippy-clean_full_aln</span> core.full.aln <span class="op">&gt;</span> clean_core.full.aln</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Once <code>snippy-clean_full_aln</code> finishes, we can type <code>ls</code> and see that a new file, <code>clean_core.full.aln</code> has been created:</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="find-and-remove-recombination-in-a-genomic-alignment-using-gubbins" class="level5">
 <h5 class="anchored" data-anchor-id="find-and-remove-recombination-in-a-genomic-alignment-using-gubbins">Find and remove recombination in a genomic alignment using <code>gubbins</code></h5>
-<p>Now that we have our clean genomic alignment (<code>clean.full.aln</code>), we can use <a href="https://github.com/nickjcroucher/gubbins">Gubbins</a> to detect and remove recombination.</p>
-<div class="sourceCode" id="cb20"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="ex">run_gubbins.py</span> <span class="at">--help</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Let’s use Gubbins to detect and remove recombination in our clean genomic alignment, <code>clean.full.aln</code>; to do this, run the following command:</p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="ex">run_gubbins.py</span> <span class="at">--prefix</span> gubbins <span class="at">--threads</span> 1 clean.full.aln</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Now that we have our clean genomic alignment (<code>clean_core.full.aln</code>), we can use <a href="https://github.com/nickjcroucher/gubbins">Gubbins</a> to detect and remove recombination.</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="ex">run_gubbins.py</span> <span class="at">--help</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Let’s use Gubbins to detect and remove recombination in our clean genomic alignment, <code>clean_core.full.aln</code>; to do this, run the following command:</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> gubbins</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> gubbins</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="ex">run_gubbins.py</span> <span class="at">--prefix</span> gubbins <span class="at">--threads</span> 1 /path/to/clean_core.full.aln</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
 <li><code>run_gubbins.py</code> : Call Gubbins</li>
 <li><code>--prefix gubbins</code>: Use <code>gubbins</code> as a prefix for the final output filenames</li>
 <li><code>--threads 1</code> : Number of threads/CPUs to use</li>
-<li><code>clean.full.aln</code> : Path to our clean genomic alignment, which we will be used as input</li>
+<li><code>/path/to/clean_core.full.aln</code> : Path to our clean genomic alignment, which we will be used as input</li>
 </ul>
 <p>You should see several new files produced with the prefix <code>gubbins.*</code>. You can read all about the output files produced by Gubbins <a href="https://github.com/nickjcroucher/gubbins/blob/master/docs/gubbins_manual.md">here, in the Gubbins manual.</a></p>
 <p>We will be using the file <code>gubbins.filtered_polymorphic_sites.fasta</code> in subsequent steps; this file is a multi-FASTA alignment of recombination-filtered SNPs (i.e., it is an alignment of SNPs alone and does not include constant sites).</p>
@@ -465,21 +486,21 @@ Cleaning up output files
 <h5 class="anchored" data-anchor-id="construct-a-recombination-free-core-snp-alignment-using-snp-sites">Construct a recombination-free core SNP alignment using <code>snp-sites</code></h5>
 <p>Now that we have an alignment of recombination-free SNPs present in our genomes, let’s filter that alignment to get only the core SNPs. To do this, we will use <a href="https://github.com/sanger-pathogens/snp-sites">SNP-sites</a>.</p>
 <p>Use SNP-sites to construct a final, recombination-free alignment of core SNPs</p>
-<div class="sourceCode" id="cb22"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="ex">snp-sites</span> <span class="at">-c</span> gubbins.filtered_polymorphic_sites.fasta <span class="op">&gt;</span> clean.core.fasta</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="ex">snp-sites</span> <span class="at">-c</span> gubbins.filtered_polymorphic_sites.fasta <span class="op">&gt;</span> gubbins_clean_core.aln</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
 <li><code>snp-sites</code>: Call SNP-sites</li>
 <li><code>-c</code> : An option that tells <code>snp-sites</code> to only output columns containing exclusively ACGT (i.e., core SNPs; )</li>
 <li><code>gubbins.filtered_polymorphic_sites.fasta</code>: Ppath to the recombination-free alignment of SNPs produced via <code>gubbins</code> as input</li>
-<li><code>&gt; clean.core.fasta</code>: Write our final, recombination-free alignment of core SNPs to a file named <code>clean.core.fasta</code></li>
+<li><code>&gt; gubbins_clean_core.aln</code>: Write our final, recombination-free alignment of core SNPs to a file named <code>gubbins_clean_core.aln</code></li>
 </ul>
 </section>
 <section id="calculate-snp-distances-based-on-the-recombination-free-alignment-of-core-snps-using-snp-dists" class="level5">
 <h5 class="anchored" data-anchor-id="calculate-snp-distances-based-on-the-recombination-free-alignment-of-core-snps-using-snp-dists">Calculate SNP distances based on the recombination-free alignment of core SNPs using <code>snp-dists</code></h5>
-<div class="sourceCode" id="cb23"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="ex">snp-dists</span> <span class="at">-m</span> clean.core.fasta <span class="op">&gt;</span> clean.core.snp-dists.tsv</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="ex">snp-dists</span> <span class="at">-m</span> gubbins_clean_core.aln <span class="op">&gt;</span> gubbins_clean_core_aln.snp-dists.tsv</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
 <li><code>snp-dists</code>: Call SNP-dists</li>
 <li><code>-m</code> : An option to produce the output in “molten” format. Run the command without this option to see the difference!</li>
-<li><code>&gt; clean.core.snp-dists.tsv</code>: Write our SNP distances output to a file called <code>clean.core.snp-dists.tsv</code></li>
+<li><code>&gt; gubbins_clean_core_aln.snp-dists.tsv</code>: Write our SNP distances output to a file called <code>gubbins_clean_core_aln.snp-dists.tsvv</code></li>
 </ul>
 <hr>
 <p>Genomic distance estimation methods have different strengths and applications, and there is no one-size-fits-all approach. While MLST is more for typing strains based on predefined genes, genome distance methods like MASH and ANI can provide broader, more comprehensive comparisons across whole genomes.</p>

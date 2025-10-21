@@ -1,0 +1,229 @@
+---
+title: "Module 6"
+subtitle: "Introduction to pangenomes and phylogenies"
+project:
+  type: website
+  output-dir: docs
+---
+
+
+## Phylogenetics
+
+**Phylogenetics** is the study of evolutionary relationships among biological entities (e.g., species, genes). A phylogeny is a **hypothesis** explaining potential relationships between different organisms based on the data provided, which in our case will be DNA sequences. 
+
+![Parts of a phylogeny ([T. Ryan Gregory](https://evolution-outreach.biomedcentral.com/articles/10.1007/s12052-008-0035-x)).](https://media.springernature.com/full/springer-static/image/art%3A10.1007%2Fs12052-008-0035-x/MediaObjects/12052_2008_35_Fig2_HTML.gif?as=webp)
+
+
+* **nodes**: points at the ends of branches which represent sequences or hypothetical sequences at various points in evolutionary history (includes tips and internal nodes, including the root)
+
+* **tips (taxa, leaves, external nodes)**: the individuals (e.g., bacterial isolates) that we sampled and used to construct our phylogeny, which occur on single terminal branches
+
+* **internal nodes**: occur at the points where more than one branch meet and represent the (usually inferred) ancestral sequences
+
+* **root**: the most recent common ancestor of all taxa in a tree (note that most methods of phylogenetic reconstruction do not estimate the position of the root; as such, they produce "unrooted trees")
+
+![Rooting a tree: before and after (note the branch lengths are not to scale; [EMBL-EBI](https://www.ebi.ac.uk/training/online/courses/introduction-to-phylogenetics/what-is-a-phylogeny/aspects-of-phylogenies/root/)).](https://www.ebi.ac.uk/training/online/courses/introduction-to-phylogenetics/wp-content/uploads/sites/36/2023/04/picture9.png)
+
+* **branches**: show the path of transmission of genetic information from one generation to the next. Branch lengths indicate genetic change (the longer the branch, the more genetic change/divergence has occurred). Typically, the extent of genetic change is measured by estimating the average number of nucleotide or protein substitutions per site.
+
+![Representing branch lengths on a phylogeny using labels (left) and a scale bar (right; [EMBL-EBI](https://www.ebi.ac.uk/training/online/courses/introduction-to-phylogenetics/what-is-a-phylogeny/aspects-of-phylogenies/branches/)).](https://www.ebi.ac.uk/training/online/courses/introduction-to-phylogenetics/wp-content/uploads/sites/36/2020/05/phylo7.png)
+
+* **topology**: the branching structure of a tree, which indicates patterns of relatedness among taxa (trees with the same topology and root have the same biological interpretation)
+
+![Examples of trees with the same (top) and different (bottom) topologies ([EMBL-EBI](https://www.ebi.ac.uk/training/online/courses/introduction-to-phylogenetics/what-is-a-phylogeny/aspects-of-phylogenies/topology/)).](https://www.ebi.ac.uk/training/online/courses/introduction-to-phylogenetics/wp-content/uploads/sites/36/2020/05/phylo5.png)
+
+* **bootstrapping**: within phylogenetics, an approach to estimate confidence in a phylogeny's topology
+
+### Why do we care about phylogenies?
+
+[Phylogenies help us understand how genes, organisms, and genomes evolve.](https://www.ebi.ac.uk/training/online/courses/introduction-to-phylogenetics/why-is-phylogenetics-important/) In the public health arena, phylogenies are one of the most important tools we have to help us understand how pathogens evolve (e.g., where they came from, how they spread, how they are transmitted between hosts, if they are responsible for outbreaks, illnesses, or infections). These insights are critical for informing public health policy.
+
+Core SNP distances and average nucleotide identity (ANI)-based distances that we saw in previous modules only explain genomic distance and not necessarily **evolutionary distance**, though they are related. Phylogenies can provide us with evolutionary relationships about our sampled genomes which the genomic-distance based metrics alone cannot. For example, during the coronavirus disease 2019 (COVID-19) pandemic, phylogenomic methods have been critical for understanding the transmission, epidemiology and spatial dispersal of severe acute respiratory syndrome coronavirus 2 (SARS-CoV-2).
+
+Phylogeny constructions is one of the key goals of pathogen surveillance work and the steps we went through in the previous lessons (Read QC, Genome assembly, alignment, variant calling) were all steps leading up to this goal. A phylogeny provides significant interpretable biological insight into our samples.
+
+![Example of important clinical and public health questions (top row) were tackled using phylogenomic methods (middle row), leading to actionable public health and clinical insights during the COVID-19 pandemic (bottom row; [Attwood, et al.](https://www.nature.com/articles/s41576-022-00483-8#rightslink)).](https://media.springernature.com/full/springer-static/image/art%3A10.1038%2Fs41576-022-00483-8/MediaObjects/41576_2022_483_Fig1_HTML.png)
+
+### Tree/Phylogeny construction methods and considerations
+
+There are multiple different methods to construct trees or phylogenies based on the data you have. Typically, they involve starting with a nucleotide or amino acid sequence alignment. However, trees can also be constructed with discrete traits or distance values. Discussing all possible methods is outside the scope of this workshop but you can [check out this review](https://www.nature.com/articles/nrg3186) if you are interested in learning more. 
+
+#### Distance-based versus character-based tree reonstruction
+
+For **distance-based** methods, the pairwise distances between all sequences are calculated, and the distance matrix which results is used to build a tree. An example of this is neighbor joining, which uses a clustering algorithm to yield a tree. We used [Mashtree](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC9380445/) in a previous module to construct a distance-based tree using Mash distances. 
+
+:::{.callout-tip title="Tree vs Phylogeny: Not all trees are phylogenetic trees!" collapse=true}
+A phylogeny must, by definiton, explain evolutionary relationships. Distance based methods do not use evolutionary information (i.e information regarding nucleotide/aminoacid changes), they simply use a computed distance value between two samples.
+:::
+
+For **character-based** methods (i.e., maximum parsimony, maximum likelihood, and Bayesian methods), each site (i.e., character in an alignment) is used to calculate a score for each tree:
+
+* For **maximum parsimony**, this score is the minimum number of changes. (Not used often these days due to limitations)
+* For **maximum likelihood**, this score is the log-likelihood value.
+* For **Bayesian** methods, this score is the posterior probability.
+
+### Which phylogeny construction method do we choose?
+
+For typical public-health bacterial work with genome sequencing data:
+
+- Use **distance-based** methods  if:
+    - You just want to get an overall idea of the data we're working with. 
+    - This method can also work if you have a very large number of samples (several thousand genomes) and want to get a quick sense of the big picture.
+    - This is the fastest method
+    - Example tool: [Mashtree](https://github.com/lskatz/mashtree)
+
+- Use **maximum likelihood** (ML) if:
+    - You are interested in a specific lineage (for eg: specific sequence type) and want to explore the within-lineage evolutionary relationships (An alignment of recombination-free core SNPs is required). 
+    - This is adequate for the vast majority of public health applications.
+    - ML trees can be made for a multi-lineage dataset as well if appropriate an alignment is constructed (eg: concatenated core gene alignment)
+    - Much more computationally expensive than distance-based methods but gives you an actual phylogeny, not just a tree.
+    - Example tool:  [IQ-TREE](http://www.iqtree.org/). 
+- Use **Bayesian** methods if:
+    - You want to construct a **time-scaled** phylogeny and you have longitudionally sampled isolates (i.e sampled over time), with rich temporal information and good temporal resolution (knowing the time point for every sample and also having relatively even sampling over the specific window of time).
+    - Bayesian models can also aid in estimating geographic spread, population size and population growth rates. 
+    - Bayesian phylogenomic methods are even more time-consuming than ML and require significant additional expertise (check out [Taming the BEAST](https://taming-the-beast.org/tutorials/), for tutorials).
+    - example tool: [BEAST2](https://www.beast2.org/)
+
+#### Substitution models
+
+A substitution model is simply an expectation of how likely it is for one nucleotide (or amino-acid) to change to another. For example:
+
+- JC69 model: Assumes any nucleotide is equally likely to change to any other nucleotide and the frequencies for each base are equal.
+- K80 model: Assumes different rates for transitions (Purine to purine change or pyrimidine to pyrimidine change) and transversions (Purine to pyrimidine change or vice versa)
+- GTR model: assumes different substitution rates for each pair of nucleotides, as well as unequal base frequencies (If you dont know which one to use, use this one)
+
+There are many more! You can look at a list of other substitution models [here](https://iqtree.github.io/doc/Substitution-Models).
+
+
+### EXERCISE: Construct a Maximum Likelihood phylogeny
+
+We will be using our alignment of recombination-free core SNPs (`clean.core.fasta`) to construct a ML phylogeny with `IQTREE`.
+
+#### Ascertainment bias correction\
+
+- Every single site in our alignment is a SNP and there are no constant sites (i.e., sites in our alignment, where all genomes have the same nucleotide). 
+- This means our alignment is significantly shorter than the actual core genome size as we are only using the SNPs. 
+- We must tell our tree-making program that we are only using the SNP sites and provide the number of constant-sites we have "masked" (i.e removed from the alignment). This is so that the program doesn't think the alignment we are providing is indeed the full alignment.
+- If we don't do this, [the branch lengths of our tree will not be correct, and the topology of parts of the tree with short branches will potentially be affected.](https://bitsandbugs.org/2019/11/06/two-easy-ways-to-run-iq-tree-with-the-correct-number-of-constant-sites/)
+
+This is  is called an **ascertainment bias correction**. Specifically, we will tell IQ-TREE how many constant (invariant) sites there are in our genomic alignment, so that it can scale the branches of our tree accordingly. We can do this using [SNP-sites](https://github.com/sanger-pathogens/snp-sites), the tool we already used to get only the sites with SNPs. 
+    
+![Constructing a core SNP alignment and obtaining constant site counts from a full sequence alignment.](assets/images/module6/constant_sites_explained.png)
+
+
+-  Use SNP-sites to calculate the number of constant sites (A, C, G, and T) in our clean genomic alignment, `clean.full.aln`:
+
+    ```bash
+    snp-sites -C clean.full.aln > fconst.csv
+    ```
+    
+    - `snp-sites` : Call SNP-sites
+    - `-C` : Flag to output only counts of constant sites in our alignment (A, C, G, and T)
+    - `clean.full.aln` : Provide the path to our input multi-FASTA alignment (i.e., our full, clean genomic alignment produced via `Snippy`)
+    - `> fconst.csv` : Write the output of `snp-sites` to a file named `fconst.csv` 
+
+- `snp-sites` outputs a comma-separated file, where each field corresponds to the number of constant sites with (from left to right) A, C, G, and T in our full genomic alignment.
+    
+#### Construct a maximum likelihood (ML) phylogeny using IQ-TREE
+
+-  Let’s use [IQ-TREE](http://www.iqtree.org/) to construct a ML phylogeny, using our recombination-free core SNP alignment as input. IQ-TREE has a LOT of options. Check out the [IQ-TREE documentation](http://www.iqtree.org/doc/) if you want more details.
+
+-  Use IQ-TREE to construct a ML phylogeny
+
+    ```bash
+    iqtree -s clean.core.fasta -m MFP -B 1000 -T 1 -fconst $(cat fconst.csv)
+    ```
+
+    - `iqtree` : Call IQ-TREE
+    - `clean.core.fasta` : Provide the path to our input multi-FASTA alignment (i.e., our final, recombination-free core SNP alignment; )
+    - `-m MFP` : Tell `iqtree` to find the best-fitting nucleotide substitution model for our data using [ModelFinder](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5453245/); once the best model is found, `iqtree` will use that model to build our ML phylogeny
+    - `-B 1000` : Tell `iqtree` to perform 1,000 replicates of the ultrafast bootstrap approximation; this will allow us to see how confident `iqtree` is in our phylogeny's topology.
+    - `-T 1` : Number of threads/CPUs to use
+    - `-fconst $(cat fconst.csv)` : Using an ascertainment bias correction to correct our phylogeny's branch lengths (because our alignment contains core SNPs only). You can also directly supply the number of constant sites like `fconst "XXXX,XXXX,XXXX,XXXX" based on the contents of `fconst.csv`.
+
+IQ-TREE produces several output files, take a look at them! The final tree is the file with the extension `.treefile`.
+
+## Pangenomics
+
+### What is a pangenome?
+
+- Gene gain, loss and allelic variation happens all the time​
+- Both selective forces and random drift contribute to intraspecies variation​
+- Bacterial genomes have a slight deletion bias, and in general the genome size for a given species remains (approximately) constant
+- This leads to members of the same species having similar but not identical genomes​
+- **A pangenome is the collection of all genes/alleles found within a population**
+- A given gene can be **core** - present in all or most members of the population, or **accessary** - present in only some members of the population
+
+![What is a Pangenome?](assets/images/module6/pangenome.png)
+
+Pangenomes can help identify associations between genes and pathogenesis, environments, and/or hosts. They also allow us to study the introduction and turn-over rates of genes within a population. ​
+
+## Estimating the pangenome using Panaroo
+
+#### Pangenome estimation
+
+There are several pangenome pipelines currently available ([PanX](https://github.com/neherlab/pan-genome-analysis), [PIRATE](https://github.com/SionBayliss/PIRATE), [Panaroo](https://gthlab.au/panaroo/#/), [Roary](https://sanger-pathogens.github.io/Roary/) and more) and they all work similarly. Pangenome tools accept genome annotations in `.gff` format as input, cluster the annotated sequences at different thresholds into gene families, and then calculate the presence/absence of gene families across the population. The different tools usually differ in exactly how the annotations are clustered into gene families. In this example, we will use Panaroo, it is one of the newer tools and has many handy downstream analysis functions built-in.
+
+#### Running Panaroo
+
+Panaroo requires `.gff` files for all genomes in your dataset to run. We created these `.gff` files in the previous genome annotation exercise using Prokka. For convenience, lets copy all the `.gff` files alone into a separate directory.
+
+```{.bash}
+
+# Create a directory for panaroo
+mkdir panaroo
+
+# Create a folder for only the gff files inside the panaroo directory
+mkdir panaroo/gffs
+
+# Copy all the prokka gffs to the panaroo gffs folder 
+
+cp ./prokka/*.gff3 ./panaroo/gffs/
+
+```
+
+Next, run panaroo
+
+```{.bash}
+
+panaroo -i ./panaroo/gffs/* --clean-mode strict --core_threshold 0.95 --remove-invalid-genes -f 0.5 -t 20 -o ./panaroo/panaroo_results -a core
+
+```
+
+Command explanation:
+
+-   `panaroo` : Call panaroo
+
+-   `-i ./panaroo/gffs/*` : Path to all gff files
+
+-   `--clean-mode strict` : Panaroo has a correction mode for filtering out potential contaminant genes. Strict will only keep 'contaminant' genes present in \> 5% of the total population.
+
+-   `--core_threshold 0.95` : Genes present in 95% of the population or more are considered core
+
+-   `-–remove-invalid-genes` : Removes genes with premature stop codons
+
+-   `-f 0.5` : Identity threshold for clustering genes into families, 0.5 to 0.7 is typically used.
+
+-   `-t 20` : Number of threads to use, 20 in this case
+
+-   `-o ./panaroo/panaroo_results` : Output directory
+
+-   `-a core` : Outputs individual gene alignments for all core genes. Set `-a pan` for ALL genes
+
+Panaroo produces a lot of output files, we can go over some of the most important ones. Please check the [panaroo github](https://gthlab.au/panaroo/#/gettingstarted/output) for more detailed explanations for all output files.
+
+-   `summary_statistics.txt` : Basic pangenome summary statistics, eg: Number of core genes, number of accessory genes, etc.
+
+-   `core_gene_alignment_filtered.aln` : An alignment of all core genes in the population. For each genome, all core genes are concatenated in the same order and then aligned. This core gene alignment is different from snippy's core genome alignment as here only the coding regions are used. Since the genes are concatenated in a specific order, this does not necessarily represent the true order of the core genes in all genomes.
+
+    -   This alignment can directly be used to construct a phylogeny (for example using IQ-TREE)
+
+        ```{.bash}
+
+        iqtree -s core_gene_alignment_filtered.aln -m MFP -B 1000 -T 1
+        ```
+
+-   `pan_genome_reference.fa` : Representative sequences for all gene families (one each)
+
+-   `gene_presence_absence.Rtab` : Binary gene family presence absence matrix
+
