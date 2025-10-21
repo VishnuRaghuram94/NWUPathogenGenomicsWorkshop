@@ -11,7 +11,7 @@ project:
 
 **Phylogenetics** is the study of evolutionary relationships among biological entities (e.g., species, genes). A phylogeny is a **hypothesis** explaining potential relationships between different organisms based on the data provided, which in our case will be DNA sequences. 
 
-![Parts of a phylogeny ([T. Ryan Gregory](https://evolution-outreach.biomedcentral.com/articles/10.1007/s12052-008-0035-x)).](https://media.springernature.com/full/springer-static/image/art%3A10.1007%2Fs12052-008-0035-x/MediaObjects/12052_2008_35_Fig2_HTML.gif?as=webp)
+![Parts of a phylogeny ([T. Ryan Gregory, 2008](https://evolution-outreach.biomedcentral.com/articles/10.1007/s12052-008-0035-x)).](https://media.springernature.com/full/springer-static/image/art%3A10.1007%2Fs12052-008-0035-x/MediaObjects/12052_2008_35_Fig2_HTML.gif?as=webp)
 
 
 * **nodes**: points at the ends of branches which represent sequences or hypothetical sequences at various points in evolutionary history (includes tips and internal nodes, including the root)
@@ -42,7 +42,7 @@ Core SNP distances and average nucleotide identity (ANI)-based distances that we
 
 Phylogeny constructions is one of the key goals of pathogen surveillance work and the steps we went through in the previous lessons (Read QC, Genome assembly, alignment, variant calling) were all steps leading up to this goal. A phylogeny provides significant interpretable biological insight into our samples.
 
-![Example of important clinical and public health questions (top row) were tackled using phylogenomic methods (middle row), leading to actionable public health and clinical insights during the COVID-19 pandemic (bottom row; [Attwood, et al.](https://www.nature.com/articles/s41576-022-00483-8#rightslink)).](https://media.springernature.com/full/springer-static/image/art%3A10.1038%2Fs41576-022-00483-8/MediaObjects/41576_2022_483_Fig1_HTML.png)
+![Example of important clinical and public health questions (top row) were tackled using phylogenomic methods (middle row), leading to actionable public health and clinical insights during the COVID-19 pandemic (bottom row; [Attwood, et al.](https://www.nature.com/articles/s41576-022-00483-8)).](https://media.springernature.com/full/springer-static/image/art%3A10.1038%2Fs41576-022-00483-8/MediaObjects/41576_2022_483_Fig1_HTML.png)
 
 ### Tree/Phylogeny construction methods and considerations
 
@@ -111,15 +111,15 @@ This is  is called an **ascertainment bias correction**. Specifically, we will t
 ![Constructing a core SNP alignment and obtaining constant site counts from a full sequence alignment.](assets/images/module6/constant_sites_explained.png)
 
 
--  Use SNP-sites to calculate the number of constant sites (A, C, G, and T) in our clean genomic alignment, `clean.full.aln`:
+-  Use SNP-sites to calculate the number of constant sites (A, C, G, and T) in our clean genomic alignment, `clean_core.full.aln`:
 
     ```bash
-    snp-sites -C clean.full.aln > fconst.csv
+    snp-sites -C clean_core.full.aln > fconst.csv
     ```
     
     - `snp-sites` : Call SNP-sites
     - `-C` : Flag to output only counts of constant sites in our alignment (A, C, G, and T)
-    - `clean.full.aln` : Provide the path to our input multi-FASTA alignment (i.e., our full, clean genomic alignment produced via `Snippy`)
+    - `clean_core.full.aln` : Provide the path to our input multi-FASTA alignment (i.e., our full, clean genomic alignment produced via `Snippy`)
     - `> fconst.csv` : Write the output of `snp-sites` to a file named `fconst.csv` 
 
 - `snp-sites` outputs a comma-separated file, where each field corresponds to the number of constant sites with (from left to right) A, C, G, and T in our full genomic alignment.
@@ -131,11 +131,11 @@ This is  is called an **ascertainment bias correction**. Specifically, we will t
 -  Use IQ-TREE to construct a ML phylogeny
 
     ```bash
-    iqtree -s clean.core.fasta -m MFP -B 1000 -T 1 -fconst $(cat fconst.csv)
+    iqtree -s gubbins_clean_core.aln -m MFP -B 1000 -T 1 -fconst $(cat fconst.csv)
     ```
 
     - `iqtree` : Call IQ-TREE
-    - `clean.core.fasta` : Provide the path to our input multi-FASTA alignment (i.e., our final, recombination-free core SNP alignment; )
+    - `gubbins_clean_core.aln` : Provide the path to our input multi-FASTA alignment (i.e., our final, recombination-free core SNP alignment; )
     - `-m MFP` : Tell `iqtree` to find the best-fitting nucleotide substitution model for our data using [ModelFinder](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5453245/); once the best model is found, `iqtree` will use that model to build our ML phylogeny
     - `-B 1000` : Tell `iqtree` to perform 1,000 replicates of the ultrafast bootstrap approximation; this will allow us to see how confident `iqtree` is in our phylogeny's topology.
     - `-T 1` : Number of threads/CPUs to use
@@ -147,29 +147,42 @@ IQ-TREE produces several output files, take a look at them! The final tree is th
 
 ### What is a pangenome?
 
-- Gene gain, loss and allelic variation happens all the time​
-- Both selective forces and random drift contribute to intraspecies variation​
-- Bacterial genomes have a slight deletion bias, and in general the genome size for a given species remains (approximately) constant
-- This leads to members of the same species having similar but not identical genomes​
-- **A pangenome is the collection of all genes/alleles found within a population**
-- A given gene can be **core** - present in all or most members of the population, or **accessary** - present in only some members of the population
+The same bacterial species would experience different selective pressures depending on the environment. For eg: The gene products essential for survival in the soil would be different from the gene products essential for survival on the human skin. The environmental conditions, neighbouring bacteria and random genetic drift can all contribute to variation within a species. Therefore the same species of bacteria isolated from different environments can have slightly different genome compositions.
 
-![What is a Pangenome?](assets/images/module6/pangenome.png)
+In this case, if you were to collect all possible genes found for a given species by sampling multiple diverse members of that species, the total number of genes would be much greater than the number of genes in one genome for that species. Bacterial genomes have a slight deletion bias, and in general the genome size for a given species remains (approximately) constant even though the actual genes that are present or absent can vary.
+
+**A pangenome is the collection of all genes/alleles found within a population**
+
+![Core genome vs Pan-genome: Some genes are present in all (or most) members whereas some genes are only present in a few members](assets/images/module6/core_v_pan.png)
 
 Pangenomes can help identify associations between genes and pathogenesis, environments, and/or hosts. They also allow us to study the introduction and turn-over rates of genes within a population. ​
 
-## Estimating the pangenome using Panaroo
+A given gene can be **core** - present in all or most members of the population, or **accessory** - present in only some members of the population
+
+### Why build pangenomes?
+
+The more diverse your population is, the smaller your core genome gets, as the diversity increases, the proportion of the genome that is constant (i.e the "core") decreases. For analysis of a large number of diverse genomes performing a conventional core-genome alignment to a single reference sequence lead to losing informative portions of the genome for several samples as they may not share certain regions with the reference. Using a pangenome reference solves this problem, as here the reference sequence will contain all possible genes that are present in your population (not just the genes present in a single reference)
+
+![Higher proportion of reads will align to the pangenome reference [Matthews et al.](https://pmc.ncbi.nlm.nih.gov/articles/PMC11570541/)](/assets/images/module6/matthews_et_al.jpeg)
 
 #### Pangenome estimation
 
-There are several pangenome pipelines currently available ([PanX](https://github.com/neherlab/pan-genome-analysis), [PIRATE](https://github.com/SionBayliss/PIRATE), [Panaroo](https://gthlab.au/panaroo/#/), [Roary](https://sanger-pathogens.github.io/Roary/) and more) and they all work similarly. Pangenome tools accept genome annotations in `.gff` format as input, cluster the annotated sequences at different thresholds into gene families, and then calculate the presence/absence of gene families across the population. The different tools usually differ in exactly how the annotations are clustered into gene families. In this example, we will use Panaroo, it is one of the newer tools and has many handy downstream analysis functions built-in.
+##### Gene presence/absence pangenome:
+Pangenome tools accept genome annotations in `.gff` format as input, cluster the annotated sequences at different thresholds into gene families, and then calculate the presence/absence of gene families across the population. There are several pangenome pipelines currently available ([PanX](https://github.com/neherlab/pan-genome-analysis), [PIRATE](https://github.com/SionBayliss/PIRATE), [Panaroo](https://gthlab.au/panaroo/#/), [Roary](https://sanger-pathogens.github.io/Roary/) and more) and they all work similarly. The different tools usually differ in exactly how the annotations are clustered into gene families.
 
-#### Running Panaroo
+![Gene presence absence across a diverse population](assets/images/module6/pangenome_presabs.png)
+
+##### Pangenome graphs: 
+
+A pangenome graph comprises entire sequence regions (not just coding sequences/genes) and represents an alignment of multiple regions. The graph models the orientation of these sequence regions with potential alternate paths (sometimes called 'bubbles') to display variation. The pangenome graph is a more complex datastructure than binary gene presence/absence matrices, however they preserve gene synteny information as well as intergenic variation. Sequence based pangenome graphs can be constructed using tools like [Minigraph-cactus](https://github.com/ComparativeGenomicsToolkit/cactus) and [PanGenome Graph Builder (PGGB)](https://github.com/pangenome/pggb).
+
+![Pangenome graph: [Eizenga et al., 2021](https://pmc.ncbi.nlm.nih.gov/articles/PMC8006571/)](assets/images/module6/pangenome_graph.png)
+
+### EXERCISE: Build a pangenome
 
 Panaroo requires `.gff` files for all genomes in your dataset to run. We created these `.gff` files in the previous genome annotation exercise using Prokka. For convenience, lets copy all the `.gff` files alone into a separate directory.
 
 ```{.bash}
-
 # Create a directory for panaroo
 mkdir panaroo
 
@@ -179,51 +192,61 @@ mkdir panaroo/gffs
 # Copy all the prokka gffs to the panaroo gffs folder 
 
 cp ./prokka/*.gff3 ./panaroo/gffs/
-
 ```
 
 Next, run panaroo
 
 ```{.bash}
-
 panaroo -i ./panaroo/gffs/* --clean-mode strict --core_threshold 0.95 --remove-invalid-genes -f 0.5 -t 20 -o ./panaroo/panaroo_results -a core
-
 ```
 
 Command explanation:
 
 -   `panaroo` : Call panaroo
-
 -   `-i ./panaroo/gffs/*` : Path to all gff files
-
 -   `--clean-mode strict` : Panaroo has a correction mode for filtering out potential contaminant genes. Strict will only keep 'contaminant' genes present in \> 5% of the total population.
-
 -   `--core_threshold 0.95` : Genes present in 95% of the population or more are considered core
-
 -   `-–remove-invalid-genes` : Removes genes with premature stop codons
-
 -   `-f 0.5` : Identity threshold for clustering genes into families, 0.5 to 0.7 is typically used.
-
 -   `-t 20` : Number of threads to use, 20 in this case
-
 -   `-o ./panaroo/panaroo_results` : Output directory
-
 -   `-a core` : Outputs individual gene alignments for all core genes. Set `-a pan` for ALL genes
 
 Panaroo produces a lot of output files, we can go over some of the most important ones. Please check the [panaroo github](https://gthlab.au/panaroo/#/gettingstarted/output) for more detailed explanations for all output files.
 
 -   `summary_statistics.txt` : Basic pangenome summary statistics, eg: Number of core genes, number of accessory genes, etc.
-
 -   `core_gene_alignment_filtered.aln` : An alignment of all core genes in the population. For each genome, all core genes are concatenated in the same order and then aligned. This core gene alignment is different from snippy's core genome alignment as here only the coding regions are used. Since the genes are concatenated in a specific order, this does not necessarily represent the true order of the core genes in all genomes.
+  -   This alignment can directly be used to construct a phylogeny (for example using IQ-TREE)
 
-    -   This alignment can directly be used to construct a phylogeny (for example using IQ-TREE)
-
-        ```{.bash}
-
-        iqtree -s core_gene_alignment_filtered.aln -m MFP -B 1000 -T 1
-        ```
+```{.bash}
+iqtree -s core_gene_alignment_filtered.aln -m MFP -B 1000 -T 1
+```
 
 -   `pan_genome_reference.fa` : Representative sequences for all gene families (one each)
-
 -   `gene_presence_absence.Rtab` : Binary gene family presence absence matrix
+
+## Sources and further reading
+
+-   BEAST2: <https://www.beast2.org/>
+-   BEAST2 Tutorials (Taming the BEAST): <https://taming-the-beast.org/tutorials/>
+-   EMBL Introduction to phylogenetics course: <https://www.ebi.ac.uk/training/online/courses/introduction-to-phylogenetics/>
+-   IQ-TREE: <http://www.iqtree.org/>
+-   mashtree: <https://github.com/lskatz/mashtree>
+-   Minigraph-cactus: <https://github.com/ComparativeGenomicsToolkit/cactus>
+-   Panaroo: <https://gthlab.au/panaroo/>
+-   PanGenome Graph Builder (PGGB): <https://github.com/pangenome/pggb>
+-   PanX :<https://github.com/neherlab/pan-genome-analysis> 
+-   PIRATE: <https://github.com/SionBayliss/PIRATE>
+-   Roary: <https://sanger-pathogens.github.io/Roary>
+
+---
+
+-   Attwood SW, et al., [Phylogenetic and phylodynamic approaches to understanding and combating the early SARS-CoV-2 pandemic](https://pubmed.ncbi.nlm.nih.gov/35459859/). *Nat Rev Genet*. 2022 Sep;23(9):547-562. doi: 10.1038/s41576-022-00483-8. Epub 2022 Apr 22. PMID: 35459859; PMCID: PMC9028907.
+-   Eizenga JM, et al., [Pangenome Graphs](https://pmc.ncbi.nlm.nih.gov/articles/PMC8006571/). *Annu Rev Genomics Hum Genet*. 2020 Aug 31;21:139-162. doi: 10.1146/annurev-genom-120219-080406. Epub 2020 May 26. PMID: 32453966; PMCID: PMC8006571.
+-   Gregory, T.R.,[Understanding Evolutionary Trees](https://evolution-outreach.biomedcentral.com/articles/10.1007/s12052-008-0035-x). *Evo Edu Outreach* 1, 121–137 (2008). https://doi.org/10.1007/s12052-008-0035-x
+-   Matthews CA, et al. [A gentle introduction to pangenomics](https://pmc.ncbi.nlm.nih.gov/articles/PMC11570541/). *Brief Bioinform*. 2024 Sep 23;25(6):bbae588. doi: 10.1093/bib/bbae588. PMID: 39552065; PMCID: PMC11570541.
+-   Yang Z, Rannala B. [Molecular phylogenetics: principles and practice](https://pubmed.ncbi.nlm.nih.gov/22456349/). *Nat Rev Genet*. 2012 Mar 28;13(5):303-14. doi: 10.1038/nrg3186. PMID: 22456349.
+
+
+
 

@@ -357,6 +357,8 @@ Genomic distance estimation methods have different strengths and applications, a
 
 -   Jain, C., et al. 2018. [High throughput ANI analysis of 90K prokaryotic genomes reveals clear species boundaries](https://www.nature.com/articles/s41467-018-07641-9). *Nat Commun* 9, 5114 (2018). https://doi.org/10.1038/s41467-018-07641-9
 
+-   Katz LS, et al., [Mashtree: a rapid comparison of whole genome sequence files](https://pmc.ncbi.nlm.nih.gov/articles/PMC9380445/). *J Open Source Softw*. 2019 Dec 10;4(44):10.21105/joss.01762. doi: 10.21105/joss.01762. PMID: 35978566; PMCID: PMC9380445.
+
 -   Oliver Schwengers., et al. 2021. [Bakta: rapid and standardized annotation of bacterial genomes via alignment-free sequence identification](https://www.microbiologyresearch.org/content/journal/mgen/10.1099/mgen.0.000685). *Microbial Genomics* 7(11): e000685 doi: https://doi.org/10.1099/mgen.0.000685
 
 -   Ondov BD, et al. 2016. [Mash: fast genome and metagenome distance estimation using MinHash](https://pubmed.ncbi.nlm.nih.gov/27323842/). *Genome Biol*. 2016 Jun 20;17(1):132. doi: 10.1186/s13059-016-0997-x. PMID: 27323842; PMCID: PMC4915045.
