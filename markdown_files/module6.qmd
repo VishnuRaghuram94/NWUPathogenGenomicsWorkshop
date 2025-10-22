@@ -21,6 +21,10 @@ project:
 * **internal nodes**: occur at the points where more than one branch meet and represent the (usually inferred) ancestral sequences
 
 * **root**: the most recent common ancestor of all taxa in a tree (note that most methods of phylogenetic reconstruction do not estimate the position of the root; as such, they produce "unrooted trees")
+  - The tree can be rooted at the **MRCA** (Most Recent Common Ancestor), the **midpoint** or with an **outgroup**
+    - **MRCA** : For time-scaled trees where the branches represent the passage of time (root --> tip), the root will be the most recent common ancestor of all the sequences in the tree
+    - **Midpoint rooting** : Midpoint rooting assumes that all sequences in your dataset are evolving at the same rate. However, this assumption is not true for most biological datasets. You can use this method if you all your samples have been collected from the same place at the same time, or if you would simply like to visualize a tree using a rooted layout without making evolutionary inferences. 
+    - **Outgroup rooting** : An outgroup is the most distant member in your dataset that is still related to all your samples. For example, if you are making a species tree (a tree with genomes representing all the diversity of one species), you can include a genome of a different but closely related species. (*Staphylococcus argenteus* as the outgroup for *Staphylococcus aureus* trees)
 
 ![Rooting a tree: before and after (note the branch lengths are not to scale; [EMBL-EBI](https://www.ebi.ac.uk/training/online/courses/introduction-to-phylogenetics/what-is-a-phylogeny/aspects-of-phylogenies/root/)).](https://www.ebi.ac.uk/training/online/courses/introduction-to-phylogenetics/wp-content/uploads/sites/36/2023/04/picture9.png)
 

@@ -325,3 +325,4 @@ enterobase_assemblystats %>% group_by(Country) %>%  summarise(mean_N50_per_count
   - GGplot2 Essentials from STHDA: <https://www.sthda.com/english/wiki/ggplot2-essentials>
   - R Graph Gallery: <https://r-graph-gallery.com/ggplot2-package.html>
   - Software Carpentry R course: <https://swcarpentry.github.io/r-novice-gapminder/index.html>
+  - Swirl: <https://swirlstats.com/>
