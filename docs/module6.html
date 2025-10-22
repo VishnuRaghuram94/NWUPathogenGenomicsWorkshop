@@ -186,8 +186,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#pangenomics" id="toc-pangenomics" class="nav-link" data-scroll-target="#pangenomics">Pangenomics</a>
   <ul class="collapse">
   <li><a href="#what-is-a-pangenome" id="toc-what-is-a-pangenome" class="nav-link" data-scroll-target="#what-is-a-pangenome">What is a pangenome?</a></li>
+  <li><a href="#why-build-pangenomes" id="toc-why-build-pangenomes" class="nav-link" data-scroll-target="#why-build-pangenomes">Why build pangenomes?</a></li>
+  <li><a href="#exercise-build-a-pangenome" id="toc-exercise-build-a-pangenome" class="nav-link" data-scroll-target="#exercise-build-a-pangenome">EXERCISE: Build a pangenome</a></li>
   </ul></li>
-  <li><a href="#estimating-the-pangenome-using-panaroo" id="toc-estimating-the-pangenome-using-panaroo" class="nav-link" data-scroll-target="#estimating-the-pangenome-using-panaroo">Estimating the pangenome using Panaroo</a></li>
+  <li><a href="#sources-and-further-reading" id="toc-sources-and-further-reading" class="nav-link" data-scroll-target="#sources-and-further-reading">Sources and further reading</a></li>
   </ul>
 </nav>
     </div>
@@ -197,7 +199,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
 <h1 class="title">Module 6</h1>
-<p class="subtitle lead">Introduction to pangenomes and phylogenies</p>
+<p class="subtitle lead">Introduction to phylogenies and pangenomes</p>
 </div>
 
 
@@ -220,7 +222,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="https://media.springernature.com/full/springer-static/image/art%3A10.1007%2Fs12052-008-0035-x/MediaObjects/12052_2008_35_Fig2_HTML.gif?as=webp" class="img-fluid figure-img"></p>
-<figcaption>Parts of a phylogeny (<a href="https://evolution-outreach.biomedcentral.com/articles/10.1007/s12052-008-0035-x">T. Ryan Gregory</a>).</figcaption>
+<figcaption>Parts of a phylogeny (<a href="https://evolution-outreach.biomedcentral.com/articles/10.1007/s12052-008-0035-x">T. Ryan Gregory, 2008</a>).</figcaption>
 </figure>
 </div>
 <ul>
@@ -264,7 +266,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="https://media.springernature.com/full/springer-static/image/art%3A10.1038%2Fs41576-022-00483-8/MediaObjects/41576_2022_483_Fig1_HTML.png" class="img-fluid figure-img"></p>
-<figcaption>Example of important clinical and public health questions (top row) were tackled using phylogenomic methods (middle row), leading to actionable public health and clinical insights during the COVID-19 pandemic (bottom row; <a href="https://www.nature.com/articles/s41576-022-00483-8#rightslink">Attwood, et al.</a>).</figcaption>
+<figcaption>Example of important clinical and public health questions (top row) were tackled using phylogenomic methods (middle row), leading to actionable public health and clinical insights during the COVID-19 pandemic (bottom row; <a href="https://www.nature.com/articles/s41576-022-00483-8">Attwood, et al.</a>).</figcaption>
 </figure>
 </div>
 </section>
@@ -340,8 +342,7 @@ Tree vs Phylogeny: Not all trees are phylogenetic trees!
 <h3 class="anchored" data-anchor-id="exercise-construct-a-maximum-likelihood-phylogeny">EXERCISE: Construct a Maximum Likelihood phylogeny</h3>
 <p>We will be using our alignment of recombination-free core SNPs (<code>clean.core.fasta</code>) to construct a ML phylogeny with <code>IQTREE</code>.</p>
 <section id="ascertainment-bias-correction" class="level4">
-<h4 class="anchored" data-anchor-id="ascertainment-bias-correction">Ascertainment bias correction<br>
-</h4>
+<h4 class="anchored" data-anchor-id="ascertainment-bias-correction">Ascertainment bias correction</h4>
 <ul>
 <li>Every single site in our alignment is a SNP and there are no constant sites (i.e., sites in our alignment, where all genomes have the same nucleotide).</li>
 <li>This means our alignment is significantly shorter than the actual core genome size as we are only using the SNPs.</li>
@@ -356,12 +357,12 @@ Tree vs Phylogeny: Not all trees are phylogenetic trees!
 </figure>
 </div>
 <ul>
-<li><p>Use SNP-sites to calculate the number of constant sites (A, C, G, and T) in our clean genomic alignment, <code>clean.full.aln</code>:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">snp-sites</span> <span class="at">-C</span> clean.full.aln <span class="op">&gt;</span> fconst.csv</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<li><p>Use SNP-sites to calculate the number of constant sites (A, C, G, and T) in our clean genomic alignment, <code>clean_core.full.aln</code>:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">snp-sites</span> <span class="at">-C</span> clean_core.full.aln <span class="op">&gt;</span> fconst.csv</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
 <li><code>snp-sites</code> : Call SNP-sites</li>
 <li><code>-C</code> : Flag to output only counts of constant sites in our alignment (A, C, G, and T)</li>
-<li><code>clean.full.aln</code> : Provide the path to our input multi-FASTA alignment (i.e., our full, clean genomic alignment produced via <code>Snippy</code>)</li>
+<li><code>clean_core.full.aln</code> : Provide the path to our input multi-FASTA alignment (i.e., our full, clean genomic alignment produced via <code>Snippy</code>)</li>
 <li><code>&gt; fconst.csv</code> : Write the output of <code>snp-sites</code> to a file named <code>fconst.csv</code></li>
 </ul></li>
 <li><p><code>snp-sites</code> outputs a comma-separated file, where each field corresponds to the number of constant sites with (from left to right) A, C, G, and T in our full genomic alignment.</p></li>
@@ -372,10 +373,10 @@ Tree vs Phylogeny: Not all trees are phylogenetic trees!
 <ul>
 <li><p>Let’s use <a href="http://www.iqtree.org/">IQ-TREE</a> to construct a ML phylogeny, using our recombination-free core SNP alignment as input. IQ-TREE has a LOT of options. Check out the <a href="http://www.iqtree.org/doc/">IQ-TREE documentation</a> if you want more details.</p></li>
 <li><p>Use IQ-TREE to construct a ML phylogeny</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">iqtree</span> <span class="at">-s</span> clean.core.fasta <span class="at">-m</span> MFP <span class="at">-B</span> 1000 <span class="at">-T</span> 1 <span class="at">-fconst</span> <span class="va">$(</span><span class="fu">cat</span> fconst.csv<span class="va">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">iqtree</span> <span class="at">-s</span> gubbins_clean_core.aln <span class="at">-m</span> MFP <span class="at">-B</span> 1000 <span class="at">-T</span> 1 <span class="at">-fconst</span> <span class="va">$(</span><span class="fu">cat</span> fconst.csv<span class="va">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
 <li><code>iqtree</code> : Call IQ-TREE</li>
-<li><code>clean.core.fasta</code> : Provide the path to our input multi-FASTA alignment (i.e., our final, recombination-free core SNP alignment; )</li>
+<li><code>gubbins_clean_core.aln</code> : Provide the path to our input multi-FASTA alignment (i.e., our final, recombination-free core SNP alignment; )</li>
 <li><code>-m MFP</code> : Tell <code>iqtree</code> to find the best-fitting nucleotide substitution model for our data using <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5453245/">ModelFinder</a>; once the best model is found, <code>iqtree</code> will use that model to build our ML phylogeny</li>
 <li><code>-B 1000</code> : Tell <code>iqtree</code> to perform 1,000 replicates of the ultrafast bootstrap approximation; this will allow us to see how confident <code>iqtree</code> is in our phylogeny’s topology.</li>
 <li><code>-T 1</code> : Number of threads/CPUs to use</li>
@@ -390,72 +391,115 @@ Tree vs Phylogeny: Not all trees are phylogenetic trees!
 <h2 class="anchored" data-anchor-id="pangenomics">Pangenomics</h2>
 <section id="what-is-a-pangenome" class="level3">
 <h3 class="anchored" data-anchor-id="what-is-a-pangenome">What is a pangenome?</h3>
-<ul>
-<li>Gene gain, loss and allelic variation happens all the time​</li>
-<li>Both selective forces and random drift contribute to intraspecies variation​</li>
-<li>Bacterial genomes have a slight deletion bias, and in general the genome size for a given species remains (approximately) constant</li>
-<li>This leads to members of the same species having similar but not identical genomes​</li>
-<li><strong>A pangenome is the collection of all genes/alleles found within a population</strong></li>
-<li>A given gene can be <strong>core</strong> - present in all or most members of the population, or <strong>accessary</strong> - present in only some members of the population</li>
-</ul>
+<p>The same bacterial species would experience different selective pressures depending on the environment. For eg: The gene products essential for survival in the soil would be different from the gene products essential for survival on the human skin. The environmental conditions, neighbouring bacteria and random genetic drift can all contribute to variation within a species. Therefore the same species of bacteria isolated from different environments can have slightly different genome compositions.</p>
+<p>In this case, if you were to collect all possible genes found for a given species by sampling multiple diverse members of that species, the total number of genes would be much greater than the number of genes in one genome for that species. Bacterial genomes have a slight deletion bias, and in general the genome size for a given species remains (approximately) constant even though the actual genes that are present or absent can vary.</p>
+<p><strong>A pangenome is the collection of all genes/alleles found within a population</strong></p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="assets/images/module6/pangenome.png" class="img-fluid figure-img"></p>
-<figcaption>What is a Pangenome?</figcaption>
+<p><img src="assets/images/module6/core_v_pan.png" class="img-fluid figure-img"></p>
+<figcaption>Core genome vs Pan-genome: Some genes are present in all (or most) members whereas some genes are only present in a few members</figcaption>
 </figure>
 </div>
 <p>Pangenomes can help identify associations between genes and pathogenesis, environments, and/or hosts. They also allow us to study the introduction and turn-over rates of genes within a population. ​</p>
+<p>A given gene can be <strong>core</strong> - present in all or most members of the population, or <strong>accessory</strong> - present in only some members of the population</p>
 </section>
-</section>
-<section id="estimating-the-pangenome-using-panaroo" class="level2">
-<h2 class="anchored" data-anchor-id="estimating-the-pangenome-using-panaroo">Estimating the pangenome using Panaroo</h2>
+<section id="why-build-pangenomes" class="level3">
+<h3 class="anchored" data-anchor-id="why-build-pangenomes">Why build pangenomes?</h3>
+<p>The more diverse your population is, the smaller your core genome gets, as the diversity increases, the proportion of the genome that is constant (i.e the “core”) decreases. For analysis of a large number of diverse genomes performing a conventional core-genome alignment to a single reference sequence lead to losing informative portions of the genome for several samples as they may not share certain regions with the reference. Using a pangenome reference solves this problem, as here the reference sequence will contain all possible genes that are present in your population (not just the genes present in a single reference)</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src=".\assets/images/module6/matthews_et_al.jpeg" class="img-fluid figure-img"></p>
+<figcaption>Higher proportion of reads will align to the pangenome reference <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC11570541/">Matthews et al.</a></figcaption>
+</figure>
+</div>
 <section id="pangenome-estimation" class="level4">
 <h4 class="anchored" data-anchor-id="pangenome-estimation">Pangenome estimation</h4>
-<p>There are several pangenome pipelines currently available (<a href="https://github.com/neherlab/pan-genome-analysis">PanX</a>, <a href="https://github.com/SionBayliss/PIRATE">PIRATE</a>, <a href="https://gthlab.au/panaroo/#/">Panaroo</a>, <a href="https://sanger-pathogens.github.io/Roary/">Roary</a> and more) and they all work similarly. Pangenome tools accept genome annotations in <code>.gff</code> format as input, cluster the annotated sequences at different thresholds into gene families, and then calculate the presence/absence of gene families across the population. The different tools usually differ in exactly how the annotations are clustered into gene families. In this example, we will use Panaroo, it is one of the newer tools and has many handy downstream analysis functions built-in.</p>
+<section id="gene-presenceabsence-pangenome" class="level5">
+<h5 class="anchored" data-anchor-id="gene-presenceabsence-pangenome">Gene presence/absence pangenome:</h5>
+<p>Pangenome tools accept genome annotations in <code>.gff</code> format as input, cluster the annotated sequences at different thresholds into gene families, and then calculate the presence/absence of gene families across the population. There are several pangenome pipelines currently available (<a href="https://github.com/neherlab/pan-genome-analysis">PanX</a>, <a href="https://github.com/SionBayliss/PIRATE">PIRATE</a>, <a href="https://gthlab.au/panaroo/#/">Panaroo</a>, <a href="https://sanger-pathogens.github.io/Roary/">Roary</a> and more) and they all work similarly. The different tools usually differ in exactly how the annotations are clustered into gene families.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="assets/images/module6/pangenome_presabs.png" class="img-fluid figure-img"></p>
+<figcaption>Gene presence absence across a diverse population</figcaption>
+</figure>
+</div>
 </section>
-<section id="running-panaroo" class="level4">
-<h4 class="anchored" data-anchor-id="running-panaroo">Running Panaroo</h4>
+<section id="pangenome-graphs" class="level5">
+<h5 class="anchored" data-anchor-id="pangenome-graphs">Pangenome graphs:</h5>
+<p>A pangenome graph comprises entire sequence regions (not just coding sequences/genes) and represents an alignment of multiple regions. The graph models the orientation of these sequence regions with potential alternate paths (sometimes called ‘bubbles’) to display variation. The pangenome graph is a more complex datastructure than binary gene presence/absence matrices, however they preserve gene synteny information as well as intergenic variation. Sequence based pangenome graphs can be constructed using tools like <a href="https://github.com/ComparativeGenomicsToolkit/cactus">Minigraph-cactus</a> and <a href="https://github.com/pangenome/pggb">PanGenome Graph Builder (PGGB)</a>.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="assets/images/module6/pangenome_graph.png" class="img-fluid figure-img"></p>
+<figcaption>Pangenome graph: <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC8006571/">Eizenga et al., 2021</a></figcaption>
+</figure>
+</div>
+</section>
+</section>
+</section>
+<section id="exercise-build-a-pangenome" class="level3">
+<h3 class="anchored" data-anchor-id="exercise-build-a-pangenome">EXERCISE: Build a pangenome</h3>
 <p>Panaroo requires <code>.gff</code> files for all genomes in your dataset to run. We created these <code>.gff</code> files in the previous genome annotation exercise using Prokka. For convenience, lets copy all the <code>.gff</code> files alone into a separate directory.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a directory for panaroo</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> panaroo</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a folder for only the gff files inside the panaroo directory</span></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> panaroo/gffs</span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Copy all the prokka gffs to the panaroo gffs folder </span></span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> ./prokka/<span class="pp">*</span>.gff3 ./panaroo/gffs/</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a directory for panaroo</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> panaroo</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a folder for only the gff files inside the panaroo directory</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> panaroo/gffs</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Copy all the prokka gffs to the panaroo gffs folder </span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> ./prokka/<span class="pp">*</span>.gff3 ./panaroo/gffs/</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Next, run panaroo</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="ex">panaroo</span> <span class="at">-i</span> ./panaroo/gffs/<span class="pp">*</span> <span class="at">--clean-mode</span> strict <span class="at">--core_threshold</span> 0.95 <span class="at">--remove-invalid-genes</span> <span class="at">-f</span> 0.5 <span class="at">-t</span> 20 <span class="at">-o</span> ./panaroo/panaroo_results <span class="at">-a</span> core</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">panaroo</span> <span class="at">-i</span> ./panaroo/gffs/<span class="pp">*</span> <span class="at">--clean-mode</span> strict <span class="at">--core_threshold</span> 0.95 <span class="at">--remove-invalid-genes</span> <span class="at">-f</span> 0.5 <span class="at">-t</span> 20 <span class="at">-o</span> ./panaroo/panaroo_results <span class="at">-a</span> core</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Command explanation:</p>
 <ul>
-<li><p><code>panaroo</code> : Call panaroo</p></li>
-<li><p><code>-i ./panaroo/gffs/*</code> : Path to all gff files</p></li>
-<li><p><code>--clean-mode strict</code> : Panaroo has a correction mode for filtering out potential contaminant genes. Strict will only keep ‘contaminant’ genes present in &gt; 5% of the total population.</p></li>
-<li><p><code>--core_threshold 0.95</code> : Genes present in 95% of the population or more are considered core</p></li>
-<li><p><code>-–remove-invalid-genes</code> : Removes genes with premature stop codons</p></li>
-<li><p><code>-f 0.5</code> : Identity threshold for clustering genes into families, 0.5 to 0.7 is typically used.</p></li>
-<li><p><code>-t 20</code> : Number of threads to use, 20 in this case</p></li>
-<li><p><code>-o ./panaroo/panaroo_results</code> : Output directory</p></li>
-<li><p><code>-a core</code> : Outputs individual gene alignments for all core genes. Set <code>-a pan</code> for ALL genes</p></li>
+<li><code>panaroo</code> : Call panaroo</li>
+<li><code>-i ./panaroo/gffs/*</code> : Path to all gff files</li>
+<li><code>--clean-mode strict</code> : Panaroo has a correction mode for filtering out potential contaminant genes. Strict will only keep ‘contaminant’ genes present in &gt; 5% of the total population.</li>
+<li><code>--core_threshold 0.95</code> : Genes present in 95% of the population or more are considered core</li>
+<li><code>-–remove-invalid-genes</code> : Removes genes with premature stop codons</li>
+<li><code>-f 0.5</code> : Identity threshold for clustering genes into families, 0.5 to 0.7 is typically used.</li>
+<li><code>-t 20</code> : Number of threads to use, 20 in this case</li>
+<li><code>-o ./panaroo/panaroo_results</code> : Output directory</li>
+<li><code>-a core</code> : Outputs individual gene alignments for all core genes. Set <code>-a pan</code> for ALL genes</li>
 </ul>
 <p>Panaroo produces a lot of output files, we can go over some of the most important ones. Please check the <a href="https://gthlab.au/panaroo/#/gettingstarted/output">panaroo github</a> for more detailed explanations for all output files.</p>
 <ul>
-<li><p><code>summary_statistics.txt</code> : Basic pangenome summary statistics, eg: Number of core genes, number of accessory genes, etc.</p></li>
-<li><p><code>core_gene_alignment_filtered.aln</code> : An alignment of all core genes in the population. For each genome, all core genes are concatenated in the same order and then aligned. This core gene alignment is different from snippy’s core genome alignment as here only the coding regions are used. Since the genes are concatenated in a specific order, this does not necessarily represent the true order of the core genes in all genomes.</p>
+<li><code>summary_statistics.txt</code> : Basic pangenome summary statistics, eg: Number of core genes, number of accessory genes, etc.</li>
+<li><code>core_gene_alignment_filtered.aln</code> : An alignment of all core genes in the population. For each genome, all core genes are concatenated in the same order and then aligned. This core gene alignment is different from snippy’s core genome alignment as here only the coding regions are used. Since the genes are concatenated in a specific order, this does not necessarily represent the true order of the core genes in all genomes.</li>
+<li>This alignment can directly be used to construct a phylogeny (for example using IQ-TREE)</li>
+</ul>
+<div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">iqtree</span> <span class="at">-s</span> core_gene_alignment_filtered.aln <span class="at">-m</span> MFP <span class="at">-B</span> 1000 <span class="at">-T</span> 1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
-<li><p>This alignment can directly be used to construct a phylogeny (for example using IQ-TREE)</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="ex">iqtree</span> <span class="at">-s</span> core_gene_alignment_filtered.aln <span class="at">-m</span> MFP <span class="at">-B</span> 1000 <span class="at">-T</span> 1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
-</ul></li>
-<li><p><code>pan_genome_reference.fa</code> : Representative sequences for all gene families (one each)</p></li>
-<li><p><code>gene_presence_absence.Rtab</code> : Binary gene family presence absence matrix</p></li>
+<li><code>pan_genome_reference.fa</code> : Representative sequences for all gene families (one each)</li>
+<li><code>gene_presence_absence.Rtab</code> : Binary gene family presence absence matrix</li>
+</ul>
+</section>
+</section>
+<section id="sources-and-further-reading" class="level2">
+<h2 class="anchored" data-anchor-id="sources-and-further-reading">Sources and further reading</h2>
+<ul>
+<li>BEAST2: <a href="https://www.beast2.org/" class="uri">https://www.beast2.org/</a></li>
+<li>BEAST2 Tutorials (Taming the BEAST): <a href="https://taming-the-beast.org/tutorials/" class="uri">https://taming-the-beast.org/tutorials/</a></li>
+<li>EMBL Introduction to phylogenetics course: <a href="https://www.ebi.ac.uk/training/online/courses/introduction-to-phylogenetics/" class="uri">https://www.ebi.ac.uk/training/online/courses/introduction-to-phylogenetics/</a></li>
+<li>IQ-TREE: <a href="http://www.iqtree.org/" class="uri">http://www.iqtree.org/</a></li>
+<li>mashtree: <a href="https://github.com/lskatz/mashtree" class="uri">https://github.com/lskatz/mashtree</a></li>
+<li>Minigraph-cactus: <a href="https://github.com/ComparativeGenomicsToolkit/cactus" class="uri">https://github.com/ComparativeGenomicsToolkit/cactus</a></li>
+<li>Panaroo: <a href="https://gthlab.au/panaroo/" class="uri">https://gthlab.au/panaroo/</a></li>
+<li>PanGenome Graph Builder (PGGB): <a href="https://github.com/pangenome/pggb" class="uri">https://github.com/pangenome/pggb</a></li>
+<li>PanX :<a href="https://github.com/neherlab/pan-genome-analysis" class="uri">https://github.com/neherlab/pan-genome-analysis</a></li>
+<li>PIRATE: <a href="https://github.com/SionBayliss/PIRATE" class="uri">https://github.com/SionBayliss/PIRATE</a></li>
+<li>Roary: <a href="https://sanger-pathogens.github.io/Roary" class="uri">https://sanger-pathogens.github.io/Roary</a></li>
+</ul>
+<hr>
+<ul>
+<li>Attwood SW, et al., <a href="https://pubmed.ncbi.nlm.nih.gov/35459859/">Phylogenetic and phylodynamic approaches to understanding and combating the early SARS-CoV-2 pandemic</a>. <em>Nat Rev Genet</em>. 2022 Sep;23(9):547-562. doi: 10.1038/s41576-022-00483-8. Epub 2022 Apr 22. PMID: 35459859; PMCID: PMC9028907.</li>
+<li>Eizenga JM, et al., <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC8006571/">Pangenome Graphs</a>. <em>Annu Rev Genomics Hum Genet</em>. 2020 Aug 31;21:139-162. doi: 10.1146/annurev-genom-120219-080406. Epub 2020 May 26. PMID: 32453966; PMCID: PMC8006571.</li>
+<li>Gregory, T.R.,<a href="https://evolution-outreach.biomedcentral.com/articles/10.1007/s12052-008-0035-x">Understanding Evolutionary Trees</a>. <em>Evo Edu Outreach</em> 1, 121–137 (2008). https://doi.org/10.1007/s12052-008-0035-x</li>
+<li>Matthews CA, et al.&nbsp;<a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC11570541/">A gentle introduction to pangenomics</a>. <em>Brief Bioinform</em>. 2024 Sep 23;25(6):bbae588. doi: 10.1093/bib/bbae588. PMID: 39552065; PMCID: PMC11570541.</li>
+<li>Yang Z, Rannala B. <a href="https://pubmed.ncbi.nlm.nih.gov/22456349/">Molecular phylogenetics: principles and practice</a>. <em>Nat Rev Genet</em>. 2012 Mar 28;13(5):303-14. doi: 10.1038/nrg3186. PMID: 22456349.</li>
 </ul>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->
