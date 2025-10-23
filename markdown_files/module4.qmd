@@ -316,7 +316,7 @@ snp-sites -c gubbins.filtered_polymorphic_sites.fasta > gubbins_clean_core.aln
 
 -   `snp-sites`: Call SNP-sites
 -   `-c` : An option that tells `snp-sites` to only output columns containing exclusively ACGT (i.e., core SNPs; )
--   `gubbins.filtered_polymorphic_sites.fasta`: Ppath to the recombination-free alignment of SNPs produced via `gubbins` as input
+-   `gubbins.filtered_polymorphic_sites.fasta`: Path to the recombination-free alignment of SNPs produced via `gubbins` as input
 -   `> gubbins_clean_core.aln`: Write our final, recombination-free alignment of core SNPs to a file named `gubbins_clean_core.aln`
 
 ##### Calculate SNP distances based on the recombination-free alignment of core SNPs using `snp-dists`
@@ -327,7 +327,7 @@ snp-dists -m gubbins_clean_core.aln > gubbins_clean_core_aln.snp-dists.tsv
 
 -   `snp-dists`: Call SNP-dists
 -   `-m` : An option to produce the output in "molten" format. Run the command without this option to see the difference!
--   `> gubbins_clean_core_aln.snp-dists.tsv`: Write our SNP distances output to a file called `gubbins_clean_core_aln.snp-dists.tsvv`
+-   `> gubbins_clean_core_aln.snp-dists.tsv`: Write our SNP distances output to a file called `gubbins_clean_core_aln.snp-dists.tsv`
 
 ------------------------------------------------------------------------
 

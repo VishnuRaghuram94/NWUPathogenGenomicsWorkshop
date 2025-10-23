@@ -346,30 +346,16 @@ Click to reveal answer!
 <li>The format is <code>dataframe[rows,columns]</code></li>
 <li>The rows we want and the columns we want are split by a <strong>comma</strong></li>
 <li>Instead of <code>rows</code> - we have our <strong>condition</strong> which is all the rows where N50 &lt; 4e+06.</li>
-<li>We are not filtering by columns, we want all columns so we leave it blank. That’s why there is nothing after the <strong>comma</strong></li>
+<li>We are not filtering by columns, we want all columns so we leave it blank. That’s why there is nothing after the <strong>comma</strong>
+<ul>
+<li>If you would like to filter by columns : <code>enterobase_assemblystats[enterobase_assemblystats$N50 &lt; 4e+06,c(1,4,7)]</code> will print only the first, fourth and seventh column of the dataframe. After the <strong>comma</strong> we specify the columns we want, enclosed in <code>c()</code>. You can run <code>colnames(dataframe)</code> to see the names of all the columns (and the column number). Run <code>colnames(enterobase_assemblystats)</code> on the console and find the number for the N50 column!</li>
+</ul></li>
 </ul></li>
 </ul>
-<div class="callout callout-style-default callout-tip callout-titled" title="BONUS: Filter by columns too!">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-BONUS: Filter by columns too!
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-1" class="callout-1-contents callout-collapse collapse">
-<div class="callout-body-container callout-body">
-<pre><code>    `enterobase_assemblystats[enterobase_assemblystats$N50 &lt; 4e+06,c(1,4,7)]` will print only the first, fourth and seventh column of the dataframe. After the **comma** we specify the columns we want, enclosed in `c()`. 
-    You can run `colnames(dataframe)` to see the names of all the columns (and the column number). Run `colnames(enterobase_assemblystats)` on the console and find the number for the N50 column!</code></pre>
-</div>
-</div>
-</div>
 <p>We can thereby alter the <code>ggplot</code> command this: Note that it is identical to the previous <code>ggplot</code> command, we have only changed what we give as input to <code>data</code>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> enterobase_assemblystats[enterobase_assemblystats<span class="sc">$</span>N50<span class="sc">&lt;</span><span class="dv">4000000</span>,],<span class="fu">aes</span>(<span class="at">x=</span><span class="st">`</span><span class="at">Contig Number(&gt;=200 bp)</span><span class="st">`</span>,<span class="at">y=</span>N50))<span class="sc">+</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> enterobase_assemblystats[enterobase_assemblystats<span class="sc">$</span>N50<span class="sc">&lt;</span><span class="dv">4000000</span>,],<span class="fu">aes</span>(<span class="at">x=</span><span class="st">`</span><span class="at">Contig Number(&gt;=200 bp)</span><span class="st">`</span>,<span class="at">y=</span>N50))<span class="sc">+</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -387,8 +373,8 @@ BONUS: Filter by columns too!
 Click here to see the answer!
 </summary>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> enterobase_assemblystats[enterobase_assemblystats<span class="sc">$</span>N50<span class="sc">&lt;</span><span class="dv">4000000</span>,],<span class="fu">aes</span>(<span class="at">x=</span><span class="st">`</span><span class="at">Contig Number(&gt;=200 bp)</span><span class="st">`</span>,<span class="at">y=</span>N50,<span class="at">color=</span>Country))<span class="sc">+</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> enterobase_assemblystats[enterobase_assemblystats<span class="sc">$</span>N50<span class="sc">&lt;</span><span class="dv">4000000</span>,],<span class="fu">aes</span>(<span class="at">x=</span><span class="st">`</span><span class="at">Contig Number(&gt;=200 bp)</span><span class="st">`</span>,<span class="at">y=</span>N50,<span class="at">color=</span>Country))<span class="sc">+</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -406,8 +392,8 @@ Click here to see the answer!
 Click here to see the answer!
 </summary>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> enterobase_assemblystats[enterobase_assemblystats<span class="sc">$</span>N50<span class="sc">&lt;</span><span class="dv">4000000</span>,],<span class="fu">aes</span>(<span class="at">x=</span>N50,<span class="at">y=</span>Country))<span class="sc">+</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> enterobase_assemblystats[enterobase_assemblystats<span class="sc">$</span>N50<span class="sc">&lt;</span><span class="dv">4000000</span>,],<span class="fu">aes</span>(<span class="at">x=</span>N50,<span class="at">y=</span>Country))<span class="sc">+</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -417,6 +403,87 @@ Click here to see the answer!
 </div>
 </div>
 </details>
+</section>
+<section id="customizing-the-appearance-of-your-plot" class="level4">
+<h4 class="anchored" data-anchor-id="customizing-the-appearance-of-your-plot">Customizing the appearance of your plot</h4>
+<p>Most the visual customizations for your plot can be supplied within the <code>theme</code> layer. Take a look at the code below and the resulting plot. Can you figure out what each line is doing? Try changing different values to see how it changes the plot!</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> enterobase_assemblystats[enterobase_assemblystats<span class="sc">$</span>N50<span class="sc">&lt;</span><span class="dv">4000000</span>,],<span class="fu">aes</span>(<span class="at">x=</span><span class="st">`</span><span class="at">Contig Number(&gt;=200 bp)</span><span class="st">`</span>,<span class="at">y=</span>N50))<span class="sc">+</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">shape=</span><span class="dv">18</span>,<span class="at">size=</span><span class="dv">2</span>)<span class="sc">+</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">n.breaks=</span><span class="dv">10</span>)<span class="sc">+</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()<span class="sc">+</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.title.x=</span><span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">14</span>,<span class="at">face=</span><span class="st">"bold"</span>))<span class="sc">+</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.title.y=</span><span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">14</span>,<span class="at">face=</span><span class="st">"bold"</span>))<span class="sc">+</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text=</span><span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">8</span>,<span class="at">color=</span><span class="st">"black"</span>))<span class="sc">+</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span><span class="st">"Number of contigs &gt; 200bp"</span>,<span class="at">y=</span><span class="st">"N50 value"</span>,<span class="at">title=</span><span class="st">"Relationship between N50 value and number of contigs"</span>,<span class="at">subtitle=</span><span class="st">"Data obtained from Enterobase Salmonella Minnesota assembly stats"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="module5_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="faceting-and-multi-panel-figures" class="level4">
+<h4 class="anchored" data-anchor-id="faceting-and-multi-panel-figures">Faceting and multi-panel figures</h4>
+<section id="mutli-panel-figures" class="level5">
+<h5 class="anchored" data-anchor-id="mutli-panel-figures">Mutli-panel figures</h5>
+<p>Lets save two figures we have already made into ggplot objects</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>scatterplotfig<span class="ot">&lt;-</span><span class="fu">ggplot</span>(<span class="at">data =</span> enterobase_assemblystats[enterobase_assemblystats<span class="sc">$</span>N50<span class="sc">&lt;</span><span class="dv">4000000</span>,],<span class="fu">aes</span>(<span class="at">x=</span><span class="st">`</span><span class="at">Contig Number(&gt;=200 bp)</span><span class="st">`</span>,<span class="at">y=</span>N50))<span class="sc">+</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>histogramfig<span class="ot">&lt;-</span><span class="fu">ggplot</span>(<span class="at">data =</span> enterobase_assemblystats,<span class="fu">aes</span>(<span class="at">x=</span><span class="st">`</span><span class="at">Contig Number(&gt;=200 bp)</span><span class="st">`</span>))<span class="sc">+</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Now, instead of the images being displayed on the <strong>Viewer</strong> pane, they are now saved as objects in the <strong>Environment</strong> pane.</p>
+<p>Lets use these objects to make a multi-panel figure using the <code>plot_grid</code> function from the <code>cowplot</code> package</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_grid</span>(scatterplotfig,histogramfig)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="module5_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Take a look at the help page for <code>plot_grid</code>. Try to recreate the plot below by playing with the different options!</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="module5_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="384"></p>
+</figure>
+</div>
+</div>
+</div>
+<details>
+<summary>
+Click here to see the answer
+</summary>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_grid</span>(scatterplotfig,histogramfig,<span class="at">nrow=</span><span class="dv">2</span>,<span class="at">labels=</span><span class="fu">c</span>(<span class="st">"A"</span>,<span class="st">"B"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</section>
+<section id="faceting" class="level5">
+<h5 class="anchored" data-anchor-id="faceting">Faceting</h5>
+<p>Faceting is when you make multiple plots with the same x and y axes for the same data, but grouped by a specific factor. For eg: Lets remake our Number of contigs vs N50 scatterplot, but now separated by different Continents.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>scatterplotfig <span class="sc">+</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(Continent<span class="sc">~</span>.,<span class="at">scales =</span> <span class="st">"free"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="module5_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Since we saved the scatterplot to a ggplot object called <code>scatterplotfig</code>, we dont have to rewrite the base ggplot code again, as it is all contained within the object already. We can simply continue to refer to the object and add more “layers” (or <code>geoms</code>) to it with the <code>+</code> sign.</p>
+<p><code>facet_wrap</code> splits the data by a specific group, and here we specified <code>Continent</code> using <code>facet_wrap(Continent~.)</code> .</p>
+<p><code>scales = "free"</code> will automatically adjust the x and y axis scales for each facet.</p>
+</section>
 </section>
 </section>
 <section id="data-cleaningwrangling" class="level3">
@@ -429,11 +496,11 @@ Click here to see the answer!
 <li><p>First select only the columns we want. Use <code>colnames(enterobase_assemblystats)</code> to get the column numbers for our desired columns (alternatively you can also specify the names in quotes separated by commas within <code>c()</code> ).</p></li>
 <li><p>Write the subsetted dataframe to a new dataframe using <code>&lt;-</code></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>enterobase_assemblystats_filtered<span class="ot">&lt;-</span>enterobase_assemblystats[,<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">5</span>,<span class="dv">8</span>,<span class="dv">13</span>,<span class="dv">29</span>)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>enterobase_assemblystats_filtered<span class="ot">&lt;-</span>enterobase_assemblystats[,<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">5</span>,<span class="dv">8</span>,<span class="dv">13</span>,<span class="dv">29</span>)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></li>
 <li><p>Now remove all “NA” values from the new dataframe.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>enterobase_assemblystats_filtered<span class="ot">&lt;-</span>enterobase_assemblystats_filtered[<span class="fu">complete.cases</span>(enterobase_assemblystats_filtered)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>enterobase_assemblystats_filtered<span class="ot">&lt;-</span>enterobase_assemblystats_filtered[<span class="fu">complete.cases</span>(enterobase_assemblystats_filtered)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></li>
 </ul>
 </section>
@@ -443,7 +510,7 @@ Click here to see the answer!
 <p><strong>How do you check if all the values in a column are OK?</strong></p>
 <p>An easy trick is to use the <code>table</code> command, which produces frequency tables. That is, it prints out every value in a column along with the number of times that value has occurred.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(enterobase_assemblystats_filtered<span class="sc">$</span><span class="st">`</span><span class="at">Source Niche</span><span class="st">`</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(enterobase_assemblystats_filtered<span class="sc">$</span><span class="st">`</span><span class="at">Source Niche</span><span class="st">`</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
                       Animal Feed Companion Animal      Environment 
@@ -456,7 +523,7 @@ Click here to see the answer!
 </div>
 <p>Here we can see a blank value has occurred 62 times and “ND” has occurred 20 times in the filtered set. Lets remove all rows where the “Source Niche” column has value = “” (blank) or = “ND”</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>enterobase_assemblystats_filtered<span class="ot">&lt;-</span>enterobase_assemblystats_filtered[<span class="sc">!</span>enterobase_assemblystats_filtered<span class="sc">$</span><span class="st">`</span><span class="at">Source Niche</span><span class="st">`</span> <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">""</span>,<span class="st">"ND"</span>),]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>enterobase_assemblystats_filtered<span class="ot">&lt;-</span>enterobase_assemblystats_filtered[<span class="sc">!</span>enterobase_assemblystats_filtered<span class="sc">$</span><span class="st">`</span><span class="at">Source Niche</span><span class="st">`</span> <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">""</span>,<span class="st">"ND"</span>),]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ul>
 <li>Here, we followed the same format for filtering the dataframe as we did with the N50 values: <code>dataframe[rows,columns]</code></li>
@@ -469,7 +536,7 @@ Click here to see the answer!
 </ul></li>
 </ul>
 <div class="callout callout-style-default callout-tip callout-titled" title="Filter your dataframe as you read the table">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -478,10 +545,10 @@ Filter your dataframe as you read the table
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>Alternatively, if you know what you are looking for, you can appropriately specify what values should be counted as <code>NA</code> right when you read your dataframe using the <code>na.strings=</code> option.</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>enterobase_assemblystats<span class="ot">&lt;-</span><span class="fu">fread</span>(<span class="st">"/home/vishnu/UmeaU_backup/NWU_2025_workshop/NWU_2025_workshop_data/test_datasets/20251020_enterobase_minnesota_assemblystats.tsv"</span>,<span class="at">na.strings =</span> <span class="fu">c</span>(<span class="st">"ND"</span>,<span class="st">""</span>,<span class="st">"Unkown"</span>,<span class="st">"unknown"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>enterobase_assemblystats<span class="ot">&lt;-</span><span class="fu">fread</span>(<span class="st">"/home/vishnu/UmeaU_backup/NWU_2025_workshop/NWU_2025_workshop_data/test_datasets/20251020_enterobase_minnesota_assemblystats.tsv"</span>,<span class="at">na.strings =</span> <span class="fu">c</span>(<span class="st">"ND"</span>,<span class="st">""</span>,<span class="st">"Unkown"</span>,<span class="st">"unknown"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
@@ -491,9 +558,9 @@ Filter your dataframe as you read the table
 <p>You can merge two different data frames by a common column using <code>merge</code></p>
 <p>Read in the enterobase 7 Gene MLST table you downloaded</p>
 <p>The advantage with <code>fread</code> is that you can select exactly which columns to read in right at the start so that the whole table isn’t read. In our case, we only want column 1 and 34, so we specify that as <code>select = c(1,34)</code>.</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>enterobase_mlst<span class="ot">&lt;-</span><span class="fu">fread</span>(<span class="at">file=</span><span class="st">"/path/to/20251020_enterobase_minnesota_mlst.tsv"</span>,<span class="at">header=</span>T,<span class="at">sep=</span><span class="st">"</span><span class="sc">\t</span><span class="st">"</span>,<span class="at">select =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">34</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>enterobase_mlst<span class="ot">&lt;-</span><span class="fu">fread</span>(<span class="at">file=</span><span class="st">"/path/to/20251020_enterobase_minnesota_mlst.tsv"</span>,<span class="at">header=</span>T,<span class="at">sep=</span><span class="st">"</span><span class="sc">\t</span><span class="st">"</span>,<span class="at">select =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">34</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Lets merge the MLST table with our filtered assemblystats table using the <code>merge</code> command</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>enterobase_assemblystats_mlst_merged<span class="ot">&lt;-</span><span class="fu">merge</span>(enterobase_assemblystats_filtered,enterobase_mlst,<span class="at">by=</span><span class="st">"Uberstrain"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>enterobase_assemblystats_mlst_merged<span class="ot">&lt;-</span><span class="fu">merge</span>(enterobase_assemblystats_filtered,enterobase_mlst,<span class="at">by=</span><span class="st">"Uberstrain"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
 <li>The <code>merge</code> function is used like so: <code>merge(dataframe_1,dataframe_2,by="column_name")</code></li>
 <li>As long as the column name specified is the same for both our dataframes (in our case both columns are named “Uberstrain”), it will merge, keeping only values common in both dataframes.</li>
@@ -502,7 +569,7 @@ Filter your dataframe as you read the table
 <section id="adding-a-column-by-condition" class="level4">
 <h4 class="anchored" data-anchor-id="adding-a-column-by-condition">Adding a column by condition</h4>
 <p>You can add a new column based on a specific condition using the <code>mutate</code> function. For example lets say we want a column called ‘is_human’ which will have the values “yes” if “Source Niche” equals “Human” and “no” if not.</p>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>enterobase_assemblystats_mlst_merged<span class="ot">&lt;-</span><span class="fu">mutate</span>(enterobase_assemblystats_mlst_merged, <span class="at">is_human =</span> <span class="fu">if_else</span>(<span class="st">`</span><span class="at">Source Niche</span><span class="st">`</span> <span class="sc">==</span> <span class="st">"Human"</span>, <span class="st">"yes"</span>, <span class="st">"no"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>enterobase_assemblystats_mlst_merged<span class="ot">&lt;-</span><span class="fu">mutate</span>(enterobase_assemblystats_mlst_merged, <span class="at">is_human =</span> <span class="fu">if_else</span>(<span class="st">`</span><span class="at">Source Niche</span><span class="st">`</span> <span class="sc">==</span> <span class="st">"Human"</span>, <span class="st">"yes"</span>, <span class="st">"no"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
 <li>We used the <code>mutate</code> function like so: <code>mutate(dataframe, &lt;name for new column&gt; = &lt;value for new column&gt;)</code></li>
 <li>We named the new column <code>is_human</code> , and used an <code>if_else</code> condition for the value</li>
@@ -516,7 +583,7 @@ Filter your dataframe as you read the table
 <h4 class="anchored" data-anchor-id="group-by-and-summarize">Group by and summarize</h4>
 <p>If you want the mean of a column, say N50, you can simply do:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(enterobase_assemblystats<span class="sc">$</span>N50, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(enterobase_assemblystats<span class="sc">$</span>N50, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 238868.8</code></pre>
 </div>
@@ -524,7 +591,7 @@ Filter your dataframe as you read the table
 <p>The <code>na.rm</code> option is to remove the <code>NA</code> values.</p>
 <p>But what if you want the mean N50 value for each country? That is where the function <code>group_by</code> is used</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>enterobase_assemblystats <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(Country) <span class="sc">%&gt;%</span>  <span class="fu">summarise</span>(<span class="at">mean_N50_per_country =</span> <span class="fu">mean</span>(N50, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>enterobase_assemblystats <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(Country) <span class="sc">%&gt;%</span>  <span class="fu">summarise</span>(<span class="at">mean_N50_per_country =</span> <span class="fu">mean</span>(N50, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 26 × 2
    Country    mean_N50_per_country
@@ -563,6 +630,7 @@ Filter your dataframe as you read the table
 <li>GGplot2 Essentials from STHDA: <a href="https://www.sthda.com/english/wiki/ggplot2-essentials" class="uri">https://www.sthda.com/english/wiki/ggplot2-essentials</a></li>
 <li>R Graph Gallery: <a href="https://r-graph-gallery.com/ggplot2-package.html" class="uri">https://r-graph-gallery.com/ggplot2-package.html</a></li>
 <li>Software Carpentry R course: <a href="https://swcarpentry.github.io/r-novice-gapminder/index.html" class="uri">https://swcarpentry.github.io/r-novice-gapminder/index.html</a></li>
+<li>Swirl: <a href="https://swirlstats.com/" class="uri">https://swirlstats.com/</a></li>
 </ul>
 
 

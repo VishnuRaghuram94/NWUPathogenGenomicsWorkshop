@@ -9,7 +9,7 @@ project:
 ```{r setup, echo=FALSE, include=F}
 
 knitr::opts_chunk$set(warning = FALSE, message = FALSE)
-knitr::opts_knit$set(root.dir = "/home/vishnu/UmeaU_backup/NWU_2025_workshop/NWUPathogenGenomicsWorkshop/results/")
+knitr::opts_knit$set(root.dir = "C:/Users/Work/OneDrive - Umeå universitet/NWU_2025_workshop/NWUPathogenGenomicsWorkshop/NWUPathogenGenomicsWorkshop/results")
 
 library(dplyr)
 library(data.table)
@@ -19,8 +19,11 @@ library(ggtree)
 library(pheatmap)
 library(phytools)
 library(ggnewscale)
+library(umap)
 
 ```
+
+In this module, we will use R and ggplot to make more visualizations combining our analyses and metadata. Please check out the github page for the original research work these data are based on here: <https://github.com/VishnuRaghuram94/SEPI>. The visualizations we are about to make are all very similar. 
 
 ### Load libraries
 
@@ -33,6 +36,7 @@ library(ggtree)
 library(pheatmap)
 library(phytools)
 library(ggnewscale)
+library(umap)
 ```
 
 ## Making a SNP distance heatmap
@@ -246,12 +250,93 @@ gheatmap(tree_viz,amrfinder_presabs_matrix,colnames_angle = 90,colnames_offset_y
 ```
 
 ## Creating visualizations from Pangenome data
+
+Read in the gene presence absence table
 ```{r}
 panaroo_presabs<-fread("PRJNA1230142_panaroo.Rtab",header=T,sep="\t")
+```
 
+Our presence/absence table has gene names as the first column and a 0 or 1 under each genome name to indicate presence or absence. We can use some basic functions in R to summarise these data for us :
+
+```{r}
 gene_freq<-cbind(panaroo_presabs[,1],rowSums(panaroo_presabs[,-1]))
 colnames(gene_freq)<-c("Gene","Freq")
-gene_freq$perc<-gene_freq$Freq*100/max(gene_freq$Freq)
-int_genes<-as.data.frame(gene_freq$Gene[gene_freq$perc < 95 & gene_freq$perc > 5])
-
+gene_freq<-as.data.frame(gene_freq)
 ```
+
+- `panaroo_presabs[,1]` : Takes only the first column, in this case only gene names
+- `rowSums(panaroo_presabs[,-1])`:
+  - `panaroo_presabs[,-1]` : Takes all except the first column
+  - `rowSums` : Gets the sum of each row. In this case, that would add up all the 1s
+  - This would tell us how many genomes the corresponding gene family is present in.
+- `cbind(x,y)`: "Binds" columns of the inputs together. In this case, `x` is `panaroo_presabs[,1]` and `y` is `rowSums(...)`
+- `gene_freq<-` : Write a new dataframe called `gene_freq` where the number of genomes each gene family is present in is saved.
+`colnames(gene_freq)<-c("Gene","Freq")` : Assigns the names "Gene" and "Freq" to column 1 and column 2 of the newly created `gene_freq`
+- `gene_freq<-as.data.frame(gene_freq)` : Explicitly declaring `gene_freq` to be a dataframe
+
+Lets now create a new column called `perc` that has the percentage of genomes each gene is present in.
+
+```{r}
+gene_freq$perc<-gene_freq$Freq*100/max(gene_freq$Freq)
+```
+
+  - `max(gene_freq$Freq)` : Gives the maximum value from a list of values. Our list of values is the column `Freq`. The maximum values here will be the maximum amount of genomes a single gene can be present in (i.e 100% presence)
+  - `gene_freq$Freq*100/max(gene_freq$Freq)`: Multipling each value in `Freq` by 100 and then dividing each value by the `max` - giving us the percentage
+  - `gene_freq$perc<-` : Writing the new list of percentage values to a new column in `gene_freq` called `perc`.
+  
+Now try visualizing the percentage of genomes each gene is present in as a histogram!
+
+<details>
+<summary> Click here to see the answer </summary>
+```{r}
+ggplot(data=gene_freq)+geom_histogram(aes(x=perc))
+```
+</details>
+
+Now lets filter the gene presence absence table to remove core genes
+
+```{r}
+panaroo_presabs_filtered<-panaroo_presabs[panaroo_presabs$Gene %in% gene_freq$Gene[gene_freq$perc<95]]
+
+panaroo_presabs_filtered<-as.data.frame(panaroo_presabs_filtered)
+
+rownames(panaroo_presabs_filtered)<-panaroo_presabs_filtered$Gene
+
+panaroo_presabs_filtered<-panaroo_presabs_filtered[,-1]
+
+panaroo_presabs_filtered_transposed<-as.data.frame(t(panaroo_presabs_filtered)) # Transposing
+```
+
+Even after filtering, this table has over 600 genes. While it is possible to visualize them along side the tree like we did previously with AMRFinder data, the plot would appear too cluttered to visualize clearly.
+
+In these cases, we can use **dimensionality reduction** methods. 
+
+Dimensionality reduction involves applying mathematical transformations to high dimensional data to convert them to low dimensional data. 
+
+In our case, we have the distribution of over 600 genes across 36 genomes. Using dimensionality reduction, we can represent this in 2 dimensions, where *ideally* genomes with similar gene presence/absence patterns should cluster together. Lets use a dimensionality reduction method called UMAP (Uniform Manifold AProximation)
+
+```{r}
+set.seed(1000);umap_fit<-umap(panaroo_presabs_filtered_transposed)
+
+umap_df <- as.data.frame(umap_fit$layout)
+colnames(umap_df)<-c("umap1","umap2")
+
+ggplot(data=umap_df,aes(x=umap1,y=umap2))+
+  geom_point()+
+  theme_void()
+```
+
+At first glance, it looks like our data fall into two distinct clusters! This suggests that there may be specific combinations of genes present in one cluster and absent in the other (and/or vice vers) and requires further investigation.
+
+However, one has to be very careful while interpreting results from dimensionality reduction methods such as UMAP (or alternatively, PCoA, tSNE) as often times they tend to display structure in our data when there is none. Only use them as exploratory/visualization tools when you are working with high-dimension data and not as tools to make hard conclusions. Read more about UMAP [here!](https://pair-code.github.io/understanding-umap/)
+
+
+
+---
+## Sources and further reading:
+
+ggtree Manual: <https://guangchuangyu.github.io/software/ggtree/>
+PHeatmap tutorial: <https://davetang.org/muse/2018/05/15/making-a-heatmap-in-r-with-the-pheatmap-package/>
+Panaroo manual: <https://gthlab.au/panaroo/#/gettingstarted/quickstart>
+Understanding UMAP: <https://pair-code.github.io/understanding-umap/>
+Understanding tSNE: <https://distill.pub/2016/misread-tsne/>

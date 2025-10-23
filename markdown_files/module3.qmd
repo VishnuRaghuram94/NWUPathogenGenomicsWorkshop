@@ -149,7 +149,7 @@ Enterobase is a web-based platform for genomic epidemiology of key pathogens suc
 
 Like NCBI, EnteroBase is also a repository of sequencing data. However, unlike NCBI, EnteroBase is a lot more specific in its scope. It only hosts data regarding a handful of pathogens, and the focus is more on tracking different lineages temporally and geographically. This makes **EnteroBase** a rich source of metadata for specific organisms.
 
-Head over to https://enterobase.warwick.ac.uk/ and select "Salmonella enterica" and click "Search strains".
+Head over to <https://enterobase.warwick.ac.uk/> and select "Salmonella enterica" and click "Search strains".
 
 ![Enterobase Search Filters](assets/images/module3/Enterobase_search.png)
 

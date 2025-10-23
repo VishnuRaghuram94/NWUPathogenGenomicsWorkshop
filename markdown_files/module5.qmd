@@ -9,13 +9,13 @@ project:
 ```{r setup, echo=FALSE, include=F}
 
 knitr::opts_chunk$set(warning = FALSE, message = FALSE)
-
-setwd("C:/Users/Work/OneDrive - Umeå universitet/NWU_2025_workshop")
+knitr::opts_knit$set(root.dir = "C:/Users/Work/OneDrive - Umeå universitet/NWU_2025_workshop/NWUPathogenGenomicsWorkshop/NWUPathogenGenomicsWorkshop/results")
 
 library(dplyr)
 library(data.table)
 library(tidyverse)
 library(ggplot2)
+library(cowplot)
 
 enterobase_assemblystats<-fread("C:/Users/Work/OneDrive - Umeå universitet/NWU_2025_workshop/20251020_enterobase_minnesota_assemblystats.tsv",header=T,sep="\t")
 
@@ -169,11 +169,8 @@ enterobase_assemblystats[enterobase_assemblystats$N50 < 4e+06,]
     - The rows we want and the columns we want are split by a **comma**
     - Instead of `rows` - we have our **condition** which is all the rows where N50 < 4e+06.
     - We are not filtering by columns, we want all columns so we leave it blank. That's why there is nothing after the **comma**
-    
-:::{.callout-tip collapse=true title="BONUS: Filter by columns too!"}
-        `enterobase_assemblystats[enterobase_assemblystats$N50 < 4e+06,c(1,4,7)]` will print only the first, fourth and seventh column of the dataframe. After the **comma** we specify the columns we want, enclosed in `c()`. 
-        You can run `colnames(dataframe)` to see the names of all the columns (and the column number). Run `colnames(enterobase_assemblystats)` on the console and find the number for the N50 column!
-:::
+      - If you would like to filter by columns : `enterobase_assemblystats[enterobase_assemblystats$N50 < 4e+06,c(1,4,7)]` will print only the first, fourth and seventh column of the dataframe. After the **comma** we specify the columns we want, enclosed in `c()`. You can run `colnames(dataframe)` to see the names of all the columns (and the column number). Run `colnames(enterobase_assemblystats)` on the console and find the number for the N50 column!
+
 
 We can thereby alter the `ggplot` command this:
 Note that it is identical to the previous `ggplot` command, we have only changed what we give as input to `data`.
@@ -208,6 +205,72 @@ ggplot(data = enterobase_assemblystats[enterobase_assemblystats$N50<4000000,],ae
   geom_boxplot()
 ```
 </details>
+
+#### Customizing the appearance of your plot
+
+Most the visual customizations for your plot can be supplied within the `theme` layer. Take a look at the code below and the resulting plot. Can you figure out what each line is doing? Try changing different values to see how it changes the plot!
+
+```{r}
+ggplot(data = enterobase_assemblystats[enterobase_assemblystats$N50<4000000,],aes(x=`Contig Number(>=200 bp)`,y=N50))+
+  geom_point(shape=18,size=2)+
+  scale_x_continuous(n.breaks=10)+
+  theme_bw()+
+  theme(axis.title.x=element_text(size=14,face="bold"))+
+  theme(axis.title.y=element_text(size=14,face="bold"))+
+  theme(axis.text=element_text(size=8,color="black"))+
+  labs(x="Number of contigs > 200bp",y="N50 value",title="Relationship between N50 value and number of contigs",subtitle="Data obtained from Enterobase Salmonella Minnesota assembly stats")
+```
+
+#### Faceting and multi-panel figures
+
+##### Mutli-panel figures
+
+Lets save two figures we have already made into ggplot objects
+
+```{r}
+
+scatterplotfig<-ggplot(data = enterobase_assemblystats[enterobase_assemblystats$N50<4000000,],aes(x=`Contig Number(>=200 bp)`,y=N50))+
+  geom_point()
+
+histogramfig<-ggplot(data = enterobase_assemblystats,aes(x=`Contig Number(>=200 bp)`))+
+  geom_histogram(binwidth = 5)
+
+```
+
+Now, instead of the images being displayed on the **Viewer** pane, they are now saved as objects in the **Environment** pane.
+
+Lets use these objects to make a multi-panel figure using the `plot_grid` function from the `cowplot` package
+
+```{r}
+plot_grid(scatterplotfig,histogramfig)
+```
+
+Take a look at the help page for `plot_grid`. Try to recreate the plot below by playing with the different options! 
+
+```{r fig.height=7,fig.width=4, echo=F, include=T}
+plot_grid(scatterplotfig,histogramfig,nrow=2,labels=c("A","B"))
+```
+<details>
+<summary>Click here to see the answer </summary>
+```{.r}
+plot_grid(scatterplotfig,histogramfig,nrow=2,labels=c("A","B"))
+```
+</details>
+
+##### Faceting
+
+Faceting is when you make multiple plots with the same x and y axes for the same data, but grouped by a specific factor. For eg: Lets remake our Number of contigs vs N50 scatterplot, but now separated by different Continents.
+
+```{r fig.height=7}
+scatterplotfig +
+  facet_wrap(Continent~.,scales = "free")
+```
+
+Since we saved the scatterplot to a ggplot object called `scatterplotfig`, we dont have to rewrite the base ggplot code again, as it is all contained within the object already. We can simply continue to refer to the object and add more "layers" (or `geoms`) to it with the `+` sign. 
+
+`facet_wrap` splits the data by a specific group, and here we specified `Continent` using `facet_wrap(Continent~.)` . 
+
+`scales = "free"` will automatically adjust the x and y axis scales for each facet.
 
 ### Data cleaning/wrangling
 

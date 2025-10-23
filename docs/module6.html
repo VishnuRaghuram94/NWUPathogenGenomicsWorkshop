@@ -199,7 +199,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
 <h1 class="title">Module 6</h1>
-<p class="subtitle lead">Introduction to phylogenies and pangenomes</p>
+<p class="subtitle lead">Introduction to pangenomes and phylogenies</p>
 </div>
 
 
@@ -229,7 +229,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p><strong>nodes</strong>: points at the ends of branches which represent sequences or hypothetical sequences at various points in evolutionary history (includes tips and internal nodes, including the root)</p></li>
 <li><p><strong>tips (taxa, leaves, external nodes)</strong>: the individuals (e.g., bacterial isolates) that we sampled and used to construct our phylogeny, which occur on single terminal branches</p></li>
 <li><p><strong>internal nodes</strong>: occur at the points where more than one branch meet and represent the (usually inferred) ancestral sequences</p></li>
-<li><p><strong>root</strong>: the most recent common ancestor of all taxa in a tree (note that most methods of phylogenetic reconstruction do not estimate the position of the root; as such, they produce “unrooted trees”)</p></li>
+<li><p><strong>root</strong>: the most recent common ancestor of all taxa in a tree (note that most methods of phylogenetic reconstruction do not estimate the position of the root; as such, they produce “unrooted trees”)</p>
+<ul>
+<li>The tree can be rooted at the <strong>MRCA</strong> (Most Recent Common Ancestor), the <strong>midpoint</strong> or with an <strong>outgroup</strong>
+<ul>
+<li><strong>MRCA</strong> : For time-scaled trees where the branches represent the passage of time (root –&gt; tip), the root will be the most recent common ancestor of all the sequences in the tree</li>
+<li><strong>Midpoint rooting</strong> : Midpoint rooting assumes that all sequences in your dataset are evolving at the same rate. However, this assumption is not true for most biological datasets. You can use this method if you all your samples have been collected from the same place at the same time, or if you would simply like to visualize a tree using a rooted layout without making evolutionary inferences.</li>
+<li><strong>Outgroup rooting</strong> : An outgroup is the most distant member in your dataset that is still related to all your samples. For example, if you are making a species tree (a tree with genomes representing all the diversity of one species), you can include a genome of a different but closely related species. (<em>Staphylococcus argenteus</em> as the outgroup for <em>Staphylococcus aureus</em> trees)</li>
+</ul></li>
+</ul></li>
 </ul>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -342,7 +350,8 @@ Tree vs Phylogeny: Not all trees are phylogenetic trees!
 <h3 class="anchored" data-anchor-id="exercise-construct-a-maximum-likelihood-phylogeny">EXERCISE: Construct a Maximum Likelihood phylogeny</h3>
 <p>We will be using our alignment of recombination-free core SNPs (<code>clean.core.fasta</code>) to construct a ML phylogeny with <code>IQTREE</code>.</p>
 <section id="ascertainment-bias-correction" class="level4">
-<h4 class="anchored" data-anchor-id="ascertainment-bias-correction">Ascertainment bias correction</h4>
+<h4 class="anchored" data-anchor-id="ascertainment-bias-correction">Ascertainment bias correction<br>
+</h4>
 <ul>
 <li>Every single site in our alignment is a SNP and there are no constant sites (i.e., sites in our alignment, where all genomes have the same nucleotide).</li>
 <li>This means our alignment is significantly shorter than the actual core genome size as we are only using the SNPs.</li>
