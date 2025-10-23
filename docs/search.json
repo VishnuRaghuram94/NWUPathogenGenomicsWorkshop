@@ -25,7 +25,7 @@
     "href": "module7.html#sources-and-further-reading",
     "title": "Module 7",
     "section": "Sources and further reading:",
-    "text": "Sources and further reading:\nggtree Manual: https://guangchuangyu.github.io/software/ggtree/ PHeatmap tutorial: https://davetang.org/muse/2018/05/15/making-a-heatmap-in-r-with-the-pheatmap-package/ Panaroo manual: https://gthlab.au/panaroo/#/gettingstarted/quickstart Understanding UMAP: https://pair-code.github.io/understanding-umap/ Understanding tSNE: https://distill.pub/2016/misread-tsne/"
+    "text": "Sources and further reading:\n\nggtree Manual: https://guangchuangyu.github.io/software/ggtree/\nPHeatmap tutorial: https://davetang.org/muse/2018/05/15/making-a-heatmap-in-r-with-the-pheatmap-package/\nPanaroo manual: https://gthlab.au/panaroo/#/gettingstarted/quickstart\nUnderstanding UMAP: https://pair-code.github.io/understanding-umap/ - Understanding tSNE: https://distill.pub/2016/misread-tsne/"
   },
   {
     "objectID": "module5.html",

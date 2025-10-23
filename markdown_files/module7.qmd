@@ -23,11 +23,11 @@ library(umap)
 
 ```
 
-In this module, we will use R and ggplot to make more visualizations combining our analyses and metadata. Please check out the github page for the original research work these data are based on here: <https://github.com/VishnuRaghuram94/SEPI>. The visualizations we are about to make are all very similar. 
+In this module, we will use R and ggplot to make more visualizations combining our analyses and metadata. Please check out the github page for the original research work these data are based on here: <https://github.com/VishnuRaghuram94/SEPI>. The visualizations we are about to make are all very similar.
 
 ### Load libraries
 
-```{.r}
+``` r
 library(dplyr)
 library(data.table)
 library(tidyverse)
@@ -46,14 +46,14 @@ library(umap)
 Lets use the `fread` command to read the SNP distances table.
 
 `fread` will read your input as a `data.table` object, lets explicitly specify that we want it to be a `data.frame` object using `as.data.frame`
+
 ```{r }
 snpdist<-as.data.frame(fread("PRJNA1230142_snpdists.tsv",header=F,sep="\t",col.names = c("acc1","acc2","snp_distance")))
 ```
 
 -   `fread(header=F,col.names = c("acc1","acc2","snp_distance")`: Our file doesn't have a header so by default when it is read it will not have column names, but we can specify what we want the names of the columns to be using the `col.names` option within `fread`
--   `as.data.frame(fread(...))` : Here, **nested** `fread` inside `as.data.frame` . This way, whatever `fread` reads will automatically be passed to `as.data.frame`. 
+-   `as.data.frame(fread(...))` : Here, **nested** `fread` inside `as.data.frame` . This way, whatever `fread` reads will automatically be passed to `as.data.frame`.
 -   `snpdist<-` : The output of `as.data.frame` is saved to `snpdist`
-
 
 ### Converting the "molten" SNP distances table into a distance matrix
 
@@ -63,17 +63,24 @@ rownames(snpdist_matrix)<-snpdist_matrix$acc1
 snpdist_matrix<-snpdist_matrix[,-1]
 ```
 
--   `dcast(snpdist,acc1~acc2, value.var="snp_dist")` : 
-  - The `dcast` function can convert "long" data (our molten table) to "wide" data (matrix)
-  - `acc1~acc2` option is the "formula" to perform the cast, i.e which two columns should be used
-  - `value.var` specifies the column that should be used to fill in the values in each cell. Since our file only has 3 columns and we have used `acc1` and `acc2` as the formula, the `snp_dist` column will automatically be considered here. But if you have a table with more columns, you can specify using the `value.var` option. 
--   `snpdist_matrix <-` : Save the resulting table to `snpdist_matrix`  
-  
--  `rownames(snpdist_matrix)<-snpdist_matrix$acc1 ; snpdist_matrix<-snpdist_matrix[,-1]` :
-  - A distance-matrix by definition can only have numeric values. Take a look at the `snpdist_matrix` table by clicking on it in the Environment tab. You will see that the first row has the accessions (specifically, the values that were originally in the `acc1` column)
-  - We specify using  the `rownames()` command that we want `snpdist_matrix$acc1` to be the rownames
-  - Then we overwrite `snpdist_matrix` with `snpdist_matrix[,-1]` . The data.frame notation is `dataframe[rows,columns]`. We specified `-1` as the `columns` - this means "all except column 1. This would remove the `acc1` column from the matrix, leaving us with only numeric values. 
-  
+-   `dcast(snpdist,acc1~acc2, value.var="snp_dist")` :
+
+-   The `dcast` function can convert "long" data (our molten table) to "wide" data (matrix)
+
+-   `acc1~acc2` option is the "formula" to perform the cast, i.e which two columns should be used
+
+-   `value.var` specifies the column that should be used to fill in the values in each cell. Since our file only has 3 columns and we have used `acc1` and `acc2` as the formula, the `snp_dist` column will automatically be considered here. But if you have a table with more columns, you can specify using the `value.var` option.
+
+-   `snpdist_matrix <-` : Save the resulting table to `snpdist_matrix`
+
+-   `rownames(snpdist_matrix)<-snpdist_matrix$acc1 ; snpdist_matrix<-snpdist_matrix[,-1]` :
+
+-   A distance-matrix by definition can only have numeric values. Take a look at the `snpdist_matrix` table by clicking on it in the Environment tab. You will see that the first row has the accessions (specifically, the values that were originally in the `acc1` column)
+
+-   We specify using the `rownames()` command that we want `snpdist_matrix$acc1` to be the rownames
+
+-   Then we overwrite `snpdist_matrix` with `snpdist_matrix[,-1]` . The data.frame notation is `dataframe[rows,columns]`. We specified `-1` as the `columns` - this means "all except column 1. This would remove the `acc1` column from the matrix, leaving us with only numeric values.
+
 ### Visualizing a SNP-distance heatmap
 
 Use the `pheatmap` function to output a heatmap of the SNP distance matrix we just constructed
@@ -84,9 +91,9 @@ pheatmap(snpdist_matrix)
 
 ### Adding metadata to the heatmap
 
-Lets create a metadata table. Since we don't actually have one, we will create a fake table in R for visualization purposes. 
+Lets create a metadata table. Since we don't actually have one, we will create a fake table in R for visualization purposes.
 
-We will read in the MLST table and add a new column to it called "Country" where we will randomly assign the values "A", "B" or "C"  to each sample. 
+We will read in the MLST table and add a new column to it called "Country" where we will randomly assign the values "A", "B" or "C" to each sample.
 
 We will do this using a combination of the `fread`, `mutate` and `sample` functions, but we can do it all in one line with the help of **piping** and **nesting** functions.
 
@@ -98,7 +105,7 @@ metadata$ST<-as.factor(metadata$ST)
 
 -   `fread(...,select=c(1,3))` : By using the `select` option in `fread`, you can specify exactly which columns need to be read. Only the first and third columns are relevant from the MLST table so we can choose to read only those two.
 -   `%>%` : This is the pipe function in R, equivalent to `|` in bash
--   `fread(...) %>% mutate` : This will pipe the output of `fread` (the MLST table with 2 columns) to the `mutate` function. 
+-   `fread(...) %>% mutate` : This will pipe the output of `fread` (the MLST table with 2 columns) to the `mutate` function.
 -   `mutate(Country = ...)` : We are creating a new column called `Country` in the table we just read
 -   `sample()` : This function will randomly sample values from a list provided. Our list is `c("A","B","C")`
 -   `size=36, replace=T` : We want `sample` to pick from the given list 36 times as we have 36 samples in our table and they all need to be assigned a random country. We use `replace=T` to "sample with replacement", so its possible for the same "country" to be assigned to multiple samples.
@@ -139,11 +146,10 @@ pheatmap(snpdist_matrix,
          clustering_method = "average")
 ```
 
-
 ### Visualize a tree using `ggtree`
 
-The `read.tree` function in the `ggtree` package can be used to read in newick formatted trees
-Then use the `ggtree` function to visualize the tree
+The `read.tree` function in the `ggtree` package can be used to read in newick formatted trees Then use the `ggtree` function to visualize the tree
+
 ```{r}
 tree<-read.tree("PRJNA1230142_iqtree.nwk")
 ggtree(tree)
@@ -156,9 +162,10 @@ ggtree(tree,layout = "unrooted")
 ggtree(tree,layout = "circular")
 ```
 
-The most common layout for visualizing trees is the "rectangular" or "circular" layout. However, both of these are rooted layouts and currently our tree is unrooted. 
+The most common layout for visualizing trees is the "rectangular" or "circular" layout. However, both of these are rooted layouts and currently our tree is unrooted.
 
 Lets midpoint root our tree:
+
 ```{r}
 tree<-midpoint_root(tree)
 ```
@@ -166,6 +173,7 @@ tree<-midpoint_root(tree)
 Midpoint rooting assumes that all your sequences have equal evolutionary rates. This is fine for visualization but not for any evolutionary inferences as this assumption is not true for most biological datasets.
 
 Add tip labels and tip points:
+
 ```{r fig.height=7,fig.width=7}
 
 ggtree(tree,layout = "rectangular")+
@@ -178,6 +186,7 @@ ggtree(tree,layout = "rectangular")+
 Adding metadata:
 
 We can add the metadata table to `ggtree` using `%<+% metadata` , after this we follow the same `ggplot` rules by supplying the `aes()` option to colour tips based on the country.
+
 ```{r fig.height=7,fig.width=7}
 ggtree(tree,layout = "rectangular") %<+% metadata +
   geom_tiplab(align = T)+
@@ -188,18 +197,22 @@ ggtree(tree,layout = "rectangular") %<+% metadata +
 Instead of the tree tips, try colouring the tip labels by country
 
 <details>
-<summary> Click here to see the answer </summary>
+
+<summary>Click here to see the answer</summary>
+
 ```{r fig.height=7,fig.width=7}
 ggtree(tree,layout = "rectangular") %<+% metadata +
   geom_tiplab(aes(color=Country),align = T)+
   geom_tippoint()+
   hexpand(.6, 1)
 ```
+
 </details>
 
 #### Combining the phylogenetic tree with other data
 
 Lets read in the AmrFinder results
+
 ```{r}
 amrfinder<-as.data.frame(fread("PRJNA1230142_amrfinderplus.tsv",header=T,sep="\t",na.strings = "NA"))
 ```
@@ -207,13 +220,17 @@ amrfinder<-as.data.frame(fread("PRJNA1230142_amrfinderplus.tsv",header=T,sep="\t
 Lets filter this table to contain only AMR genes. We can do this by keeping only rows where the "ELEMENT TYPE" column has value "AMR"
 
 <details>
-<summary> Click here to see the answer </summary>
+
+<summary>Click here to see the answer</summary>
+
 ```{r}
 amrfinder<-amrfinder[amrfinder$`Element type`=="AMR",]
 ```
+
 </details>
 
 We can now build an AMR gene presence absence matrix:
+
 ```{r}
 amrfinder_presabs_matrix<- amrfinder[,c(1,7)] %>%
   distinct() %>%
@@ -225,19 +242,19 @@ rownames(amrfinder_presabs_matrix)<-amrfinder_presabs_matrix$accession
 amrfinder_presabs_matrix<-amrfinder_presabs_matrix[,-1]
 ```
 
-  - `amrfinder[,c(1,12)]` : select only column 1, 12
-  - `distinct()` : It is possible for the same AMR gene to be detected multiple times in the same genome. In this case, we don't care how many times an AMR gene is detected, just that if it is detected or not. so we use the `distinct()` function to keep only unique rows and remove duplicates
-  - `mutate(present = 1)` : Adding a column called 'present' with the value '1' to all rows using `mutate()`
-  - ``pivot_wider(names_from = `Gene symbol`, values_from = present, values_fill = "ABSENT")``:
-    - `pivot_wider` : a function to convert long data to wide data
-    - `names_from` : Values from this column will be used as column names in the resulting "wide" dataframe. We supplied `Gene symbol` - so each gene symbol in this column will become the column name for our new dataframe
-    - `values_from` : Values from this column will be used as the corresponding values under each column name. All the values in the 'present' column are equal to "PRESENT"
-    - `values_fill="ABSENT"`: Since not all samples will have all possible AMR genes, the wider dataframe will have some blank values, those will be replaced with "ABSENT".
-This will give us a presence/absence matrix of AMR genes found in our genomes. 
+-   `amrfinder[,c(1,12)]` : select only column 1, 12
+-   `distinct()` : It is possible for the same AMR gene to be detected multiple times in the same genome. In this case, we don't care how many times an AMR gene is detected, just that if it is detected or not. so we use the `distinct()` function to keep only unique rows and remove duplicates
+-   `mutate(present = 1)` : Adding a column called 'present' with the value '1' to all rows using `mutate()`
+-   `` pivot_wider(names_from = `Gene symbol`, values_from = present, values_fill = "ABSENT") ``:
+    -   `pivot_wider` : a function to convert long data to wide data
+    -   `names_from` : Values from this column will be used as column names in the resulting "wide" dataframe. We supplied `Gene symbol` - so each gene symbol in this column will become the column name for our new dataframe
+    -   `values_from` : Values from this column will be used as the corresponding values under each column name. All the values in the 'present' column are equal to "PRESENT"
+    -   `values_fill="ABSENT"`: Since not all samples will have all possible AMR genes, the wider dataframe will have some blank values, those will be replaced with "ABSENT". This will give us a presence/absence matrix of AMR genes found in our genomes.
 
 Visualize the tree along with the AMR gene presence/absence data
 
 Use `?gheatmap` to look at the different options and play around with them!
+
 ```{r fig.width=10,fig.height=7}
 
 tree_viz<-ggtree(tree,layout = "rectangular") %<+% metadata +
@@ -252,6 +269,7 @@ gheatmap(tree_viz,amrfinder_presabs_matrix,colnames_angle = 90,colnames_offset_y
 ## Creating visualizations from Pangenome data
 
 Read in the gene presence absence table
+
 ```{r}
 panaroo_presabs<-fread("PRJNA1230142_panaroo.Rtab",header=T,sep="\t")
 ```
@@ -264,15 +282,14 @@ colnames(gene_freq)<-c("Gene","Freq")
 gene_freq<-as.data.frame(gene_freq)
 ```
 
-- `panaroo_presabs[,1]` : Takes only the first column, in this case only gene names
-- `rowSums(panaroo_presabs[,-1])`:
-  - `panaroo_presabs[,-1]` : Takes all except the first column
-  - `rowSums` : Gets the sum of each row. In this case, that would add up all the 1s
-  - This would tell us how many genomes the corresponding gene family is present in.
-- `cbind(x,y)`: "Binds" columns of the inputs together. In this case, `x` is `panaroo_presabs[,1]` and `y` is `rowSums(...)`
-- `gene_freq<-` : Write a new dataframe called `gene_freq` where the number of genomes each gene family is present in is saved.
-`colnames(gene_freq)<-c("Gene","Freq")` : Assigns the names "Gene" and "Freq" to column 1 and column 2 of the newly created `gene_freq`
-- `gene_freq<-as.data.frame(gene_freq)` : Explicitly declaring `gene_freq` to be a dataframe
+-   `panaroo_presabs[,1]` : Takes only the first column, in this case only gene names
+-   `rowSums(panaroo_presabs[,-1])`:
+    -   `panaroo_presabs[,-1]` : Takes all except the first column
+    -   `rowSums` : Gets the sum of each row. In this case, that would add up all the 1s
+    -   This would tell us how many genomes the corresponding gene family is present in.
+-   `cbind(x,y)`: "Binds" columns of the inputs together. In this case, `x` is `panaroo_presabs[,1]` and `y` is `rowSums(...)`
+-   `gene_freq<-` : Write a new dataframe called `gene_freq` where the number of genomes each gene family is present in is saved. `colnames(gene_freq)<-c("Gene","Freq")` : Assigns the names "Gene" and "Freq" to column 1 and column 2 of the newly created `gene_freq`
+-   `gene_freq<-as.data.frame(gene_freq)` : Explicitly declaring `gene_freq` to be a dataframe
 
 Lets now create a new column called `perc` that has the percentage of genomes each gene is present in.
 
@@ -280,17 +297,20 @@ Lets now create a new column called `perc` that has the percentage of genomes ea
 gene_freq$perc<-gene_freq$Freq*100/max(gene_freq$Freq)
 ```
 
-  - `max(gene_freq$Freq)` : Gives the maximum value from a list of values. Our list of values is the column `Freq`. The maximum values here will be the maximum amount of genomes a single gene can be present in (i.e 100% presence)
-  - `gene_freq$Freq*100/max(gene_freq$Freq)`: Multipling each value in `Freq` by 100 and then dividing each value by the `max` - giving us the percentage
-  - `gene_freq$perc<-` : Writing the new list of percentage values to a new column in `gene_freq` called `perc`.
-  
+-   `max(gene_freq$Freq)` : Gives the maximum value from a list of values. Our list of values is the column `Freq`. The maximum values here will be the maximum amount of genomes a single gene can be present in (i.e 100% presence)
+-   `gene_freq$Freq*100/max(gene_freq$Freq)`: Multipling each value in `Freq` by 100 and then dividing each value by the `max` - giving us the percentage
+-   `gene_freq$perc<-` : Writing the new list of percentage values to a new column in `gene_freq` called `perc`.
+
 Now try visualizing the percentage of genomes each gene is present in as a histogram!
 
 <details>
-<summary> Click here to see the answer </summary>
+
+<summary>Click here to see the answer</summary>
+
 ```{r}
 ggplot(data=gene_freq)+geom_histogram(aes(x=perc))
 ```
+
 </details>
 
 Now lets filter the gene presence absence table to remove core genes
@@ -309,9 +329,9 @@ panaroo_presabs_filtered_transposed<-as.data.frame(t(panaroo_presabs_filtered)) 
 
 Even after filtering, this table has over 600 genes. While it is possible to visualize them along side the tree like we did previously with AMRFinder data, the plot would appear too cluttered to visualize clearly.
 
-In these cases, we can use **dimensionality reduction** methods. 
+In these cases, we can use **dimensionality reduction** methods.
 
-Dimensionality reduction involves applying mathematical transformations to high dimensional data to convert them to low dimensional data. 
+Dimensionality reduction involves applying mathematical transformations to high dimensional data to convert them to low dimensional data.
 
 In our case, we have the distribution of over 600 genes across 36 genomes. Using dimensionality reduction, we can represent this in 2 dimensions, where *ideally* genomes with similar gene presence/absence patterns should cluster together. Lets use a dimensionality reduction method called UMAP (Uniform Manifold AProximation)
 
@@ -330,13 +350,11 @@ At first glance, it looks like our data fall into two distinct clusters! This su
 
 However, one has to be very careful while interpreting results from dimensionality reduction methods such as UMAP (or alternatively, PCoA, tSNE) as often times they tend to display structure in our data when there is none. Only use them as exploratory/visualization tools when you are working with high-dimension data and not as tools to make hard conclusions. Read more about UMAP [here!](https://pair-code.github.io/understanding-umap/)
 
+------------------------------------------------------------------------
 
-
----
 ## Sources and further reading:
 
-ggtree Manual: <https://guangchuangyu.github.io/software/ggtree/>
-PHeatmap tutorial: <https://davetang.org/muse/2018/05/15/making-a-heatmap-in-r-with-the-pheatmap-package/>
-Panaroo manual: <https://gthlab.au/panaroo/#/gettingstarted/quickstart>
-Understanding UMAP: <https://pair-code.github.io/understanding-umap/>
-Understanding tSNE: <https://distill.pub/2016/misread-tsne/>
+- ggtree Manual: <https://guangchuangyu.github.io/software/ggtree/>
+- PHeatmap tutorial: <https://davetang.org/muse/2018/05/15/making-a-heatmap-in-r-with-the-pheatmap-package/>
+- Panaroo manual: <https://gthlab.au/panaroo/#/gettingstarted/quickstart>
+- Understanding UMAP: <https://pair-code.github.io/understanding-umap/> - Understanding tSNE: <https://distill.pub/2016/misread-tsne/>
